@@ -1,0 +1,17 @@
+$path: "../../../../assets/img/";
+
+.bg-hands {
+  background-image: url($path + "hands.jpg");
+}
+
+.bg-meeting {
+  background-image: url($path + "meeting.jpg");
+}
+
+.bg-sticky-notes {
+  background-image: url($path + "sticky-notes.jpg");
+}
+
+.bg-shaking-hands {
+  background-image: url($path + "shaking-hands.jpg");
+}
