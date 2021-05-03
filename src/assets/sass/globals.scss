@@ -1,3 +1,11 @@
+html {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
 .translated-paragraph {
   white-space: pre-wrap;
 }
@@ -5,3 +13,11 @@
 .text-end {
   text-align: end;
 }
+
+.text-start {
+  text-align: start;
+}
+
+
+/* font sizes */
+
