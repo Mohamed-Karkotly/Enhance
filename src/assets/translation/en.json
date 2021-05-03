@@ -8,7 +8,7 @@
     "principles": "Our principles are what we stand for. They are beliefs we hold deeply and make trade offs to pursue.",
     "principle-1-header": "Give People a Voice",
     "principle-1": "People deserve to be heard and to have a voice — even when that means defending the right of people we disagree with.",
-    "principle-2-header": "Give People a Voice",
+    "principle-2-header": "Build Connection and Community",
     "principle-2": "Our services help people connect, and when they’re at their best they make thoughts easier to accomplish together.",
     "principle-3-header": "Keep People Safe and Protect Privacy",
     "principle-3": "We have a responsibility to promote the best of what people can do together by keeping people safe and preventing harm.",
@@ -32,5 +32,9 @@
 
   "button": {
     "send-message": "Send Message"
+  },
+
+  "footer": {
+    "designed-by": "Designed By Enhance"
   }
 }

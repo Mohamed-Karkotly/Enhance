@@ -1,17 +1,25 @@
 $path: "../../../../assets/img/";
-
-.bg-hands {
-  background-image: url($path + "hands.jpg");
+@import "~rfs/scss";
+.bg-collaboration {
+  background-image: url($path + "collaboration.jpg");
 }
 
-.bg-meeting {
-  background-image: url($path + "meeting.jpg");
+.bg-jigsaw {
+  background-image: url($path + "jigsaw.jpg");
 }
 
-.bg-sticky-notes {
-  background-image: url($path + "sticky-notes.jpg");
+.bg-discuss {
+  background-image: url($path + "discuss.jpg");
 }
 
-.bg-shaking-hands {
-  background-image: url($path + "shaking-hands.jpg");
+.bg-header {
+  background-image: url($path + "header.jpg");
+}
+
+.content-center.brand {
+  top: 30% !important;
+}
+
+.rfs-2 {
+  @include font-size(2rem !important);
 }

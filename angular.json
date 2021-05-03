@@ -30,6 +30,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/sass/now-ui-kit.scss",
+              "src/assets/css/demo.css",
               "src/assets/sass/globals.scss"
             ],
             "scripts": [

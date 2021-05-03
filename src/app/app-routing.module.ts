@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { Error404Component } from './components//error-pages/error404/error404.component';
 import { LandingPageComponent } from './components/landing-page/landing-page/landing-page.component';
+import { LoginComponent } from './components/landing-page/login/login.component';
 
 export const routes: Routes = [
   {
@@ -22,6 +23,13 @@ export const routes: Routes = [
         canActivate: [AuthGuard],
       },
     ],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      title: 'Enhance - Sign in',
+    },
   },
   {
     path: '**',
