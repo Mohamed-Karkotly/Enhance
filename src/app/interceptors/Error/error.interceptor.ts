@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -7,26 +7,38 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
-
+import { Router } from '@angular/router';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor() {}
-
+  constructor(private router: Router) {}
+  //!Global scope error handling
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<any> {
     return next.handle(request).pipe(
-      retry(1),
+      //TODO: Reactivate the following line on production
+      // -> retry(1),
       catchError((error: HttpErrorResponse) => {
-        //TODO: Make an interface for errors and check if status equal any of its intsances
-        let errorMsg = '';
+        //TODO: Make a global enum for error codes
         if (error.error instanceof ErrorEvent) {
-          console.log('This is a client side error');
-          errorMsg = `Error: ${error.error.message}`;
+          // handle client-side error
         } else {
-          console.log('This is a server side error');
-          errorMsg = `Error Code: ${error.status},  Message: ${error.message}`;
+          // handle server-side error
+          //TODO: Manage global response error
+          //-> i.e. 401, 404, 500, etc..
+          //-> Also refresh token for expired token error
+          switch (error.status) {
+            case 401: //login
+              break;
+            case 403: //forbidden
+              break;
+            case 404: //not found
+              this.router.navigateByUrl('');
+              break;
+            case 500: //internal server error
+              this.router.navigateByUrl('');
+              break;
+          }
         }
-        console.log(errorMsg);
-        return throwError(errorMsg);
+        return throwError(error);
       })
     );
   }

@@ -1,4 +1,4 @@
-/* import { TestBed } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { CacheInterceptor } from './cache.interceptor';
 
@@ -14,4 +14,3 @@ describe('CacheInterceptor', () => {
     expect(interceptor).toBeTruthy();
   });
 });
- */

@@ -14,7 +14,6 @@
     "principle-3": "We have a responsibility to promote the best of what people can do together by keeping people safe and preventing harm.",
     "principle-4-header": "Keep Communities Enhanced!",
     "principle-4": "Since that sharing ideas and thougt keeps the communities vital, the term of \"Enhanced\" is what we seek to accomplish in this platform.",
-
     "our-team": "Our Team",
     "karkotly": "Mohamed Karkotly",
     "karkotly-profession": "Web Developer",
@@ -22,19 +21,26 @@
     "majd": "Majd Al-Yaseen",
     "majd-profession": "Content Writer",
     "majd-bio": "Description",
-
     "drop-feedback": "Drop feddback",
     "opinion-important": "Your opinion is important to us!",
     "name": "Name",
     "subject": "Subject",
     "message": "Message.."
   },
-
   "button": {
     "send-message": "Send Message"
   },
-
   "footer": {
     "designed-by": "Designed By Enhance"
+  },
+  "404": {
+    "nothing-found": "Oops! Nothing was found",
+    "unavailable": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
+    "home": "Return to homepage"
+  },
+  "500": {
+    "oops": "Oops.. It seems like something is broken here.",
+    "fix": "We will get to fix this soon",
+    "home": "Return to homepage"
   }
 }

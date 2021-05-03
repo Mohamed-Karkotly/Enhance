@@ -11,13 +11,12 @@ import { finalize } from 'rxjs/operators';
 @Injectable()
 export class LoggerInterceptor implements HttpInterceptor {
   constructor() {}
-
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const started: Date | number = Date.now();
     return next.handle(request).pipe(
       finalize(() => {
         const elapsed: number = Date.now() - started;
-        console.log(`URL: ${request.url} Method: ${request.method} Time elapsed: ${elapsed} ms`);
+        console.log(`${request.method} ${request.url} took ${elapsed} ms`);
       })
     );
   }
