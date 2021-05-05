@@ -1,5 +1,7 @@
-$path: "../../../../assets/img/";
 @import "~rfs/scss";
+
+$path: "../../../../assets/img/";
+
 .bg-collaboration {
   background-image: url($path + "collaboration.jpg");
 }
