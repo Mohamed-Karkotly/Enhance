@@ -24,7 +24,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           // handle server-side error
           //TODO: Manage global response error
           //-> i.e. 401, 404, 500, etc..
-          //-> Also refresh token for expired token error
+          //-> Also refresh token for expired token
           switch (error.status) {
             case 401: //login
               break;

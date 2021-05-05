@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
   }
 
   changeTitle(): void {
-    const appTitle = this._titleService.getTitle();
+    const tabTitle = this._titleService.getTitle();
     this._router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
           if (child.snapshot.data['title']) {
             return child.snapshot.data['title'];
           }
-          return appTitle;
+          return tabTitle;
         })
       )
       .subscribe((title: string) => {

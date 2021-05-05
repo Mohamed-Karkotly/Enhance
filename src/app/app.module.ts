@@ -17,6 +17,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/Error/error.interceptor';
 import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
+import { NavbarComponent } from './shared/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,7 @@ import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
     SignUpComponent,
     SocialMediaComponent,
     FooterComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

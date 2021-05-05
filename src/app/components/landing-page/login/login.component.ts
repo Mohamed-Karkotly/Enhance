@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  focus;
-  focus1;
+  input1Focus;
+  input2Focus;
   constructor() { }
 
   ngOnInit(): void {

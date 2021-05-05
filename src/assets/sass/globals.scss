@@ -1,6 +1,7 @@
-html {
+html, body {
   width: 100%;
   height: 100%;
+  min-height: 100%;
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
@@ -19,5 +20,19 @@ html {
 }
 
 
-/* font sizes */
+/* Scroll */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 15px;
+}
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.7);
+}
 
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(45deg, #35ADC4, #7952DE);
+  border-radius: 10px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.12) 0 3px 13px 1px;
+  box-shadow: rgba(0, 0, 0, 0.12) 0 3px 13px 1px;
+}
