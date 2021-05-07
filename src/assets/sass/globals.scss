@@ -7,10 +7,6 @@ html, body {
   overflow-x: hidden;
 }
 
-.translated-paragraph {
-  white-space: pre-wrap;
-}
-
 .text-end {
   text-align: end;
 }
@@ -19,6 +15,17 @@ html, body {
   text-align: start;
 }
 
+.flex-spacer {
+  flex: 1 1 auto;
+}
+
+.d-unset {
+  display: unset;
+}
+
+.translated-paragraph {
+  white-space: pre-wrap;
+}
 
 /* Scroll */
 ::-webkit-scrollbar {

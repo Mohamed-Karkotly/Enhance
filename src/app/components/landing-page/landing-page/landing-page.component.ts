@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { RellaxService } from 'src/app/classes/rellax';
 @Component({
   selector: 'app-landing-page',
@@ -11,8 +11,7 @@ export class LandingPageComponent implements OnInit {
   focus;
   focus1;
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit() {
     this.rellax = new RellaxService();

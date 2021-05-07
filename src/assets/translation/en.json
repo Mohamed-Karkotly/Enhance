@@ -28,7 +28,8 @@
     "message": "Message.."
   },
   "button": {
-    "send-message": "Send Message"
+    "send-message": "Send Message",
+    "close": "Close"
   },
   "footer": {
     "designed-by": "Designed By Enhance"
@@ -42,5 +43,9 @@
     "oops": "Oops.. It seems like something is broken here.",
     "fix": "We will get to fix this soon",
     "home": "Return to homepage"
+  },
+  "modal": {
+    "terms": "Terms & Privacy",
+    "privacy": "Privacy Policy for Enhance"
   }
 }
