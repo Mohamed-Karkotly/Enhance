@@ -13,15 +13,11 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthGuard } from './guards/auth/auth.guard';
 import { AppComponent } from './app.component';
-import { Error404Component } from './components/error-pages/error404/error404.component';
-import { Error500Component } from './components/error-pages/error500/error500.component';
 import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/Error/error.interceptor';
 import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ErrorPagesModule } from './components/error-pages/error-pages.module';
-import { LandingPageModule } from './components/landing-page/landing-page.module';
-import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
+import { LandingPageModule } from './modules/landing-page/landing-page.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
