@@ -17,7 +17,9 @@ import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/Error/error.interceptor';
 import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
+import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -36,6 +38,8 @@ import { LandingPageModule } from './modules/landing-page/landing-page.module';
     }),
     NgbModule,
     LandingPageModule,
+    ErrorPagesModule,
+    ReusableComponentsModule,
   ],
   providers: [
     AuthGuard,
