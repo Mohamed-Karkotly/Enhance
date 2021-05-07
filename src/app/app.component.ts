@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { filter, map } from 'rxjs/operators';
+import { TitleService } from './services/title.service';
+import { TranslationService } from './services/translation.service';
 
 @Component({
   selector: 'app-root',
@@ -11,37 +10,11 @@ import { filter, map } from 'rxjs/operators';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private _router: Router,
-    private _activatedRoute: ActivatedRoute,
-    private _titleService: Title,
-    private _translateService: TranslateService
+    private _titleService: TitleService,
+    private _translationService: TranslationService
   ) {
-    this._translateService.setDefaultLang('en');
-    this._translateService.addLangs(['en', 'ar']);
-    this._translateService.use('en');
+    this._translationService.initLanguages();
+    this._titleService.changeTitle();
   }
-  ngOnInit() {
-    this.changeTitle();
-  }
-
-  changeTitle(): void {
-    const tabTitle = this._titleService.getTitle();
-    this._router.events
-      .pipe(
-        filter((event) => event instanceof NavigationEnd),
-        map(() => {
-          let child = this._activatedRoute.firstChild;
-          while (child.firstChild) {
-            child = child.firstChild;
-          }
-          if (child.snapshot.data['title']) {
-            return child.snapshot.data['title'];
-          }
-          return tabTitle;
-        })
-      )
-      .subscribe((title: string) => {
-        this._titleService.setTitle(title);
-      });
-  }
+  ngOnInit() {}
 }

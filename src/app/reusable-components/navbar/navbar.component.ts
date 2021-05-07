@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
   }
 
-  sidebarOpen() {
+  openSidenav() {
     const toggleButton = this.toggleButton;
     const html = document.getElementsByTagName('html')[0];
     setTimeout(function () {
@@ -27,17 +27,17 @@ export class NavbarComponent implements OnInit {
 
     this.sidebarVisible = true;
   }
-  sidebarClose() {
+  closeSidenav() {
     const html = document.getElementsByTagName('html')[0];
     this.toggleButton.classList.remove('toggled');
     this.sidebarVisible = false;
     html.classList.remove('nav-open');
   }
-  sidebarToggle() {
+  toggleSidenav() {
     if (!this.sidebarVisible) {
-      this.sidebarOpen();
+      this.openSidenav();
     } else {
-      this.sidebarClose();
+      this.closeSidenav();
     }
   }
 }
