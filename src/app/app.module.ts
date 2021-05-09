@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AngularMaterialModule } from './angular-material/angular-material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import {
@@ -25,7 +24,6 @@ import { ReusableComponentsModule } from './reusable-components/reusable-compone
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AngularMaterialModule,
     FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,

@@ -6,6 +6,8 @@ import { LoginComponent } from './login/login.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReusableComponentsModule } from 'src/app/reusable-components/reusable-components.module';
+import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [LandingPageComponent, LoginComponent, SignUpComponent],
@@ -14,6 +16,9 @@ import { ReusableComponentsModule } from 'src/app/reusable-components/reusable-c
     LandingPageRoutingModule,
     ReusableComponentsModule,
     TranslateModule,
+    AngularMaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
 })
 export class LandingPageModule {}
