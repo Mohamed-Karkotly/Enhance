@@ -1,0 +1,9 @@
+@import "~rfs/scss";
+
+.content-center.brand {
+  top: 30%;
+}
+
+.rfs-2 {
+  @include font-size(2rem !important);
+}

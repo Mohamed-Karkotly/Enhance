@@ -1,0 +1,189 @@
+<div class="container-fluid bg-sign-up pt-2">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card mb-0">
+        <div class="card-header bg-primary white-color">
+          <div class="row">
+            <div class="col-12 col-sm-6">
+              <h6 class="title text-center m-0 py-1">{{'sign-up.manage' | translate}}</h6>
+            </div>
+            <div class="col-12 col-sm-6">
+              <h6 class="title text-center m-0 py-1">{{'sign-up.become-member' | translate}}</h6>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form>
+            <!-- *General information Row* -->
+            <div class="row py-2">
+              <!-- First name -->
+              <div class="col-12 col-sm-6 col-md-3 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.first-name' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.first-name' | translate}}" #firstName
+                    required>
+                  <!-- TODO: Use this validation method -->
+                  <!-- <div *ngIf="firstName.name.touched && firstName.name.invalid" class="alert alert-danger"></div> -->
+                </div>
+              </div>
+              <!-- Last name -->
+              <div class="col-12 col-sm-6 col-md-3 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.last-name' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.last-name' | translate}}">
+                </div>
+              </div>
+              <!-- Email -->
+              <div class="col-12 col-md-4 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.email' | translate}}</label>
+                  <input type="email" class="form-control" placeholder="{{'sign-up.email' | translate}}">
+                </div>
+              </div>
+              <!-- Age -->
+              <div class="col-md-2 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.age' | translate}}</label>
+                  <input type="number" class="form-control" placeholder="{{'sign-up.age' | translate}}">
+                </div>
+              </div>
+            </div>
+            <!-- *//General information Row* -->
+            <!-- *Extra information Row* -->
+            <div class="row py-2">
+              <!-- Phone -->
+              <div class="col-12 col-sm-6 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.phone' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.phone' | translate}}">
+                </div>
+              </div>
+              <!-- Profession -->
+              <div class="col-12 col-sm-6 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.profession' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.profession' | translate}}">
+                </div>
+              </div>
+            </div>
+            <!-- *//Extra information Row* -->
+            <!-- *Location Row* -->
+            <div class="row py-2">
+              <!-- Country -->
+              <div class="col-12 col-sm-6 col-md-3 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.country' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.country' | translate}}">
+                </div>
+              </div>
+              <!-- City -->
+              <div class="col-12 col-sm-6 col-md-3 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.city' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.city' | translate}}">
+                </div>
+              </div>
+              <!-- Address -->
+              <div class="col-12 col-md-6 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.address' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.address' | translate}}">
+                </div>
+              </div>
+            </div>
+            <!-- *//Location Row* -->
+            <!-- *Credentials Row* -->
+            <div class="row py-2">
+              <div class="col-12 col-sm-6 col-md-4 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.username' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.username' | translate}}">
+                </div>
+              </div>
+              <div class="col-12 col-sm-6 col-md-4 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.password' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.password' | translate}}">
+                </div>
+              </div>
+              <div class="col-12 col-md-4 px-1">
+                <div class="form-group">
+                  <label class="px-2">{{'sign-up.confirm-password' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'sign-up.confirm-password' | translate}}">
+                </div>
+              </div>
+            </div>
+            <!-- *//Credentials Row* -->
+            <!-- *About me row* -->
+            <div class="row py-2">
+              <div class="col-md-12 px-3">
+                <div class="form-group">
+                  <label>{{'sign-up.about-me' | translate}}</label>
+                  <textarea rows="2" cols="80" class="form-control p-0"
+                    placeholder="{{'sign-up.about-me-placeholder' | translate}}"></textarea>
+                </div>
+              </div>
+            </div>
+            <!-- *//About me row* -->
+            <div class="row py-2">
+              <div class="col-12 col-md-10">
+                <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
+              </div>
+              <div class="col-2">
+                <bSwitch></bSwitch>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="text-center">
+            <i class="fas fa-user fa-6x pt-15 avatar border-gray"></i>
+            <!-- <img class="avatar border-gray" src="../../../../assets/img/members/Mohamed_Karkotly.jpg" alt="..."> -->
+            <div>
+              <div style="height:0px;overflow:hidden">
+                <input type="file" #photoInput name="profile_img" />
+              </div>
+              <button class="btn btn-primary" (click)="photoInput.click()">Upload image</button>
+            </div>
+            <h5 class="title pt-3">Mohamed Karkotly</h5>
+            <p>Gatsby</p>
+            <p class="description">
+              "Some cool stuff Describes who i am"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card text-center m-0">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-6 align-self-center">
+              <ul class="nav nav-tabs justify-content-center p-0">
+                <li class="nav-item">
+                  <a href="" class="btn nav-link p-2 m-0">Login instead</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-6 align-self-center">
+              <ul class="nav nav-tabs justify-content-center p-0">
+                <li class="nav-item">
+                  <a href="" class="btn nav-link p-2 m-0">Terms & Privacy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <p class="card-text">By signing up i agree to the terms and privacy</p>
+          <div class="pt-5">
+            <a href="#" class="btn btn-primary">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

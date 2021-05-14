@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { LandingPageComponent } from './modules/landing-page/landing-page/landing-page.component';
+import { LandingPageComponent } from './modules/landing-page/views/landing-page/landing-page.component';
 
 export const routes: Routes = [
   {

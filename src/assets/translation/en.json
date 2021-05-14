@@ -1,4 +1,32 @@
 {
+  "enhance": "Enhance",
+
+  "button": {
+    "send-message": "Send Message",
+    "close": "Close"
+  },
+
+  "modal": {
+    "terms": "Terms & Privacy",
+    "privacy": "Privacy Policy for Enhance"
+  },
+
+  "footer": {
+    "designed-by": "Designed By Enhance"
+  },
+
+  "404": {
+    "nothing-found": "Oops! Nothing was found",
+    "unavailable": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
+    "home": "Return to homepage"
+  },
+
+  "500": {
+    "oops": "Oops.. It seems like something is broken here.",
+    "fix": "We will get to fix this soon",
+    "home": "Return to homepage"
+  },
+
   "landing-page": {
     "header": "Enhance platform",
     "who-we-are": "Who we are?",
@@ -27,25 +55,32 @@
     "subject": "Subject",
     "message": "Message.."
   },
-  "button": {
-    "send-message": "Send Message",
-    "close": "Close"
+
+  "login": {
+    "login": "Login",
+    "username": "Username",
+    "password": "Password",
+    "create-account": "Create Account",
+    "download": "Download application"
   },
-  "footer": {
-    "designed-by": "Designed By Enhance"
-  },
-  "404": {
-    "nothing-found": "Oops! Nothing was found",
-    "unavailable": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
-    "home": "Return to homepage"
-  },
-  "500": {
-    "oops": "Oops.. It seems like something is broken here.",
-    "fix": "We will get to fix this soon",
-    "home": "Return to homepage"
-  },
-  "modal": {
-    "terms": "Terms & Privacy",
-    "privacy": "Privacy Policy for Enhance"
+
+  "sign-up": {
+    "manage": "Manage a community",
+    "become-member": "Become a member!",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "age": "Age",
+    "username": "Username",
+    "password": "Password",
+    "confirm-password": "Confirm Password",
+    "email": "Email",
+    "phone": "Phone",
+    "country": "Country",
+    "city": "City",
+    "address": "Address",
+    "profession": "Profession",
+    "invitation-option": "Would you like other people to invite you to other communities?",
+    "about-me": "About me",
+    "about-me-placeholder": "Here goes your description"
   }
 }

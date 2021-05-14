@@ -32,10 +32,15 @@
               "src/assets/sass/now-ui-kit.scss",
               "src/assets/css/demo.css",
               "src/assets/sass/globals.scss",
+              "src/assets/sass/background-images.scss",
+              "src/assets/sass/browser-defaults.scss",
               "src/assets/sass/queries.scss"
             ],
             "scripts": [
-              "node_modules/rellax/rellax.min.js"
+              "node_modules/rellax/rellax.min.js",
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/popper.js/dist/umd/popper.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           },
           "configurations": {
