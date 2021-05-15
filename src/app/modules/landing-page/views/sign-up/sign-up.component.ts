@@ -1,9 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ImageSnippet } from 'src/app/helper-classes/image-snippet';
 import { User } from 'src/app/models/entities/user.interface';
 import { ImageService } from 'src/app/services/image.service';
+import { RegExService } from 'src/app/services/reg-ex.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -12,22 +18,56 @@ import { ImageService } from 'src/app/services/image.service';
 })
 export class SignUpComponent implements OnInit {
   imageSnippet: ImageSnippet;
-  generalInfo: FormGroup;
+  signUpForm: FormGroup;
+  submitted: boolean;
   constructor(
-    private _imageService: ImageService,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder,
+    private _regexService: RegExService,
+    private _imageService: ImageService
   ) {}
 
   ngOnInit() {
-    this.generalInfo = this._formBuilder.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      age: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
+    this.initSignUpForm();
+  }
+
+  initSignUpForm() {
+    this.signUpForm = this._formBuilder.group({
+      firstname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30),
+        Validators.pattern(this._regexService.name),
+      ]),
+      lastname: new FormControl('', [
+        Validators.required,
+        Validators.minLength(2),
+        Validators.maxLength(30),
+        Validators.pattern(this._regexService.name),
+      ]),
+      age: new FormControl('', [
+        Validators.required,
+        Validators.min(14),
+        Validators.max(100),
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern(this._regexService.email),
+      ]),
+      phone: new FormControl('', [Validators.required]),
       profession: ['', Validators.required],
       username: ['', Validators.required],
     });
+  }
+  onSubmit(data: any) {
+    this.submitted = true;
+    // stop here if form is invalid
+    /* if (this.signUpForm.invalid) {
+      return;
+    } */
+    console.warn(data);
+  }
+  get form() {
+    return this.signUpForm.controls;
   }
 
   processFile(imageInput: any) {

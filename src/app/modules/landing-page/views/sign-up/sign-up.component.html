@@ -13,38 +13,109 @@
           </div>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
             <!-- *General information Row* -->
             <div class="row py-2">
               <!-- First name -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.first-name' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.first-name' | translate}}" #firstName
-                    required>
-                  <!-- TODO: Use this validation method -->
-                  <!-- <div *ngIf="firstName.name.touched && firstName.name.invalid" class="alert alert-danger"></div> -->
+                  <label class="px-2">{{'form.firstname' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.firstname-mask' | translate}}"
+                    formControlName="firstname" [ngClass]="{'is-invalid': submitted && form.firstname.errors}" [ngClass]="{'is-valid': !form.firstname.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('firstname').invalid && (signUpForm.get('firstname').dirty
+                    || signUpForm.get('firstname').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.required">
+                        <small class="text-12 px-2">{{'validation.firstname-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.minlength">
+                        <small class="text-12 px-2">{{'validation.firstname-min-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.maxlength">
+                        <small class="text-12 px-2">{{'validation.firstname-max-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.pattern">
+                        <small class="text-12 px-2">{{'validation.firstname-invalid' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- Last name -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.last-name' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.last-name' | translate}}">
+                  <label class="px-2">{{'form.lastname' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.lastname-mask' | translate}}"
+                    formControlName="lastname" [ngClass]="{'is-invalid': submitted && form.lastname.errors}"
+                    [ngClass]="{'is-valid': !form.lastname.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('lastname').invalid && (signUpForm.get('lastname').dirty
+                    || signUpForm.get('lastname').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.required">
+                        <small class="text-12 px-2">{{'validation.lastname-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.minlength">
+                        <small class="text-12 px-2">{{'validation.lastname-min-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.maxlength">
+                        <small class="text-12 px-2">{{'validation.lastname-max-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.pattern">
+                        <small class="text-12 px-2">{{'validation.lastname-invalid' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- Email -->
               <div class="col-12 col-md-4 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.email' | translate}}</label>
-                  <input type="email" class="form-control" placeholder="{{'sign-up.email' | translate}}">
+                  <label class="px-2">{{'form.email' | translate}}</label>
+                  <input type="email" class="form-control" placeholder="{{'form.email-mask' | translate}}"
+                    formControlName="email" [ngClass]="{'is-invalid': submitted && form.email.errors}" [ngClass]="{'is-valid': !form.email.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty
+                    || signUpForm.get('email').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('email').errors.required">
+                        <small class="text-12 px-2">{{'validation.email-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('email').errors.pattern">
+                        <small class="text-12 px-2">{{'validation.email-invalid' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- Age -->
               <div class="col-md-2 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.age' | translate}}</label>
-                  <input type="number" class="form-control" placeholder="{{'sign-up.age' | translate}}">
+                  <label class="px-2">{{'form.age' | translate}}</label>
+                  <input type="number" class="form-control" min="14" max="100"
+                    oninput="this.value = Math.round(this.value); this.value =
+                  !!this.value && Math.abs(this.value) >= 0 && Math.abs(this.value) <= 100? Math.abs(this.value) : null" placeholder="{{'form.age' | translate}}"
+                    formControlName="age" [ngClass]="{'is-invalid': submitted && form.age.errors}" [ngClass]="{'is-valid': !form.age.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('age').invalid && (signUpForm.get('age').dirty
+                    || signUpForm.get('age').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.required">
+                        <small class="text-12 px-2">{{'validation.age-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.min">
+                        <small class="text-12 px-2">{{'validation.age-min' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.max">
+                        <small class="text-12 px-2">{{'validation.age-max' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -54,15 +125,30 @@
               <!-- Phone -->
               <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.phone' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.phone' | translate}}">
+                  <label class="px-2">{{'form.phone' | translate}}</label>
+                  <!-- TODO: Support internation phone numbers in future versions -->
+                  <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}" mask="0000 000 000"
+                    maxlength="16" formControlName="phone" [ngClass]="{'is-invalid': submitted && form.phone.errors}" [ngClass]="{'is-valid': !form.phone.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty
+                    || signUpForm.get('phone').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
+                        <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.pattern">
+                        <small class="text-12 px-2">{{'validation.phone-invalid' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <!-- Profession -->
               <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.profession' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.profession' | translate}}">
+                  <label class="px-2">{{'form.profession' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.profession' | translate}}">
                 </div>
               </div>
             </div>
@@ -72,22 +158,22 @@
               <!-- Country -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.country' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.country' | translate}}">
+                  <label class="px-2">{{'form.country' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.country' | translate}}">
                 </div>
               </div>
               <!-- City -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.city' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.city' | translate}}">
+                  <label class="px-2">{{'form.city' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.city' | translate}}">
                 </div>
               </div>
               <!-- Address -->
               <div class="col-12 col-md-6 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.address' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.address' | translate}}">
+                  <label class="px-2">{{'form.address' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.address-mask' | translate}}">
                 </div>
               </div>
             </div>
@@ -96,20 +182,20 @@
             <div class="row py-2">
               <div class="col-12 col-sm-6 col-md-4 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.username' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.username' | translate}}">
+                  <label class="px-2">{{'form.username' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.username-mask' | translate}}">
                 </div>
               </div>
               <div class="col-12 col-sm-6 col-md-4 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.password' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.password' | translate}}">
+                  <label class="px-2">{{'form.password' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.password-mask' | translate}}">
                 </div>
               </div>
               <div class="col-12 col-md-4 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'sign-up.confirm-password' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'sign-up.confirm-password' | translate}}">
+                  <label class="px-2">{{'form.confirm-password' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.password-mask' | translate}}">
                 </div>
               </div>
             </div>
@@ -118,9 +204,9 @@
             <div class="row py-2">
               <div class="col-md-12 px-3">
                 <div class="form-group">
-                  <label>{{'sign-up.about-me' | translate}}</label>
+                  <label>{{'form.about-me' | translate}}</label>
                   <textarea rows="2" cols="80" class="form-control p-0"
-                    placeholder="{{'sign-up.about-me-placeholder' | translate}}"></textarea>
+                    placeholder="{{'form.about-me-mask' | translate}}"></textarea>
                 </div>
               </div>
             </div>
@@ -131,6 +217,11 @@
               </div>
               <div class="col-2">
                 <bSwitch></bSwitch>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <button type="submit">Submit</button>
               </div>
             </div>
           </form>
