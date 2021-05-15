@@ -21,6 +21,9 @@ body {
   flex: 1 1 auto;
 }
 
+.text-12 {
+  font-size: 12px;
+}
 .vertical-center {
   min-height: 100%; /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -33,7 +36,7 @@ body {
 }
 
 .primary-color {
-  color: $default-color;
+  color: $primary-color;
 }
 
 .white-color {

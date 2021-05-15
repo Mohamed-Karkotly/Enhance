@@ -1,32 +1,42 @@
 {
   "enhance": "Enhance",
-
+  "spinner": {
+    "processing": "Processing..."
+  },
   "button": {
     "send-message": "Send Message",
     "close": "Close"
   },
-
+  "navbar": {
+    "sign-up": "Sign up",
+    "login": "Login"
+  },
+  "social": {
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "instagram": "Instagram",
+    "follow-twitter": "Follow us on Twitter",
+    "like-facebook": "Like us on Facebook",
+    "follow-instagram": "Follow us on Instagram"
+  },
   "modal": {
     "terms": "Terms & Privacy",
     "privacy": "Privacy Policy for Enhance"
   },
-
   "footer": {
-    "designed-by": "Designed By Enhance"
+    "designed-by": "Designed By Enhance",
+    "follow-us": "Follow us!"
   },
-
   "404": {
     "nothing-found": "Oops! Nothing was found",
     "unavailable": "The page you are looking for might have been removed had its name changed or is temporarily unavailable.",
     "home": "Return to homepage"
   },
-
   "500": {
     "oops": "Oops.. It seems like something is broken here.",
     "fix": "We will get to fix this soon",
     "home": "Return to homepage"
   },
-
   "landing-page": {
     "header": "Enhance platform",
     "who-we-are": "Who we are?",
@@ -45,25 +55,31 @@
     "our-team": "Our Team",
     "karkotly": "Mohamed Karkotly",
     "karkotly-profession": "Web Developer",
-    "karkotly-bio": "Description",
+    "karkotly-bio": "Front End Developer, My role is to write and style the front-end components that meet the requirements of our mocks and fulfill our user stories. I also monitor and process pull requests for production deployments. Technologies used: Angular, JavaScript, ES6, TypeScript, SCSS",
     "majd": "Majd Al-Yaseen",
-    "majd-profession": "Content Writer",
-    "majd-bio": "Description",
+    "majd-profession": "Social Media Manager",
+    "majd-bio": "Serve as a visionary for social media and digital content strategy, acting as a proactive subject matter expert in social and digital media and developing team guidelines, Establish objectives and develop strategic and technical plans for implementing social media campaigns",
+    "nour": "Nour Sleem",
+    "nour-profession": "Mobile Apps Developer",
+    "nour-bio": "Worked and collaborated with marketing, key executives, UI designers, architects, engineers, and product management to deliver user-friendly and visually appealing mobile apps for both Android & iOS platforms. Just another line here and we are done. Technologies used: Flutter, Dart.",
     "drop-feedback": "Drop feddback",
     "opinion-important": "Your opinion is important to us!",
     "name": "Name",
     "subject": "Subject",
     "message": "Message.."
   },
-
   "login": {
     "login": "Login",
     "username": "Username",
+    "username-required": "Username is required",
+    "username-min-length": "Username must be at least 2 characters long",
+    "username-max-length": "Username cannot be more than 30 characters long",
     "password": "Password",
+    "password-required": "Password is required",
+    "password-min-length": "Password must be at least 8 characters long",
     "create-account": "Create Account",
     "download": "Download application"
   },
-
   "sign-up": {
     "manage": "Manage a community",
     "become-member": "Become a member!",

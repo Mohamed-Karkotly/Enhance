@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
 import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -38,6 +39,7 @@ import { ReusableComponentsModule } from './reusable-components/reusable-compone
     LandingPageModule,
     ErrorPagesModule,
     ReusableComponentsModule,
+    NgxSpinnerModule,
   ],
   providers: [
     AuthGuard,

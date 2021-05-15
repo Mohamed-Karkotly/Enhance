@@ -145,8 +145,9 @@
             <!-- <img class="avatar border-gray" src="../../../../assets/img/members/Mohamed_Karkotly.jpg" alt="..."> -->
             <div>
               <div style="height:0px;overflow:hidden">
-                <input type="file" #photoInput name="profile_img" />
+                <input type="file" #photoInput name="profile_img" accept="image/*" />
               </div>
+
               <button class="btn btn-primary" (click)="photoInput.click()">Upload image</button>
             </div>
             <h5 class="title pt-3">Mohamed Karkotly</h5>

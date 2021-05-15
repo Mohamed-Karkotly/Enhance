@@ -8,8 +8,8 @@ import { RellaxService } from 'src/app/helper-classes/rellax';
 export class LandingPageComponent implements OnInit {
   rellax: RellaxService;
   data: Date = new Date();
-  focus;
-  focus1;
+  focus: boolean;
+  focus1: boolean;
 
   constructor() {}
 

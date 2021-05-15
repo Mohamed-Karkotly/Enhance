@@ -3,8 +3,8 @@
     <div class="row flex-spacer">
       <div class="col col-md-6 text-start align-self-center">
         <img class="n-logo mx-3" src="assets/img/enhance-logo.png" alt="">
-        <a class="navbar-brand" placement="bottom" fxHide.md fxHide.lt-sm ngbTooltip="Community management platform">
-          Enhance
+        <a class="navbar-brand" fxHide.md fxHide.lt-sm>
+          {{'enhance' | translate}}
         </a>
       </div>
       <div class="col col-md-6 text-end align-self-center">
@@ -25,34 +25,34 @@
         <li class="nav-item text-center">
           <a class="nav-link" routerLink="sign-up">
             <i class="now-ui-icons users_single-02"></i>
-            Sign Up
+            {{'navbar.sign-up' | translate}}
           </a>
         </li>
         <li class="nav-item text-center">
           <a class="nav-link" routerLink="login">
             <i class="now-ui-icons users_circle-08"></i>
-            Sign in
+            {{'navbar.login' | translate}}
           </a>
         </li>
         <li class="nav-item text-center">
           <app-modal></app-modal>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom">
+          <a class="nav-link" rel="tooltip" title="{{'social.follow-twitter' | translate}}" data-placement="bottom">
             <i class="fab fa-twitter"></i>
-            <p class="d-lg-none d-xl-none">Twitter</p>
+            <p class="d-lg-none d-xl-none">{{'social.twitter' | translate}}</p>
           </a>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom">
+          <a class="nav-link" rel="tooltip" title="{{'social.like-facebook' | translate}}" data-placement="bottom">
             <i class="fab fa-facebook-square"></i>
-            <p class="d-lg-none d-xl-none">Facebook</p>
+            <p class="d-lg-none d-xl-none">{{'social.facebook' | translate}}</p>
           </a>
         </li>
         <li class="nav-item text-center">
-          <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom">
+          <a class="nav-link" rel="tooltip" title="{{'social.follow-instagram' | translate}}" data-placement="bottom">
             <i class="fab fa-instagram"></i>
-            <p class="d-lg-none d-xl-none">Instagram</p>
+            <p class="d-lg-none d-xl-none">{{'social.instagram' | translate}}</p>
           </a>
         </li>
       </ul>

@@ -10,6 +10,7 @@ import { AngularMaterialModule } from 'src/app/angular-material/angular-material
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [LandingPageComponent, LoginComponent, SignUpComponent],
@@ -22,7 +23,8 @@ import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
     ReactiveFormsModule,
     FormsModule,
     FlexLayoutModule,
-    JwBootstrapSwitchNg2Module
+    JwBootstrapSwitchNg2Module,
+    NgxSpinnerModule
   ],
 })
 export class LandingPageModule {}

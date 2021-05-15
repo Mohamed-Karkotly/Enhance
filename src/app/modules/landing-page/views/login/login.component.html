@@ -1,45 +1,101 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
 <div class="bg-sign-up login-page">
   <div class="row h-100vh align-items-center">
-    <div class="col-md-4 m-auto text-center">
-      <div class="card card-login card-plain">
-        <form class="form">
-          <div class="header header-primary text-center">
-            <div class="logo-container">
-              <img src="assets/img/enhance-logo.png" alt="Enhance Logo">
+    <div class="col-12 m-auto text-center">
+      <div class="card card-login card-plain p-3">
+        <div class="row">
+          <div class="col">
+            <div class="header header-primary text-center">
+              <div class="logo-container">
+                <img src="assets/img/enhance-logo.png" alt="Enhance Logo">
+              </div>
             </div>
           </div>
-          <div class="content">
-            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':input1Focus==true}">
-              <div class="input-group-prepend">
-                <span class="input-group-text"> <i class="now-ui-icons users_circle-08"></i></span>
+        </div>
+        <form class="form" [formGroup]="loginForm" (ngSubmit)="submit(loginForm.value)">
+          <div class="row">
+            <div class="col">
+              <div class="input-group form-group-no-border input-lg mb-2"
+                [ngClass]="{'input-group-focus':input1Focus==true}">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
+                </div>
+                <input type="text" class="form-control" placeholder="{{'login.username' | translate}}"
+                  (focus)="input1Focus=true" (blur)="input1Focus=false" formControlName="username"
+                  [ngClass]="{'is-invalid': submitted && form.username.errors}">
               </div>
-              <input type="text" class="form-control" placeholder="{{'login.username' | translate}}"
-                (focus)="input1Focus=true" (blur)="input1Focus=false">
             </div>
-            <div class="input-group form-group-no-border input-lg" [ngClass]="{'input-group-focus':input2Focus===true}">
-              <div class="input-group-prepend">
-                <span class="input-group-text"><i class="now-ui-icons text_caps-small"></i></span>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty
+              || loginForm.get('username').touched)">
+                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.required">
+                  <small class="text-12">{{'login.username-required' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.minlength">
+                  <small class="text-12">{{'login.username-min-length' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.maxlength">
+                  <small class="text-12">{{'login.username-max-length' | translate}}</small>
+                </div>
               </div>
-              <input type="text" placeholder="{{'login.password' | translate}}" class="form-control"
-                (focus)="input2Focus=true" (blur)="input2Focus=false" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="input-group form-group-no-border input-lg mb-2"
+                [ngClass]="{'input-group-focus':input2Focus===true}">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="now-ui-icons ui-1_lock-circle-open"></i></span>
+                </div>
+                <input type="password" placeholder="{{'login.password' | translate}}" class="form-control"
+                  (focus)="input2Focus=true" (blur)="input2Focus=false" formControlName="password"
+                  [ngClass]="{'is-invalid': submitted && form.password.errors}" />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty
+              || loginForm.get('password').touched)">
+                <div class="text-danger pb-2" *ngIf="loginForm.get('password').errors.required">
+                  <small class="text-12">{{'login.password-required' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="loginForm.get('password').errors.minlength">
+                  <small class="text-12">{{'login.password-min-length' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">
+                {{'login.login' | translate}}
+              </button>
             </div>
           </div>
         </form>
-        <div class="footer">
-          <button type="submit" class="btn btn-primary btn-round btn-lg btn-block">
-            {{'login.login' | translate}}
-          </button>
+        <!-- Links -->
+        <div class="pt-4">
+          <div class="row py-2">
+            <div class="col">
+              <h6>
+                <a routerLink="/sign-up" class="link">{{'login.create-account' | translate}}</a>
+              </h6>
+            </div>
+          </div>
+          <div class="row py-2">
+            <div class="col">
+              <h6>
+                <a class="link">{{'login.download' | translate}}</a>
+              </h6>
+            </div>
+          </div>
         </div>
-        <div class="text-center">
-          <h6>
-            <a routerLink="/sign-up" class="link">{{'login.create-account' | translate}}</a>
-          </h6>
-        </div>
-        <div class="text-center">
-          <h6>
-            <a href="#pablo" class="link">{{'login.download' | translate}}</a>
-          </h6>
-        </div>
+        <!-- //Links -->
       </div>
     </div>
   </div>
