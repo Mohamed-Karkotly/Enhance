@@ -4,5 +4,5 @@ export interface CommunityRole {
   community_id: number;
   role: string;
   priority: number;
-  restrictions: any;
+  restrictions?: any;
 }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseURL: '',
+  baseURL: 'https://enhance-app.herokuapp.com',
 };
 
 /*

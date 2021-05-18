@@ -5,5 +5,5 @@ export interface Post {
   post_state_id: number;
   type: number;
   description: string;
-  is_anonymous: boolean;
+  is_anonymous: boolean; //Has a default value of false
 }

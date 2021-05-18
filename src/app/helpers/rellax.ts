@@ -1,4 +1,4 @@
-import * as Rellax from './../../../node_modules/rellax/rellax.min';
+import * as Rellax from 'rellax/rellax.min';
 
 export class RellaxService {
   rellax: any;

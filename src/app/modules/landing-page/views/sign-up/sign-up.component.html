@@ -13,30 +13,31 @@
           </div>
         </div>
         <div class="card-body">
-          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)">
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm)">
             <!-- *General information Row* -->
             <div class="row py-2">
               <!-- First name -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'form.firstname' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.firstname-mask' | translate}}"
-                    formControlName="firstname" [ngClass]="{'is-invalid': submitted && form.firstname.errors}" [ngClass]="{'is-valid': !form.firstname.errors}">
+                  <label class="px-2">{{'form.firstName' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.firstName-mask' | translate}}"
+                    formControlName="firstName" [ngClass]="{'is-invalid': submitted && form.firstName.errors}"
+                    [ngClass]="{'is-valid': !form.firstName.errors}">
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('firstname').invalid && (signUpForm.get('firstname').dirty
-                    || signUpForm.get('firstname').touched)">
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.required">
+                    <div *ngIf="signUpForm.get('firstName').invalid && (signUpForm.get('firstName').dirty
+                    || signUpForm.get('firstName').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.required">
                         <small class="text-12 px-2">{{'validation.firstname-required' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.minlength">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.minlength">
                         <small class="text-12 px-2">{{'validation.firstname-min-length' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.maxlength">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.maxlength">
                         <small class="text-12 px-2">{{'validation.firstname-max-length' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstname').errors.pattern">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.pattern">
                         <small class="text-12 px-2">{{'validation.firstname-invalid' | translate}}</small>
                       </div>
                     </div>
@@ -46,25 +47,25 @@
               <!-- Last name -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
-                  <label class="px-2">{{'form.lastname' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.lastname-mask' | translate}}"
-                    formControlName="lastname" [ngClass]="{'is-invalid': submitted && form.lastname.errors}"
-                    [ngClass]="{'is-valid': !form.lastname.errors}">
+                  <label class="px-2">{{'form.lastName' | translate}}</label>
+                  <input type="text" class="form-control" placeholder="{{'form.lastName-mask' | translate}}"
+                    formControlName="lastName" [ngClass]="{'is-invalid': submitted && form.lastName.errors}"
+                    [ngClass]="{'is-valid': !form.lastName.errors}">
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('lastname').invalid && (signUpForm.get('lastname').dirty
-                    || signUpForm.get('lastname').touched)">
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.required">
+                    <div *ngIf="signUpForm.get('lastName').invalid && (signUpForm.get('lastName').dirty
+                    || signUpForm.get('lastName').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.required">
                         <small class="text-12 px-2">{{'validation.lastname-required' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.minlength">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.minlength">
                         <small class="text-12 px-2">{{'validation.lastname-min-length' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.maxlength">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.maxlength">
                         <small class="text-12 px-2">{{'validation.lastname-max-length' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastname').errors.pattern">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.pattern">
                         <small class="text-12 px-2">{{'validation.lastname-invalid' | translate}}</small>
                       </div>
                     </div>
@@ -76,7 +77,8 @@
                 <div class="form-group">
                   <label class="px-2">{{'form.email' | translate}}</label>
                   <input type="email" class="form-control" placeholder="{{'form.email-mask' | translate}}"
-                    formControlName="email" [ngClass]="{'is-invalid': submitted && form.email.errors}" [ngClass]="{'is-valid': !form.email.errors}">
+                    formControlName="email" [ngClass]="{'is-invalid': submitted && form.email.errors}"
+                    [ngClass]="{'is-valid': !form.email.errors}">
                 </div>
                 <div class="row">
                   <div class="col">
@@ -99,7 +101,8 @@
                   <input type="number" class="form-control" min="14" max="100"
                     oninput="this.value = Math.round(this.value); this.value =
                   !!this.value && Math.abs(this.value) >= 0 && Math.abs(this.value) <= 100? Math.abs(this.value) : null" placeholder="{{'form.age' | translate}}"
-                    formControlName="age" [ngClass]="{'is-invalid': submitted && form.age.errors}" [ngClass]="{'is-valid': !form.age.errors}">
+                    formControlName="age" [ngClass]="{'is-invalid': submitted && form.age.errors}"
+                    [ngClass]="{'is-valid': !form.age.errors}">
                 </div>
                 <div class="row">
                   <div class="col">
@@ -108,10 +111,10 @@
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.required">
                         <small class="text-12 px-2">{{'validation.age-required' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.min">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('age').errors.min">
                         <small class="text-12 px-2">{{'validation.age-min' | translate}}</small>
                       </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.max">
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('age').errors.max">
                         <small class="text-12 px-2">{{'validation.age-max' | translate}}</small>
                       </div>
                     </div>
@@ -127,8 +130,10 @@
                 <div class="form-group">
                   <label class="px-2">{{'form.phone' | translate}}</label>
                   <!-- TODO: Support internation phone numbers in future versions -->
-                  <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}" mask="0000 000 000"
-                    maxlength="16" formControlName="phone" [ngClass]="{'is-invalid': submitted && form.phone.errors}" [ngClass]="{'is-valid': !form.phone.errors}">
+                  <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}"
+                    mask="0000 000 000" maxlength="16" formControlName="phone"
+                    [ngClass]="{'is-invalid': submitted && form.phone.errors}"
+                    [ngClass]="{'is-valid': !form.phone.errors}">
                 </div>
                 <div class="row">
                   <div class="col">
@@ -148,12 +153,14 @@
               <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.profession' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.profession' | translate}}">
+                  <input type="text" class="form-control" placeholder="{{'form.profession' | translate}}" #profession
+                    formControlName="profession">
                 </div>
               </div>
             </div>
             <!-- *//Extra information Row* -->
             <!-- *Location Row* -->
+            <!-- TODO: Validate country & city from backend -->
             <div class="row py-2">
               <!-- Country -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
@@ -173,29 +180,62 @@
               <div class="col-12 col-md-6 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.address' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.address-mask' | translate}}">
+                  <input type="text" class="form-control" placeholder="{{'form.address-mask' | translate}}"
+                    formControlName="address">
                 </div>
               </div>
             </div>
             <!-- *//Location Row* -->
             <!-- *Credentials Row* -->
             <div class="row py-2">
-              <div class="col-12 col-sm-6 col-md-4 px-1">
+              <!-- Username -->
+              <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.username' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.username-mask' | translate}}">
+                  <input type="text" class="form-control" placeholder="{{'form.username-mask' | translate}}"
+                    formControlName="username" [ngClass]="{'is-invalid': submitted && form.username.errors}"
+                    [ngClass]="{'is-valid': !form.username.errors}">
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('username').invalid && (signUpForm.get('username').dirty
+                    || signUpForm.get('username').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('username').errors.required">
+                        <small class="text-12 px-2">{{'validation.username-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('username').errors.minlength">
+                        <small class="text-12 px-2">{{'validation.username-min-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('username').errors.maxlength">
+                        <small class="text-12 px-2">{{'validation.username-max-length' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div class="col-12 col-sm-6 col-md-4 px-1">
+              <!-- Password -->
+              <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.password' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.password-mask' | translate}}">
+                  <input type="password" class="form-control" placeholder="{{'form.password-mask' | translate}}"
+                    formControlName="password" [ngClass]="{'is-invalid': submitted && form.password.errors}"
+                    [ngClass]="{'is-valid': !form.password.errors}">
                 </div>
-              </div>
-              <div class="col-12 col-md-4 px-1">
-                <div class="form-group">
-                  <label class="px-2">{{'form.confirm-password' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.password-mask' | translate}}">
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('password').invalid && (signUpForm.get('password').dirty
+                    || signUpForm.get('password').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('password').errors.required">
+                        <small class="text-12 px-2">{{'validation.password-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('password').errors.minlength">
+                        <small class="text-12 px-2">{{'validation.password-min-length' | translate}}</small>
+                      </div>
+                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('password').errors.pattern">
+                        <small class="text-12">{{'validation.password-pattern' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

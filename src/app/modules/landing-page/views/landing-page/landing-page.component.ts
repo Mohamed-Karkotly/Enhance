@@ -1,5 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { RellaxService } from 'src/app/helper-classes/rellax';
+import { Component, OnInit } from '@angular/core';
+import { RellaxService } from 'src/app/helpers/rellax';
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',

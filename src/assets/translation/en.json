@@ -4,10 +4,10 @@
     "processing": "Processing..."
   },
   "form": {
-    "firstname": "First Name",
-    "firstname-mask": "Jhon",
-    "lastname": "Last Name",
-    "lastname-mask": "Doe",
+    "firstName": "First Name",
+    "firstName-mask": "Jhon",
+    "lastName": "Last Name",
+    "lastName-mask": "Doe",
     "age": "Age",
     "username": "Username",
     "username-mask": "jhon_doe",
@@ -29,14 +29,14 @@
     "create-account": "Create Account"
   },
   "validation": {
-    "firstname-required": "First name is required",
-    "firstname-min-length": "First name must be at least 2 characters long",
-    "firstname-max-length": "First name cannot be more than 30 characters long",
-    "firstname-invalid": "First name is invalid",
-    "lastname-required": "Last name is required",
-    "lastname-min-length": "Last name must be at least 2 characters long",
-    "lastname-max-length": "Last name cannot be more than 30 characters long",
-    "lastname-invalid": "Last name is invalid",
+    "firstName-required": "First name is required",
+    "firstName-min-length": "First name must be at least 2 characters long",
+    "firstName-max-length": "First name cannot be more than 30 characters long",
+    "firstName-invalid": "First name is invalid",
+    "lastName-required": "Last name is required",
+    "lastName-min-length": "Last name must be at least 2 characters long",
+    "lastName-max-length": "Last name cannot be more than 30 characters long",
+    "lastName-invalid": "Last name is invalid",
     "age-min": "Age must be over 14",
     "age-max": "Age cannot be over 100",
     "age-required": "Age is required",
@@ -45,6 +45,9 @@
     "username-max-length": "Username cannot be more than 30 characters long",
     "password-required": "Password is required",
     "password-min-length": "Password must be at least 8 characters",
+    "password-pattern": "Password should be at least 8 characters long and contain at least one capital letter and one number",
+    "password-mustMatch": "Password dosen't match",
+    "password-first": "Enter a valid password first",
     "email-required": "Email is required",
     "email-invalid": "Email is invalid",
     "phone-required": "Phone is required",
@@ -54,6 +57,7 @@
     "address-required": "Address is required",
     "profession-required": "Profession is required"
   },
+
   "button": {
     "login": "Login",
     "sign-up": "Sign up",
@@ -66,9 +70,9 @@
   },
   "social": {
     "facebook": "Facebook",
-    "twitter": "Twitter",
+    "linkedin": "Linkedin",
     "instagram": "Instagram",
-    "follow-twitter": "Follow us on Twitter",
+    "connect-linkedin": "Connect with us on Linkedin",
     "like-facebook": "Like us on Facebook",
     "follow-instagram": "Follow us on Instagram"
   },

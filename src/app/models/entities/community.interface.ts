@@ -5,8 +5,8 @@ export interface Community {
   category_id: number;
   name: string;
   label: string;
-  primary_color: string;
-  accent_color: string;
-  warn_color: string;
-  is_verified: boolean;
+  primary_color?: string;
+  accent_color?: string;
+  warn_color?: string;
+  is_verified: boolean; //Has a default value of false
 }

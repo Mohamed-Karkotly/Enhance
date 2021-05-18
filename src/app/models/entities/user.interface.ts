@@ -7,10 +7,10 @@ export interface User {
   password: string;
   phone: string;
   email: string;
-  profile_image: string;
-  bio: string;
-  profession: string;
+  profile_image?: string;
+  bio?: string;
+  profession?: string;
   invitation_option_enabled: boolean;
   age: number;
-  joined_at: Date;
+  joined_at: Date; //Has a default value of Date.now()
 }
