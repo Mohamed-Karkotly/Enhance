@@ -11,9 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-
-export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [LandingPageComponent, LoginComponent, SignUpComponent],
   imports: [
@@ -27,7 +25,6 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     FlexLayoutModule,
     JwBootstrapSwitchNg2Module,
     NgxSpinnerModule,
-    NgxMaskModule.forRoot()
   ],
 })
 export class LandingPageModule {}

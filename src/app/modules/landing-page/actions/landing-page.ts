@@ -5,7 +5,7 @@ import { CRUDService } from 'src/app/services/crud.service';
 
 export class LandingPage extends CRUDService<Feedback> {
   constructor(http: HttpClient) {
-    super(http, 'feedback');
+    super(http, 'constants/feedback');
   }
 
   createFeedback(feedback: Feedback): Observable<Feedback> {

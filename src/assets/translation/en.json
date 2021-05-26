@@ -132,5 +132,11 @@
     "manage": "Manage a community",
     "become-member": "Become a member!",
     "invitation-option": "Would you like other people to invite you to other communities?"
+  },
+  "feedback": {
+    "thanks": "Thanks!",
+    "sent": "Feedback sent successfully!",
+    "oops": "Opps..",
+    "failed": "Feedback failed to be sent."
   }
 }
