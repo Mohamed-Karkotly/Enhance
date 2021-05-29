@@ -24,6 +24,8 @@
     "address-mask": "Abdullah Bin Rawtha Street, Kafar Suseh",
     "profession": "Profession",
     "profession-mask": "Engineer",
+    "category": "Add desired categories",
+    "category-description": "This can be changed later",
     "about-me": "About me",
     "about-me-mask": "Researcher, storyteller, and public speaker",
     "create-account": "Create Account"
@@ -52,12 +54,13 @@
     "email-invalid": "Email is invalid",
     "phone-required": "Phone is required",
     "phone-invalid": "Phone number is invalid",
+    "country-city-required": "Country and city are both required",
     "city-required": "City is required",
     "country-required": "Country is required",
     "address-required": "Address is required",
-    "profession-required": "Profession is required"
+    "profession-required": "Profession is required",
+    "category-required": "Choose at least 1 category"
   },
-
   "button": {
     "login": "Login",
     "sign-up": "Sign up",

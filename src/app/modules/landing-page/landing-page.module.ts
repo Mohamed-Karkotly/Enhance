@@ -12,6 +12,11 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { TagInputModule } from 'ngx-chips';
+
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
+
 @NgModule({
   declarations: [LandingPageComponent, LoginComponent, SignUpComponent],
   imports: [
@@ -25,7 +30,9 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
     FlexLayoutModule,
     JwBootstrapSwitchNg2Module,
     NgxSpinnerModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    TagInputModule,
+    NgxMaskModule.forRoot()
   ],
 })
 export class LandingPageModule {}

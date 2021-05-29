@@ -17,6 +17,7 @@ import { ErrorInterceptor } from './interceptors/Error/error.interceptor';
 import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
 import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
@@ -39,6 +40,7 @@ import { ToastrModule } from 'ngx-toastr';
     }),
     NgbModule,
     NgxSpinnerModule,
+    NgxMaskModule.forRoot(),
     LandingPageModule,
     ErrorPagesModule,
     ReusableComponentsModule,
@@ -73,3 +75,5 @@ export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/translation/');
 }
+//Mask options configuration
+export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;

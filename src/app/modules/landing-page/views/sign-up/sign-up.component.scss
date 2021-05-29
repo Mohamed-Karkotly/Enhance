@@ -1,3 +1,19 @@
 .pt-15 {
   padding-top: 15px;
 }
+
+::ng-deep tag-input-form {
+  width: 100%;
+}
+
+::ng-deep .ng2-tag-input__text-input {
+  width: 100%;
+}
+
+::ng-deep .ng2-tag-input {
+  border-bottom: 1px solid #efefef !important;
+}
+
+::ng-deep .ng2-tag-input.ng2-tag-input--focused {
+  border-bottom: 1px solid #f96332 !important;
+}

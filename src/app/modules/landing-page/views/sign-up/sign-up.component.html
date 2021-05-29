@@ -29,16 +29,16 @@
                     <div *ngIf="signUpForm.get('firstName').invalid && (signUpForm.get('firstName').dirty
                     || signUpForm.get('firstName').touched)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.required">
-                        <small class="text-12 px-2">{{'validation.firstname-required' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.firstName-required' | translate}}</small>
                       </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.minlength">
-                        <small class="text-12 px-2">{{'validation.firstname-min-length' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.firstName-min-length' | translate}}</small>
                       </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.maxlength">
-                        <small class="text-12 px-2">{{'validation.firstname-max-length' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.firstName-max-length' | translate}}</small>
                       </div>
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.pattern">
-                        <small class="text-12 px-2">{{'validation.firstname-invalid' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.firstName-invalid' | translate}}</small>
                       </div>
                     </div>
                   </div>
@@ -57,23 +57,23 @@
                     <div *ngIf="signUpForm.get('lastName').invalid && (signUpForm.get('lastName').dirty
                     || signUpForm.get('lastName').touched)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.required">
-                        <small class="text-12 px-2">{{'validation.lastname-required' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.lastName-required' | translate}}</small>
                       </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.minlength">
-                        <small class="text-12 px-2">{{'validation.lastname-min-length' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.lastName-min-length' | translate}}</small>
                       </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.maxlength">
-                        <small class="text-12 px-2">{{'validation.lastname-max-length' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.lastName-max-length' | translate}}</small>
                       </div>
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.pattern">
-                        <small class="text-12 px-2">{{'validation.lastname-invalid' | translate}}</small>
+                        <small class="text-12 px-2">{{'validation.lastName-invalid' | translate}}</small>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
               <!-- Email -->
-              <div class="col-12 col-md-4 px-1">
+              <div class="col-12 col-sm-6 col-md-4 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.email' | translate}}</label>
                   <input type="email" class="form-control" placeholder="{{'form.email-mask' | translate}}"
@@ -95,7 +95,7 @@
                 </div>
               </div>
               <!-- Age -->
-              <div class="col-md-2 px-1">
+              <div class="col-12 col-sm-6 col-md-2 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.age' | translate}}</label>
                   <input type="number" class="form-control" min="14" max="100"
@@ -123,19 +123,22 @@
               </div>
             </div>
             <!-- *//General information Row* -->
-            <!-- *Extra information Row* -->
+            <!-- *Extra information - Location - Preferences Row* -->
             <div class="row py-2">
               <!-- Phone -->
-              <div class="col-12 col-sm-6 px-1">
+              <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.phone' | translate}}</label>
                   <!-- TODO: Support internation phone numbers in future versions -->
                   <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}"
-                    mask="0000 000 000" maxlength="16" formControlName="phone"
-                    [ngClass]="{'is-invalid': submitted && form.phone.errors}"
-                    [ngClass]="{'is-valid': !form.phone.errors}">
+                    mask="0000 000 000" maxlength="16" formControlName="phone">
+                  <!-- TODO: Add the following attributes after formControlName when you want to restore validation
+                      [ngClass]="{'is-invalid': submitted && form.phone.errors}"
+                      [ngClass]="{'is-valid': !form.phone.errors}"
+                    -->
                 </div>
-                <div class="row">
+                <!-- TODO: Uncomment tag below to restore phone validation -->
+                <!-- <div class="row">
                   <div class="col">
                     <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty
                     || signUpForm.get('phone').touched)">
@@ -147,49 +150,46 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div> -->
               </div>
               <!-- Profession -->
-              <div class="col-12 col-sm-6 px-1">
+              <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
                   <label class="px-2">{{'form.profession' | translate}}</label>
                   <input type="text" class="form-control" placeholder="{{'form.profession' | translate}}" #profession
                     formControlName="profession">
                 </div>
               </div>
-            </div>
-            <!-- *//Extra information Row* -->
-            <!-- *Location Row* -->
-            <!-- TODO: Validate country & city from backend -->
-            <div class="row py-2">
               <!-- Country -->
-              <div class="col-12 col-sm-6 col-md-3 flex-end px-1">
+              <div class="col-12 flex-end px-1" [ngClass]="countryIsSelected?'col-sm-6 col-md-3':'col-sm-12 col-md-6'">
                 <div ngbDropdown class="dropdown" placement="bottom-left">
-                  <button type="button" class="btn btn-primary dropdown-toggle w-100" ngbDropdownToggle>{{countriesButtonContent | translate}}</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle w-100"
+                    ngbDropdownToggle>{{countriesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
-                    <a *ngFor="let country of countries" class="dropdown-item" (click)="chooseCountry(country)">{{country.name}}</a>
+                    <a *ngFor="let country of countries" class="dropdown-item"
+                      (click)="chooseCountry(country)">{{country.name}}</a>
                   </div>
                 </div>
               </div>
               <!-- City -->
               <div class="col-12 col-sm-6 col-md-3 flex-end px-1" *ngIf="countryIsSelected">
                 <div ngbDropdown class="dropdown" placement="bottom-left">
-                  <button type="button" class="btn btn-primary dropdown-toggle w-100" ngbDropdownToggle>{{citiesButtonContent | translate}}</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle w-100"
+                    ngbDropdownToggle>{{citiesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
                     <a *ngFor="let city of cities" class="dropdown-item" (click)="chooseCity(city)">{{city.name}}</a>
                   </div>
                 </div>
               </div>
-              <!-- Address -->
-              <div class="col-12 px-1" [ngClass]="countryIsSelected? 'col-md-6':'col-md-9'">
-                <div class="form-group">
-                  <label class="px-2">{{'form.address' | translate}}</label>
-                  <input type="text" class="form-control" placeholder="{{'form.address-mask' | translate}}"
-                    formControlName="address">
+              <div class="row w-100">
+                <div class="col text-center">
+                  <div class="text-danger pb-2" *ngIf="showLocationError">
+                    <small class="text-12 px-2">{{'validation.country-city-required' | translate}}</small>
+                  </div>
                 </div>
               </div>
             </div>
-            <!-- *//Location Row* -->
+            <!-- *//Extra information - Location - Preferences Row* -->
             <!-- *Credentials Row* -->
             <div class="row py-2">
               <!-- Username -->
@@ -197,16 +197,12 @@
                 <div class="form-group">
                   <label class="px-2">{{'form.username' | translate}}</label>
                   <input type="text" class="form-control" placeholder="{{'form.username-mask' | translate}}"
-                    formControlName="username" [ngClass]="{'is-invalid': submitted && form.username.errors}"
-                    [ngClass]="{'is-valid': !form.username.errors}">
+                    formControlName="username">
                 </div>
                 <div class="row">
                   <div class="col">
                     <div *ngIf="signUpForm.get('username').invalid && (signUpForm.get('username').dirty
                     || signUpForm.get('username').touched)">
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('username').errors.required">
-                        <small class="text-12 px-2">{{'validation.username-required' | translate}}</small>
-                      </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('username').errors.minlength">
                         <small class="text-12 px-2">{{'validation.username-min-length' | translate}}</small>
                       </div>
@@ -232,9 +228,6 @@
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('password').errors.required">
                         <small class="text-12 px-2">{{'validation.password-required' | translate}}</small>
                       </div>
-                      <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('password').errors.minlength">
-                        <small class="text-12 px-2">{{'validation.password-min-length' | translate}}</small>
-                      </div>
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('password').errors.pattern">
                         <small class="text-12">{{'validation.password-pattern' | translate}}</small>
                       </div>
@@ -244,13 +237,38 @@
               </div>
             </div>
             <!-- *//Credentials Row* -->
+            <!-- *Categories Row* -->
+            <div class="row py-2">
+              <div class="col-12 px-1">
+                <label class="px-2">{{'form.password' | translate}}</label>
+                <tag-input [onlyFromAutocomplete]="true" formControlName="categories"
+                  placeholder="{{'form.category-description' | translate}}"
+                  secondaryPlaceholder="{{'form.category' | translate}}">
+                  <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories" [identifyBy]="'id'"
+                    [displayBy]="'name'">
+                  </tag-input-dropdown>
+                </tag-input>
+                <!-- Categories -->
+                <div class="row py-2">
+                  <div class="col px-2">
+                    <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty
+                  || signUpForm.get('categories').touched)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('categories').errors.required">
+                        <small class="text-12 px-2">{{'validation.category-required' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- *//Categories Row* -->
             <!-- *About me row* -->
             <div class="row py-2">
               <div class="col-md-12 px-3">
                 <div class="form-group">
                   <label>{{'form.about-me' | translate}}</label>
                   <textarea rows="2" cols="80" class="form-control p-0"
-                    placeholder="{{'form.about-me-mask' | translate}}"></textarea>
+                    placeholder="{{'form.about-me-mask' | translate}}" formControlName="bio"></textarea>
                 </div>
               </div>
             </div>
@@ -260,7 +278,7 @@
                 <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
               </div>
               <div class="col-2">
-                <bSwitch></bSwitch>
+                <bSwitch [switch-on-color]="" formControlName="invitaionOptions"></bSwitch>
               </div>
             </div>
             <div class="row">
@@ -323,3 +341,4 @@
     </div>
   </div>
 </div>
+<app-image-cropper></app-image-cropper>

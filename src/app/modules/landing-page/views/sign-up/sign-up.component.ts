@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -14,6 +15,15 @@ import { Category } from 'src/app/models/entities/category.interface';
 import { CountryAPI } from 'src/app/models/API/country-api.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { City } from 'src/app/models/entities/city.interface';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { TagInputModule } from 'ngx-chips';
+
+TagInputModule.withDefaults({
+  tagInput: {
+    placeholder: 'Add a new tag',
+    secondaryPlaceholder: 'Your Custom PlaceHolder Here sssssssss',
+  },
+});
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -31,16 +41,19 @@ export class SignUpComponent implements OnInit {
   countriesButtonContent: string;
   countryIsSelected: boolean;
   citiesButtonContent: string;
+  showLocationError: boolean;
   constructor(
     private _formBuilder: FormBuilder,
     private _regexService: RegExService,
     private _constantsService: ConstantsService,
     private _translate: TranslateService,
+    private _spinner: NgxSpinnerService,
     private _imageService: ImageService
   ) {
     this.countriesButtonContent = this._translate.instant('form.country');
     this.citiesButtonContent = this._translate.instant('form.city');
     this.countryIsSelected = false;
+    this.showLocationError = false;
   }
 
   ngOnInit() {
@@ -72,11 +85,9 @@ export class SignUpComponent implements OnInit {
         Validators.min(14),
         Validators.max(100),
       ]),
-      phone: new FormControl('', [Validators.required]),
+      phone: new FormControl(''),
       profession: new FormControl(''),
-      address: new FormControl(''),
       username: new FormControl('', [
-        Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
       ]),
@@ -84,9 +95,10 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern(this._regexService.password),
       ]),
-      cityId: new FormControl('', [
-        Validators.required,
-      ])
+      cityId: new FormControl('', [Validators.required]),
+      categories: new FormControl('', [Validators.required]),
+      bio: new FormControl(''),
+      invitaionOptions: new FormControl(true),
     });
   }
 
@@ -115,19 +127,28 @@ export class SignUpComponent implements OnInit {
     this.countriesButtonContent = country.name;
     this.cities = country.cities;
     this.countryIsSelected = true;
+    this.citiesButtonContent = this._translate.instant('form.city');
+    this.signUpForm.controls.cityId.setValue('');
   }
 
   chooseCity(city: City) {
     this.citiesButtonContent = city.name;
     this.signUpForm.controls.cityId.setValue(city.id);
+    this.showLocationError = false;
   }
   onSubmit(signUpForm: any) {
     this.submitted = true;
     // stop here if form is invalid
     /* if (this.signUpForm.invalid) {
+      this.showLocationError = true;
       return;
     } */
+    this.user = this.signUpForm.value;
+    this.user.categories = this.signUpForm
+      .get('categories')
+      .value.map(({ id }) => id);
     console.warn(signUpForm.value);
+    console.warn(this.user);
   }
   get form() {
     return this.signUpForm.controls;
