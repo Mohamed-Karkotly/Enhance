@@ -8,26 +8,45 @@ import {
 import { ImageSnippet } from 'src/app/helpers/image-snippet';
 import { ImageService } from 'src/app/services/image.service';
 import { RegExService } from 'src/app/services/reg-ex.service';
-import { mustMatch } from 'src/app/helpers/must-match.validator';
 import { User } from 'src/app/models/entities/user.interface';
+import { ConstantsService } from 'src/app/modules/constants/constants.service';
+import { Category } from 'src/app/models/entities/category.interface';
+import { CountryAPI } from 'src/app/models/API/country-api.interface';
+import { TranslateService } from '@ngx-translate/core';
+import { City } from 'src/app/models/entities/city.interface';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent implements OnInit {
-  imageSnippet: ImageSnippet;
   signUpForm: FormGroup;
+  categories: Category[];
+  countries: CountryAPI[];
+  cities: City[];
+  imageSnippet: ImageSnippet;
   submitted: boolean;
   user: User;
+  //Buttons content
+  countriesButtonContent: string;
+  countryIsSelected: boolean;
+  citiesButtonContent: string;
   constructor(
     private _formBuilder: FormBuilder,
     private _regexService: RegExService,
+    private _constantsService: ConstantsService,
+    private _translate: TranslateService,
     private _imageService: ImageService
-  ) {}
+  ) {
+    this.countriesButtonContent = this._translate.instant('form.country');
+    this.citiesButtonContent = this._translate.instant('form.city');
+    this.countryIsSelected = false;
+  }
 
   ngOnInit() {
     this.initSignUpForm();
+    this.getCategories();
+    this.getCountries();
   }
 
   initSignUpForm() {
@@ -65,15 +84,50 @@ export class SignUpComponent implements OnInit {
         Validators.required,
         Validators.pattern(this._regexService.password),
       ]),
+      cityId: new FormControl('', [
+        Validators.required,
+      ])
     });
+  }
+
+  getCountries() {
+    this._constantsService
+      .getCountries()
+      .subscribe((countries: CountryAPI[]) => {
+        this.countries = countries;
+        console.warn(this.countries);
+      });
+  }
+
+  log(data) {
+    console.warn(data);
+  }
+  getCategories() {
+    this._constantsService
+      .getCategories()
+      .subscribe((categories: Category[]) => {
+        this.categories = categories;
+        console.warn(this.categories);
+      });
+  }
+
+  chooseCountry(country: CountryAPI) {
+    this.countriesButtonContent = country.name;
+    this.cities = country.cities;
+    this.countryIsSelected = true;
+  }
+
+  chooseCity(city: City) {
+    this.citiesButtonContent = city.name;
+    this.signUpForm.controls.cityId.setValue(city.id);
   }
   onSubmit(signUpForm: any) {
     this.submitted = true;
     // stop here if form is invalid
-    if (this.signUpForm.invalid) {
+    /* if (this.signUpForm.invalid) {
       return;
-    }
-    console.warn(this.user);
+    } */
+    console.warn(signUpForm.value);
   }
   get form() {
     return this.signUpForm.controls;

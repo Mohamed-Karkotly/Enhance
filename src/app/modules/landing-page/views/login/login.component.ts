@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -8,6 +9,10 @@ import {
 import { NgxSpinnerService } from 'ngx-spinner';
 
 import { Credentials } from 'src/app/models/API/credentials.interface';
+import { User } from 'src/app/models/entities/user.interface';
+import { RegExService } from 'src/app/services/reg-ex.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { LandingPageService } from '../../landing-page.service';
 
 @Component({
   selector: 'app-login',
@@ -20,26 +25,22 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   loginForm: FormGroup;
   constructor(
+    private _landingPageService: LandingPageService,
     private _formBuilder: FormBuilder,
-    private _spinner: NgxSpinnerService
+    private _regexService: RegExService,
+    private _spinner: NgxSpinnerService,
+    private _storageService: StorageService
   ) {}
 
   ngOnInit(): void {
     this.initLoginForm();
-    this._spinner.show();
-
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this._spinner.hide();
-    }, 2000);
   }
 
   initLoginForm() {
     this.loginForm = this._formBuilder.group({
-      username: new FormControl('', [
+      email: new FormControl('', [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
+        Validators.pattern(this._regexService.email),
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -59,5 +60,20 @@ export class LoginComponent implements OnInit {
       return;
     }
     console.warn(credentials);
+    this._spinner.show();
+    this._landingPageService.postLogin(credentials).subscribe(
+      (user: User) => {
+        this._spinner.hide();
+        this._storageService.setToken(user.jwtToken);
+        this._storageService.setLocalObject("user", user);
+      },
+      //! component scope error handling
+      (error: HttpErrorResponse) => {
+        console.error(error);
+        setTimeout(() => {
+          this._spinner.hide();
+        }, 5000);
+      }
+    );
   }
 }

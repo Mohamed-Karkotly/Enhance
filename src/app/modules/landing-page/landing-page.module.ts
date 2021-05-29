@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { JwBootstrapSwitchNg2Module } from 'jw-bootstrap-switch-ng2';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { ToastrModule } from 'ngx-toastr';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [LandingPageComponent, LoginComponent, SignUpComponent],
   imports: [
@@ -25,6 +25,7 @@ import { ToastrModule } from 'ngx-toastr';
     FlexLayoutModule,
     JwBootstrapSwitchNg2Module,
     NgxSpinnerModule,
+    NgbDropdownModule
   ],
 })
 export class LandingPageModule {}

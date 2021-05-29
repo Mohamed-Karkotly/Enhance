@@ -22,24 +22,21 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="now-ui-icons users_circle-08"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="{{'form.username' | translate}}"
-                  (focus)="input1Focus=true" (blur)="input1Focus=false" formControlName="username"
-                  [ngClass]="{'is-invalid': submitted && form.username.errors}" [ngClass]="{'is-valid': !form.username.errors}">
+                <input type="text" class="form-control" placeholder="{{'form.email' | translate}}"
+                  (focus)="input1Focus=true" (blur)="input1Focus=false" formControlName="email"
+                  [ngClass]="{'is-invalid': submitted && form.email.errors}" [ngClass]="{'is-valid': !form.email.errors}">
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col">
-              <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty
-              || loginForm.get('username').touched)">
-                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.required">
-                  <small class="text-12">{{'validation.username-required' | translate}}</small>
+              <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty
+              || loginForm.get('email').touched)">
+                <div class="text-danger pb-2" *ngIf="loginForm.get('email').errors.required">
+                  <small class="text-12">{{'validation.email-required' | translate}}</small>
                 </div>
-                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.minlength">
-                  <small class="text-12">{{'validation.username-min-length' | translate}}</small>
-                </div>
-                <div class="text-danger pb-2" *ngIf="loginForm.get('username').errors.maxlength">
-                  <small class="text-12">{{'validation.username-max-length' | translate}}</small>
+                <div class="text-danger pb-2" *ngIf="loginForm.get('email').errors.pattern">
+                  <small class="text-12">{{'validation.email-invalid' | translate}}</small>
                 </div>
               </div>
             </div>

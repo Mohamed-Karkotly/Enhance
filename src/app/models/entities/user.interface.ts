@@ -1,16 +1,19 @@
+import { CityAPI } from "../API/city-api.interface";
+import { Category } from "./category.interface";
 export interface User {
-  id: number;
-  city_id: number;
-  first_name: string;
-  last_name: string;
-  username: string;
-  password: string;
-  phone: string;
-  email: string;
-  profile_image?: string;
-  bio?: string;
-  profession?: string;
-  invitation_option_enabled: boolean;
-  age: number;
-  joined_at: Date; //Has a default value of Date.now()
+	id: number;
+	firstName: string;
+	lastName: string;
+	username: string;
+	phone: string;
+	email: string;
+	profileImage: string;
+	bio?: string;
+	profession?: string;
+	invitationOption: boolean;
+	age: number;
+	joinedAt: string;
+	city: CityAPI;
+	categories: Category[];
+	jwtToken: string;
 }

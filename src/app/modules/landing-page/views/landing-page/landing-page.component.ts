@@ -41,24 +41,27 @@ export class LandingPageComponent implements OnInit {
   }
 
   onSubmit(feedbackForm: any) {
-    // stop here if form is invalid
     if (this.feedbackForm.invalid) {
-      return;
+      return; // stop here if form is invalid
     } else {
       this._spinner.show();
       this._landingPageService.postFeedback(feedbackForm.value).subscribe(
         () => {
           this._spinner.hide();
-          this._toastr.success(this._translate.instant('feedback.sent'), this._translate.instant('feedback.thanks'));
+          let title = this._translate.instant('feedback.thanks');
+          let feedback = this._translate.instant('feedback.sent');
+          this._toastr.success(feedback, title);
           this.feedbackForm.reset();
         },
         //! component scope error handling
         (error: HttpErrorResponse) => {
-          console.error(error.status);
+          console.error(error);
+          let title = this._translate.instant('feedback.oops');
+          let feedback = this._translate.instant('feedback.failed');
           setTimeout(() => {
             this._spinner.hide();
-            this._toastr.error(this._translate.instant('feedback.failed'), this._translate.instant('feedback.oops'));
-          }, 10000);
+            this._toastr.error(feedback, title);
+          }, 5000);
         }
       );
     }
