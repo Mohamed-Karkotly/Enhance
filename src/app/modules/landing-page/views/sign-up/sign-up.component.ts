@@ -1,22 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { ImageSnippet } from 'src/app/helpers/image-snippet';
-import { ImageService } from 'src/app/services/image.service';
 import { RegExService } from 'src/app/services/reg-ex.service';
 import { User } from 'src/app/models/entities/user.interface';
-import { ConstantsService } from 'src/app/modules/constants/constants.service';
+import { SharedService } from 'src/app/modules/shared/shared.service';
 import { Category } from 'src/app/models/entities/category.interface';
 import { CountryAPI } from 'src/app/models/API/country-api.interface';
 import { TranslateService } from '@ngx-translate/core';
 import { City } from 'src/app/models/entities/city.interface';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TagInputModule } from 'ngx-chips';
+import { ImageUploadService } from 'src/app/services/image-upload.service';
+import { LandingPageService } from '../../landing-page.service';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -29,14 +28,20 @@ TagInputModule.withDefaults({
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit {
   signUpForm: FormGroup;
+  submitted: boolean; //Form submession for validation
+  image: any;
+  //API Requests to be stored in the following interfaces
   categories: Category[];
   countries: CountryAPI[];
   cities: City[];
-  imageSnippet: ImageSnippet;
-  submitted: boolean;
   user: User;
+  //User subscribed to variables
+  firstName: string;
+  lastName: string;
+  username: string;
+  bio: string;
   //Buttons content
   countriesButtonContent: string;
   countryIsSelected: boolean;
@@ -45,10 +50,12 @@ export class SignUpComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     private _regexService: RegExService,
-    private _constantsService: ConstantsService,
+    private _sharedService: SharedService,
     private _translate: TranslateService,
     private _spinner: NgxSpinnerService,
-    private _imageService: ImageService
+    private _imageUploadService: ImageUploadService,
+    private _landingPageService: LandingPageService,
+    private elementRef: ElementRef
   ) {
     this.countriesButtonContent = this._translate.instant('form.country');
     this.citiesButtonContent = this._translate.instant('form.city');
@@ -58,8 +65,15 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {
     this.initSignUpForm();
+    //-> Restore subscription by uncommenting code below
+    //this.subscribeUser();
     this.getCategories();
     this.getCountries();
+  }
+
+  ngAfterViewInit() {
+    /* this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
+      '#3F494E'; */
   }
 
   initSignUpForm() {
@@ -98,29 +112,40 @@ export class SignUpComponent implements OnInit {
       cityId: new FormControl('', [Validators.required]),
       categories: new FormControl('', [Validators.required]),
       bio: new FormControl(''),
-      invitaionOptions: new FormControl(true),
+      invitationOption: new FormControl(true),
+      profileImage: new FormControl(''),
+    });
+  }
+
+  get form() {
+    return this.signUpForm.controls;
+  }
+
+  subscribeUser() {
+    this.signUpForm.controls.firstName.valueChanges.subscribe((firsName) => {
+      this.firstName = firsName;
+    });
+    this.signUpForm.controls.lastName.valueChanges.subscribe((lastName) => {
+      this.lastName = lastName;
+    });
+    this.signUpForm.controls.username.valueChanges.subscribe((username) => {
+      this.username = username;
+    });
+    this.signUpForm.controls.bio.valueChanges.subscribe((bio) => {
+      this.bio = bio;
     });
   }
 
   getCountries() {
-    this._constantsService
-      .getCountries()
-      .subscribe((countries: CountryAPI[]) => {
-        this.countries = countries;
-        console.warn(this.countries);
-      });
+    this._sharedService.getCountries().subscribe((countries: CountryAPI[]) => {
+      this.countries = countries;
+    });
   }
 
-  log(data) {
-    console.warn(data);
-  }
   getCategories() {
-    this._constantsService
-      .getCategories()
-      .subscribe((categories: Category[]) => {
-        this.categories = categories;
-        console.warn(this.categories);
-      });
+    this._sharedService.getCategories().subscribe((categories: Category[]) => {
+      this.categories = categories;
+    });
   }
 
   chooseCountry(country: CountryAPI) {
@@ -136,50 +161,67 @@ export class SignUpComponent implements OnInit {
     this.signUpForm.controls.cityId.setValue(city.id);
     this.showLocationError = false;
   }
-  onSubmit(signUpForm: any) {
+
+  onSubmit() {
     this.submitted = true;
-    // stop here if form is invalid
-    /* if (this.signUpForm.invalid) {
-      this.showLocationError = true;
-      return;
-    } */
+    if (!this.validateForm()) return; // stop here if form is invalid
+    this.initUser();
+    this.image && this.uploadImage();
+    this.signUp();
+  }
+
+  validateForm() {
+    if (this.signUpForm.invalid) {
+      if (this.signUpForm.controls.cityId.invalid) {
+        this.showLocationError = true;
+      }
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  initUser() {
     this.user = this.signUpForm.value;
     this.user.categories = this.signUpForm
       .get('categories')
       .value.map(({ id }) => id);
-    console.warn(signUpForm.value);
+  }
+
+  uploadImage() {
+    this._imageUploadService.uploadImage(this.image).subscribe(
+      (res: any) => {
+        this.signUpForm.controls.progileImage.setValue(res.imageUrl);
+      },
+      (err) => {
+        console.error(err.error);
+      }
+    );
+  }
+
+  signUp() {
     console.warn(this.user);
+    this._landingPageService.postSignUp(this.user).subscribe(
+      (res) => {
+        console.warn(res);
+      },
+      (err) => {
+        console.error(err.error);
+      }
+    );
   }
-  get form() {
-    return this.signUpForm.controls;
-  }
-
-  /* processFile(imageInput: any) {
-    const file: File = imageInput.files[0];
+  processFile(event: any) {
     const reader = new FileReader();
-    reader.addEventListener('load', (event: any) => {
-      this.imageSnippet = new ImageSnippet(event.target.result, file);
-      this.imageSnippet.pending = true;
-      this._imageService.uploadImage(this.imageSnippet.file).subscribe(
-        (res) => {
-          this.onSuccess();
-        },
-        (err) => {
-          this.onError();
-        }
-      );
-    });
-    reader.readAsDataURL(file);
+    const type = event.target.files[0].type;
+    if (type.match(/image\/*/) == null) {
+      return;
+    }
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.image = reader.result as string;
+      };
+    }
   }
-
-  private onSuccess() {
-    this.imageSnippet.pending = false;
-    this.imageSnippet.status = 'ok';
-  }
-
-  private onError() {
-    this.imageSnippet.pending = false;
-    this.imageSnippet.status = 'fail';
-    this.imageSnippet.src = '';
-  } */
 }

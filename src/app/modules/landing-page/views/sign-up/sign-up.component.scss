@@ -2,6 +2,10 @@
   padding-top: 15px;
 }
 
+::ng-deep body {
+  background: linear-gradient(to bottom, #fad6ca, #c53707);
+}
+
 ::ng-deep tag-input-form {
   width: 100%;
 }

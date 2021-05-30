@@ -1,10 +1,13 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  @Input() login?: boolean;
+  @Input() signUp?: boolean;
+  @Input() logo?: boolean;
   private toggleButton: any;
   private sidebarVisible: boolean;
   public location: Location;

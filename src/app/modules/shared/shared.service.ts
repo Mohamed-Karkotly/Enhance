@@ -9,7 +9,7 @@ import { CountryActions } from './actions/country';
 @Injectable({
   providedIn: 'root',
 })
-export class ConstantsService {
+export class SharedService {
   categoryActions: CategoryActions;
   countryActions: CountryActions;
   constructor(http: HttpClient) {

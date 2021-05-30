@@ -24,8 +24,14 @@ body {
   flex: 1 1 auto;
 }
 
+.pt-6 {
+  padding-top: 3.9rem;
+}
 .text-12 {
   font-size: 12px;
+}
+.btn-border-radius {
+  border-radius: 2.375rem;
 }
 .vertical-center {
   min-height: 100%; /* Fallback for browsers do NOT support vh unit */

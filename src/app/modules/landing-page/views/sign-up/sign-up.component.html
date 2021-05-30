@@ -1,5 +1,6 @@
-<div class="container-fluid bg-sign-up pt-2">
-  <div class="row">
+<app-navbar [login]="true"></app-navbar>
+<div class="container-fluid h-100 pt-6 px-5">
+  <div class="row align-items-center h-100 row-eq-height">
     <div class="col-md-8">
       <div class="card mb-0">
         <div class="card-header bg-primary white-color">
@@ -12,10 +13,10 @@
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm)">
+        <div class="card-body my-n3">
+          <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" #signUp>
             <!-- *General information Row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <!-- First name -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
@@ -124,7 +125,7 @@
             </div>
             <!-- *//General information Row* -->
             <!-- *Extra information - Location - Preferences Row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <!-- Phone -->
               <div class="col-12 col-sm-6 col-md-3 px-1">
                 <div class="form-group">
@@ -163,7 +164,7 @@
               <!-- Country -->
               <div class="col-12 flex-end px-1" [ngClass]="countryIsSelected?'col-sm-6 col-md-3':'col-sm-12 col-md-6'">
                 <div ngbDropdown class="dropdown" placement="bottom-left">
-                  <button type="button" class="btn btn-primary dropdown-toggle w-100"
+                  <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
                     ngbDropdownToggle>{{countriesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
                     <a *ngFor="let country of countries" class="dropdown-item"
@@ -174,7 +175,7 @@
               <!-- City -->
               <div class="col-12 col-sm-6 col-md-3 flex-end px-1" *ngIf="countryIsSelected">
                 <div ngbDropdown class="dropdown" placement="bottom-left">
-                  <button type="button" class="btn btn-primary dropdown-toggle w-100"
+                  <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
                     ngbDropdownToggle>{{citiesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
                     <a *ngFor="let city of cities" class="dropdown-item" (click)="chooseCity(city)">{{city.name}}</a>
@@ -191,7 +192,7 @@
             </div>
             <!-- *//Extra information - Location - Preferences Row* -->
             <!-- *Credentials Row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <!-- Username -->
               <div class="col-12 col-sm-6 px-1">
                 <div class="form-group">
@@ -238,22 +239,22 @@
             </div>
             <!-- *//Credentials Row* -->
             <!-- *Categories Row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <div class="col-12 px-1">
-                <label class="px-2">{{'form.password' | translate}}</label>
+                <label class="px-2">{{'form.categories' | translate}}</label>
                 <tag-input [onlyFromAutocomplete]="true" formControlName="categories"
                   placeholder="{{'form.category-description' | translate}}"
-                  secondaryPlaceholder="{{'form.category' | translate}}">
+                  secondaryPlaceholder="{{'form.add-category' | translate}}">
                   <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories" [identifyBy]="'id'"
                     [displayBy]="'name'">
                   </tag-input-dropdown>
                 </tag-input>
-                <!-- Categories -->
                 <div class="row py-2">
                   <div class="col px-2">
                     <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty
-                  || signUpForm.get('categories').touched)">
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('categories').errors.required">
+                  || signUpForm.get('categories').touched) || submitted">
+                      <div class="text-danger pb-2"
+                        *ngIf="signUpForm.get('categories').errors && signUpForm.get('categories').errors.required">
                         <small class="text-12 px-2">{{'validation.category-required' | translate}}</small>
                       </div>
                     </div>
@@ -263,7 +264,7 @@
             </div>
             <!-- *//Categories Row* -->
             <!-- *About me row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <div class="col-md-12 px-3">
                 <div class="form-group">
                   <label>{{'form.about-me' | translate}}</label>
@@ -273,19 +274,16 @@
               </div>
             </div>
             <!-- *//About me row* -->
-            <div class="row py-2">
+            <div class="row py-1">
               <div class="col-12 col-md-10">
                 <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
               </div>
               <div class="col-2">
-                <bSwitch [switch-on-color]="" formControlName="invitaionOptions"></bSwitch>
+                <bSwitch [switch-on-color]="" formControlName="invitationOption"></bSwitch>
               </div>
             </div>
-            <div class="row">
-              <div class="col">
-                <button type="submit">Submit</button>
-              </div>
-            </div>
+            <!-- !Hidden Submit button -->
+            <button class="d-none" type="submit" #submit></button>
           </form>
         </div>
       </div>
@@ -294,20 +292,17 @@
       <div class="card">
         <div class="card-body">
           <div class="text-center">
-            <i class="fas fa-user fa-6x pt-15 avatar border-gray"></i>
-            <!-- <img class="avatar border-gray" src="../../../../assets/img/members/Mohamed_Karkotly.jpg" alt="..."> -->
+            <i *ngIf="!image" class="fas fa-user fa-6x pt-15 avatar border-gray"></i>
+            <img *ngIf="image" class="avatar border-gray cover-image" [src]="image">
             <div>
               <div style="height:0px;overflow:hidden">
-                <input type="file" #photoInput name="profile_img" accept="image/*" />
+                <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
               </div>
-
-              <button class="btn btn-primary" (click)="photoInput.click()">Upload image</button>
+              <button class="btn btn-primary" (click)="photoInput.click()">{{'form.upload-image' | translate}}</button>
             </div>
-            <h5 class="title pt-3">Mohamed Karkotly</h5>
-            <p>Gatsby</p>
-            <p class="description">
-              "Some cool stuff Describes who i am"
-            </p>
+            <h5 class="title pt-3">{{firstName}} {{lastName}}</h5>
+            <p>{{username}}</p>
+            <p class="description" [hidden]="!bio">"{{bio}}"</p>
           </div>
         </div>
       </div>
@@ -315,30 +310,23 @@
       <div class="card text-center m-0">
         <div class="card-header">
           <div class="row">
-            <div class="col-6 align-self-center">
+            <div class="col-12 align-self-center">
               <ul class="nav nav-tabs justify-content-center p-0">
                 <li class="nav-item">
-                  <a href="" class="btn nav-link p-2 m-0">Login instead</a>
-                </li>
-              </ul>
-            </div>
-            <div class="col-6 align-self-center">
-              <ul class="nav nav-tabs justify-content-center p-0">
-                <li class="nav-item">
-                  <a href="" class="btn nav-link p-2 m-0">Terms & Privacy</a>
+                  <a routerLink="/login" class="btn nav-link p-2 m-0">{{'form.login-instead' | translate}}</a>
                 </li>
               </ul>
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <p class="card-text">By signing up i agree to the terms and privacy</p>
-          <div class="pt-5">
-            <a href="#" class="btn btn-primary">Sign up</a>
+        <div class="card-body my-n3">
+          <p class="card-text pt-2">{{'form.agree' | translate}}</p>
+          <app-modal></app-modal>
+          <div>
+            <a class="btn btn-primary" (click)="submit.click()">{{'button.sign-up' | translate}}</a>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<app-image-cropper></app-image-cropper>

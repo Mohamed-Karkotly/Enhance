@@ -1,7 +1,8 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
   <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
 </ngx-spinner>
-<div class="bg-sign-up login-page">
+<app-navbar [signUp]="true"></app-navbar>
+<div class="login-page">
   <div class="row h-100vh align-items-center">
     <div class="col-12 m-auto text-center">
       <div class="card card-login card-plain p-3">
@@ -24,7 +25,8 @@
                 </div>
                 <input type="text" class="form-control" placeholder="{{'form.email' | translate}}"
                   (focus)="input1Focus=true" (blur)="input1Focus=false" formControlName="email"
-                  [ngClass]="{'is-invalid': submitted && form.email.errors}" [ngClass]="{'is-valid': !form.email.errors}">
+                  [ngClass]="{'is-invalid': submitted && form.email.errors}"
+                  [ngClass]="{'is-valid': !form.email.errors}">
               </div>
             </div>
           </div>
@@ -50,7 +52,8 @@
                 </div>
                 <input type="password" placeholder="{{'form.password' | translate}}" class="form-control"
                   (focus)="input2Focus=true" (blur)="input2Focus=false" formControlName="password"
-                  [ngClass]="{'is-invalid': submitted && form.password.errors}" [ngClass]="{'is-valid': !form.password.errors}"/>
+                  [ngClass]="{'is-invalid': submitted && form.password.errors}"
+                  [ngClass]="{'is-valid': !form.password.errors}" />
               </div>
             </div>
           </div>

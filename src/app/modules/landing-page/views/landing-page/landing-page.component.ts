@@ -36,6 +36,14 @@ export class LandingPageComponent implements OnInit {
     this.initFeedback();
   }
 
+  initFeedback() {
+    this.feedbackForm = this._formBuilder.group({
+      name: new FormControl('', [Validators.required]),
+      subject: new FormControl('', [Validators.required]),
+      message: new FormControl('', [Validators.required]),
+    });
+  }
+
   get form() {
     return this.feedbackForm.controls;
   }
@@ -67,13 +75,6 @@ export class LandingPageComponent implements OnInit {
     }
   }
 
-  initFeedback() {
-    this.feedbackForm = this._formBuilder.group({
-      name: new FormControl('', [Validators.required]),
-      subject: new FormControl('', [Validators.required]),
-      message: new FormControl('', [Validators.required]),
-    });
-  }
   ngOnDestroy() {
     this.rellax.destroyRellaxAnimation();
   }

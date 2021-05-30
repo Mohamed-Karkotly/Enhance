@@ -3,25 +3,33 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Credentials } from 'src/app/models/API/credentials.interface';
 import { Feedback } from 'src/app/models/entities/feedback.interface';
-import { LandingPage } from './actions/landing-page';
+import { User } from 'src/app/models/entities/user.interface';
+import { FeedbackActions } from './actions/feedback';
 import { Login } from './actions/login';
+import { SignUp } from './actions/sign-up';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LandingPageService {
-  landingPageActions: LandingPage;
+  feedbackActions: FeedbackActions;
   loginActoins: Login;
+  signUpActions: SignUp;
   constructor(http: HttpClient) {
-    this.landingPageActions = new LandingPage(http);
     this.loginActoins = new Login(http);
+    this.signUpActions = new SignUp(http);
+    this.feedbackActions = new FeedbackActions(http);
   }
 
-  postFeedback(feedback: Feedback) : Observable<Feedback> {
-    return this.landingPageActions.createFeedback(feedback);
-  }
-
-  postLogin(credentials: Credentials) : Observable<any> {
+  postLogin(credentials: Credentials): Observable<any> {
     return this.loginActoins.createLogin(credentials);
+  }
+
+  postSignUp(user: User): Observable<User> {
+    return this.signUpActions.createSignUp(user);
+  }
+
+  postFeedback(feedback: Feedback): Observable<any> {
+    return this.feedbackActions.createFeedback(feedback);
   }
 }

@@ -5,3 +5,11 @@
 .is-valid {
   box-shadow: none !important;
 }
+
+::ng-deep body {
+  background: linear-gradient(
+    to bottom right,
+    rgba(250, 214, 202),
+    rgba(197, 55, 7)
+  );
+}

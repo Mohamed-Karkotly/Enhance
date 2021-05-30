@@ -8,7 +8,7 @@ export class SignUp  extends CRUDService<User>{
     super(http, 'auth/signUp');
   }
 
-  createLogin(user: User): Observable<User> {
+  createSignUp(user: User): Observable<User> {
     return this.createEntity(user);
   }
 }

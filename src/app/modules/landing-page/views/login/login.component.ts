@@ -59,13 +59,16 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
-    console.warn(credentials);
     this._spinner.show();
+    this.login(credentials);
+  }
+
+  login(credentials: Credentials) {
     this._landingPageService.postLogin(credentials).subscribe(
       (user: User) => {
         this._spinner.hide();
         this._storageService.setToken(user.jwtToken);
-        this._storageService.setLocalObject("user", user);
+        this._storageService.setLocalObject('user', user);
       },
       //! component scope error handling
       (error: HttpErrorResponse) => {

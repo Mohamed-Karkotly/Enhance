@@ -5,7 +5,7 @@ import { LandingPageComponent } from './views/landing-page/landing-page.componen
 import { LoginComponent } from './views/login/login.component';
 import { SignUpComponent } from './views/sign-up/sign-up.component';
 import { TranslateModule } from '@ngx-translate/core';
-import { ReusableComponentsModule } from 'src/app/reusable-components/reusable-components.module';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -22,7 +22,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
   imports: [
     CommonModule,
     LandingPageRoutingModule,
-    ReusableComponentsModule,
+    SharedModule,
     TranslateModule,
     AngularMaterialModule,
     ReactiveFormsModule,
@@ -32,7 +32,7 @@ export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
     NgxSpinnerModule,
     NgbDropdownModule,
     TagInputModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
 })
 export class LandingPageModule {}

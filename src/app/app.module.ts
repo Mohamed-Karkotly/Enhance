@@ -20,7 +20,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
-import { ReusableComponentsModule } from './reusable-components/reusable-components.module';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
@@ -43,7 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgxMaskModule.forRoot(),
     LandingPageModule,
     ErrorPagesModule,
-    ReusableComponentsModule,
+    SharedModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',

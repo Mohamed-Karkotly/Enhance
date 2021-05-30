@@ -23,6 +23,9 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "rellax/rellax.min"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

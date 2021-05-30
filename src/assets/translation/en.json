@@ -24,11 +24,15 @@
     "address-mask": "Abdullah Bin Rawtha Street, Kafar Suseh",
     "profession": "Profession",
     "profession-mask": "Engineer",
-    "category": "Add desired categories",
+    "categories": "Categories",
+    "add-category": "Add desired categories",
     "category-description": "This can be changed later",
     "about-me": "About me",
     "about-me-mask": "Researcher, storyteller, and public speaker",
-    "create-account": "Create Account"
+    "create-account": "Create Account",
+    "login-instead": "Login instead",
+    "upload-image": "Upload image",
+    "agree": "By signing up, you agree to the Terms & Privacy"
   },
   "validation": {
     "firstName-required": "First name is required",
@@ -65,11 +69,8 @@
     "login": "Login",
     "sign-up": "Sign up",
     "send-message": "Send Message",
-    "close": "Close"
-  },
-  "navbar": {
-    "sign-up": "Sign up",
-    "login": "Login"
+    "close": "Close",
+    "terms": "Terms & Privacy"
   },
   "social": {
     "facebook": "Facebook",
@@ -80,7 +81,6 @@
     "follow-instagram": "Follow us on Instagram"
   },
   "modal": {
-    "terms": "Terms & Privacy",
     "privacy": "Privacy Policy for Enhance"
   },
   "footer": {
@@ -134,7 +134,7 @@
   "sign-up": {
     "manage": "Manage a community",
     "become-member": "Become a member!",
-    "invitation-option": "Would you like other people to invite you to other communities?"
+    "invitation-option": "Allow other members to invite me to communities out of my categories"
   },
   "feedback": {
     "thanks": "Thanks!",
