@@ -12,11 +12,11 @@ import { ToastrService } from 'ngx-toastr';
 import { RellaxService } from 'src/app/helpers/rellax';
 import { LandingPageService } from '../../landing-page.service';
 @Component({
-  selector: 'app-landing-page',
-  templateUrl: './landing-page.component.html',
-  styleUrls: ['./landing-page.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class LandingPageComponent implements OnInit {
+export class HomeComponent implements OnInit {
   rellax: RellaxService;
   data: Date = new Date();
   focus: boolean;

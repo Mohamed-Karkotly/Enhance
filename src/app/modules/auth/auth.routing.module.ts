@@ -6,7 +6,7 @@ import { SignUpComponent } from './views/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
     children: [
       {
         path: 'login',
@@ -37,4 +37,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class LandingPageRoutingModule {}
+export class AuthRoutingModule {}

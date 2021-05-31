@@ -7,12 +7,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 import { Credentials } from 'src/app/models/API/credentials.interface';
 import { User } from 'src/app/models/entities/user.interface';
 import { RegExService } from 'src/app/services/reg-ex.service';
 import { StorageService } from 'src/app/services/storage.service';
-import { LandingPageService } from '../../landing-page.service';
+import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent implements OnInit {
   submitted: boolean;
   loginForm: FormGroup;
   constructor(
-    private _landingPageService: LandingPageService,
+    private _authService: AuthService,
     private _formBuilder: FormBuilder,
     private _regexService: RegExService,
     private _spinner: NgxSpinnerService,
@@ -64,7 +63,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(credentials: Credentials) {
-    this._landingPageService.postLogin(credentials).subscribe(
+    this._authService.postLogin(credentials).subscribe(
       (user: User) => {
         this._spinner.hide();
         this._storageService.setToken(user.jwtToken);

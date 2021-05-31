@@ -15,7 +15,7 @@ import { City } from 'src/app/models/entities/city.interface';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TagInputModule } from 'ngx-chips';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
-import { LandingPageService } from '../../landing-page.service';
+import { AuthService } from '../../auth.service';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -28,7 +28,7 @@ TagInputModule.withDefaults({
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit, AfterViewInit {
+export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   submitted: boolean; //Form submession for validation
   image: any;
@@ -54,8 +54,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     private _translate: TranslateService,
     private _spinner: NgxSpinnerService,
     private _imageUploadService: ImageUploadService,
-    private _landingPageService: LandingPageService,
-    private elementRef: ElementRef
+    private _authService: AuthService
   ) {
     this.countriesButtonContent = this._translate.instant('form.country');
     this.citiesButtonContent = this._translate.instant('form.city');
@@ -69,11 +68,6 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     //this.subscribeUser();
     this.getCategories();
     this.getCountries();
-  }
-
-  ngAfterViewInit() {
-    /* this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor =
-      '#3F494E'; */
   }
 
   initSignUpForm() {
@@ -163,11 +157,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    this.submitted = true;
+    /* this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
-    this.initUser();
+    this.initUser(); */
     this.image && this.uploadImage();
-    this.signUp();
+    //this.signUp();
   }
 
   validateForm() {
@@ -192,6 +186,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     this._imageUploadService.uploadImage(this.image).subscribe(
       (res: any) => {
         this.signUpForm.controls.progileImage.setValue(res.imageUrl);
+        console.warn(res);
       },
       (err) => {
         console.error(err.error);
@@ -201,7 +196,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
 
   signUp() {
     console.warn(this.user);
-    this._landingPageService.postSignUp(this.user).subscribe(
+    this._authService.postSignUp(this.user).subscribe(
       (res) => {
         console.warn(res);
       },

@@ -22,6 +22,7 @@ import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -41,6 +42,7 @@ import { ToastrModule } from 'ngx-toastr';
     NgbModule,
     NgxSpinnerModule,
     NgxMaskModule.forRoot(),
+    AuthModule,
     LandingPageModule,
     ErrorPagesModule,
     SharedModule,

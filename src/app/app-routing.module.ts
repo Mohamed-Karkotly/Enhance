@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth/auth.guard';
-import { LandingPageComponent } from './modules/landing-page/views/landing-page/landing-page.component';
+import { HomeComponent } from './modules/landing-page/views/home/home.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: LandingPageComponent,
+    component: HomeComponent,
     pathMatch: 'full',
     data: {
       title: 'Enhance',
@@ -18,6 +18,11 @@ export const routes: Routes = [
           import('./modules/landing-page/landing-page.module').then(
             (m) => m.LandingPageModule
           ),
+      },
+      {
+        path: 'auth',
+        loadChildren: () =>
+          import('./modules/auth/auth.module').then((m) => m.AuthModule),
       },
     ],
   },
