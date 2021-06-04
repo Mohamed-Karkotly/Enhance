@@ -8,6 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 const Shared = [
   NavbarComponent,
@@ -23,6 +24,7 @@ const Shared = [
     FlexLayoutModule,
     RouterModule,
     ImageCropperModule,
+    NgbDropdownModule,
   ],
   exports: [...Shared],
 })

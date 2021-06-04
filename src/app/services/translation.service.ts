@@ -12,4 +12,14 @@ export class TranslationService {
     this._translateService.addLangs(['en', 'ar']);
     this._translateService.use('en');
   }
+
+  selectEnglish() {
+    this._translateService.setDefaultLang('en');
+    this._translateService.use('en');
+  }
+
+  selectArabic() {
+    this._translateService.setDefaultLang('ar');
+    this._translateService.use('ar');
+  }
 }

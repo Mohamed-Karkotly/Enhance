@@ -68,6 +68,17 @@
             <p class="d-lg-none d-xl-none">{{'social.linkedin' | translate}}</p>
           </a>
         </li>
+        <li class="nav-item text-center">
+          <div ngbDropdown class="dropdown">
+            <a class="nav-link dropdown-toggle" ngbDropdownToggle>
+              <i class="now-ui-icons ui-1_settings-gear-63"></i>
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right">
+              <a class="dropdown-item" (click)="chooseEnglish()">{{'language.english' | translate}}</a>
+              <a class="dropdown-item" (click)="chooseArabic()">{{'language.arabic' | translate}}</a>
+            </div>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

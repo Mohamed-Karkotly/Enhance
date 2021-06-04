@@ -3,6 +3,10 @@
   "spinner": {
     "processing": "Processing..."
   },
+  "language": {
+    "english": "English",
+    "arabic": "Arabic"
+  },
   "form": {
     "firstName": "First Name",
     "firstName-mask": "Jhon",
