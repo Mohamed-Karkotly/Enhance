@@ -1,1 +1,248 @@
-<p>profile works!</p>
+<div class="row">
+  <div class="col-md-8 px-4">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" #signUp>
+      <!-- *General information Row* -->
+      <div class="row py-1">
+        <!-- First name -->
+        <div class="col-12 col-sm-6 col-md-3 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.firstName' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'form.firstName-mask' | translate}}"
+              formControlName="firstName" [ngClass]="{'is-invalid': submitted && form.firstName.errors}"
+              [ngClass]="{'is-valid': !form.firstName.errors}">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="signUpForm.get('firstName').invalid && (signUpForm.get('firstName').dirty)">
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.required">
+                  <small class="text-12 px-2">{{'validation.firstName-required' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.minlength">
+                  <small class="text-12 px-2">{{'validation.firstName-min-length' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('firstName').errors.maxlength">
+                  <small class="text-12 px-2">{{'validation.firstName-max-length' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.pattern">
+                  <small class="text-12 px-2">{{'validation.firstName-invalid' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Last name -->
+        <div class="col-12 col-sm-6 col-md-3 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.lastName' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'form.lastName-mask' | translate}}"
+              formControlName="lastName" [ngClass]="{'is-invalid': submitted && form.lastName.errors}"
+              [ngClass]="{'is-valid': !form.lastName.errors}">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="signUpForm.get('lastName').invalid && (signUpForm.get('lastName').dirty)">
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.required">
+                  <small class="text-12 px-2">{{'validation.lastName-required' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.minlength">
+                  <small class="text-12 px-2">{{'validation.lastName-min-length' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('lastName').errors.maxlength">
+                  <small class="text-12 px-2">{{'validation.lastName-max-length' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.pattern">
+                  <small class="text-12 px-2">{{'validation.lastName-invalid' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Email -->
+        <div class="col-12 col-sm-6 col-md-4 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.email' | translate}}</label>
+            <input type="email" class="form-control" placeholder="{{'form.email-mask' | translate}}"
+              formControlName="email" [ngClass]="{'is-invalid': submitted && form.email.errors}"
+              [ngClass]="{'is-valid': !form.email.errors}">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty)">
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('email').errors.required">
+                  <small class="text-12 px-2">{{'validation.email-required' | translate}}</small>
+                </div>
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('email').errors.pattern">
+                  <small class="text-12 px-2">{{'validation.email-invalid' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Age -->
+        <div class="col-12 col-sm-6 col-md-2 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.age' | translate}}</label>
+            <input type="number" class="form-control" min="14" max="100"
+              oninput="this.value = Math.round(this.value); this.value =
+                  !!this.value && Math.abs(this.value) >= 0 && Math.abs(this.value) <= 100? Math.abs(this.value) : null" placeholder="{{'form.age' | translate}}"
+              formControlName="age" [ngClass]="{'is-invalid': submitted && form.age.errors}"
+              [ngClass]="{'is-valid': !form.age.errors}">
+          </div>
+          <div class="row">
+            <div class="col">
+              <div *ngIf="signUpForm.get('age').invalid && (signUpForm.get('age').dirty)">
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.required">
+                  <small class="text-12 px-2">{{'validation.age-required' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('age').errors.min">
+                  <small class="text-12 px-2">{{'validation.age-min' | translate}}</small>
+                </div>
+                <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('age').errors.max">
+                  <small class="text-12 px-2">{{'validation.age-max' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- *//General information Row* -->
+      <!-- *Extra information - Location - Preferences Row* -->
+      <div class="row py-1">
+        <!-- Phone -->
+        <div class="col-12 col-sm-6 col-md-3 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.phone' | translate}}</label>
+            <!-- TODO: Support internation phone numbers in future versions -->
+            <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}" mask="0000 000 000"
+              maxlength="16" formControlName="phone">
+            <!-- TODO: Add the following attributes after formControlName when you want to restore validation
+                      [ngClass]="{'is-invalid': submitted && form.phone.errors}"
+                      [ngClass]="{'is-valid': !form.phone.errors}"
+                    -->
+          </div>
+          <!-- TODO: Uncomment tag below to restore phone validation -->
+          <!-- <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
+                        <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
+                      </div>
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.pattern">
+                        <small class="text-12 px-2">{{'validation.phone-invalid' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+        </div>
+        <!-- Profession -->
+        <div class="col-12 col-sm-6 col-md-3 px-1">
+          <div class="form-group">
+            <label class="px-2">{{'form.profession' | translate}}</label>
+            <input type="text" class="form-control" placeholder="{{'form.profession' | translate}}" #profession
+              formControlName="profession">
+          </div>
+        </div>
+        <!-- Country -->
+        <div class="col-12 col-sm-6 col-md-3 flex-end px-1">
+          <div ngbDropdown class="dropdown" placement="bottom-left">
+            <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
+              ngbDropdownToggle>{{countriesButtonContent | translate}}</button>
+            <div ngbDropdownMenu>
+              <a *ngFor="let country of countries" class="dropdown-item"
+                (click)="chooseCountry(country)">{{country.name}}</a>
+            </div>
+          </div>
+        </div>
+        <!-- City -->
+        <div class="col-12 col-sm-6 col-md-3 flex-end px-1">
+          <div ngbDropdown class="dropdown" placement="bottom-left">
+            <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
+              ngbDropdownToggle>{{citiesButtonContent | translate}}</button>
+            <div ngbDropdownMenu>
+              <a *ngFor="let city of cities" class="dropdown-item" (click)="chooseCity(city)">{{city.name}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="row w-100">
+          <div class="col text-center">
+            <div class="text-danger pb-2" *ngIf="showLocationError">
+              <small class="text-12 px-2">{{'validation.country-city-required' | translate}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- *//Extra information - Location - Preferences Row* -->
+      <!-- *Categories Row* -->
+      <div class="row py-1">
+        <div class="col-12 px-1">
+          <label class="px-2">{{'form.categories' | translate}}</label>
+          <tag-input [onlyFromAutocomplete]="true" formControlName="categories"
+            secondaryPlaceholder="{{'form.add-category' | translate}}">
+            <span class="px-1">{{'form.prev-chosen' | translate}}</span><span class="px-1"
+              *ngFor="let category of currentUser.categories; last as isLast">{{category.name}}<span
+                *ngIf="!isLast">,</span></span>
+            <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories" [identifyBy]="'id'"
+              [displayBy]="'name'">
+            </tag-input-dropdown>
+          </tag-input>
+          <div class="row py-2">
+            <div class="col px-2">
+              <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty) || submitted">
+                <div class="text-danger pb-2"
+                  *ngIf="signUpForm.get('categories').errors && signUpForm.get('categories').errors.required">
+                  <small class="text-12 px-2">{{'validation.category-required' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- *//Categories Row* -->
+      <!-- *About me row* -->
+      <div class="row py-1">
+        <div class="col-md-12 px-3">
+          <div class="form-group">
+            <label>{{'form.about-me' | translate}}</label>
+            <textarea rows="2" cols="80" class="form-control p-0" placeholder="{{'form.about-me-mask' | translate}}"
+              formControlName="bio"></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- *//About me row* -->
+      <div class="row pt-1">
+        <div class="col-12 col-md-10">
+          <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
+        </div>
+        <div class="col-2">
+          <bSwitch formControlName="invitationOption"></bSwitch>
+        </div>
+      </div>
+      <!-- -> Hidden Submit button -->
+      <button class="d-none" type="submit" #submit></button>
+    </form>
+  </div>
+  <div class="col-md-4 px-4">
+    <div class="row">
+      <div class="col">
+        <div class="text-center">
+          <img class="avatar border-gray cover-image" [src]="currentUser.profileImage">
+          <div>
+            <div class="d-none">
+              <!-- TODO: Check with those directives in the form tag -->
+              <form action="/uploadImage" method="post" enctype="multipart/form-data">
+                <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
+              </form>
+            </div>
+            <button class="btn btn-primary" (click)="photoInput.click()">{{'form.upload-image' | translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <button class="btn btn-primary">{{'button.save' | translate}}</button>
+        <button class="btn btn-secondary" (click)="initSignUpForm()">{{'button.cancel' | translate}}</button>
+      </div>
+    </div>
+  </div>
+</div>

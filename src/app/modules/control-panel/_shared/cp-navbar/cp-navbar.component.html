@@ -1,0 +1,23 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button (click)="toggleSidenav()">
+    <mat-icon>
+      menu
+    </mat-icon>
+  </button>
+  <span>Enhance</span>
+  <span class="flex-spacer"></span>
+  <div class="px-5">
+    <div ngbDropdown class="dropdown">
+      <div class="btn btn-primary dropdown-toggle w-100 btn-border-radius" ngbDropdownToggle>
+        <img class="avatar" src="../../../../../assets/img/members/Mohamed_Karkotly.jpg" alt="">
+      </div>
+      <div ngbDropdownMenu>
+        <a routerLink="profile" class="dropdown-item text-center"><i class="fa fa-user"></i><span
+            class="px-2">{{'form.profile' | translate}}</span></a>
+        <a class="dropdown-item text-center"><i class="fa fa-sign-out-alt"></i><span class="px-2">{{'form.logout' |
+            translate}}</span></a>
+      </div>
+    </div>
+  </div>
+
+</mat-toolbar>

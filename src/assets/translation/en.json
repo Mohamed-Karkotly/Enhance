@@ -32,7 +32,10 @@
     "create-account": "Create Account",
     "login-instead": "Login instead",
     "upload-image": "Upload image",
-    "agree": "By signing up, you agree to the Terms & Privacy"
+    "agree": "By signing up, you agree to the Terms & Privacy",
+    "logout": "Logout",
+    "profile": "Profile",
+    "prev-chosen": "Previously Chosen:"
   },
   "validation": {
     "firstName-required": "First name is required",
@@ -70,7 +73,9 @@
     "sign-up": "Sign up",
     "send-message": "Send Message",
     "close": "Close",
-    "terms": "Terms & Privacy"
+    "terms": "Terms & Privacy",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "social": {
     "facebook": "Facebook",

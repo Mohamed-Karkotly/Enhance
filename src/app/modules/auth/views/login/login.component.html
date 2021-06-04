@@ -32,8 +32,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty
-              || loginForm.get('email').touched)">
+              <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty)">
                 <div class="text-danger pb-2" *ngIf="loginForm.get('email').errors.required">
                   <small class="text-12">{{'validation.email-required' | translate}}</small>
                 </div>
@@ -59,8 +58,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty
-              || loginForm.get('password').touched)">
+              <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty)">
                 <div class="text-danger pb-2" *ngIf="loginForm.get('password').errors.required">
                   <small class="text-12">{{'validation.password-required' | translate}}</small>
                 </div>

@@ -27,8 +27,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('firstName').invalid && (signUpForm.get('firstName').dirty
-                    || signUpForm.get('firstName').touched)">
+                    <div *ngIf="signUpForm.get('firstName').invalid && (signUpForm.get('firstName').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('firstName').errors.required">
                         <small class="text-12 px-2">{{'validation.firstName-required' | translate}}</small>
                       </div>
@@ -55,8 +54,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('lastName').invalid && (signUpForm.get('lastName').dirty
-                    || signUpForm.get('lastName').touched)">
+                    <div *ngIf="signUpForm.get('lastName').invalid && (signUpForm.get('lastName').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('lastName').errors.required">
                         <small class="text-12 px-2">{{'validation.lastName-required' | translate}}</small>
                       </div>
@@ -83,8 +81,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty
-                    || signUpForm.get('email').touched)">
+                    <div *ngIf="signUpForm.get('email').invalid && (signUpForm.get('email').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('email').errors.required">
                         <small class="text-12 px-2">{{'validation.email-required' | translate}}</small>
                       </div>
@@ -107,8 +104,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('age').invalid && (signUpForm.get('age').dirty
-                    || signUpForm.get('age').touched)">
+                    <div *ngIf="signUpForm.get('age').invalid && (signUpForm.get('age').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('age').errors.required">
                         <small class="text-12 px-2">{{'validation.age-required' | translate}}</small>
                       </div>
@@ -141,8 +137,7 @@
                 <!-- TODO: Uncomment tag below to restore phone validation -->
                 <!-- <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty
-                    || signUpForm.get('phone').touched)">
+                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
                         <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
                       </div>
@@ -202,8 +197,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('username').invalid && (signUpForm.get('username').dirty
-                    || signUpForm.get('username').touched)">
+                    <div *ngIf="signUpForm.get('username').invalid && (signUpForm.get('username').dirty)">
                       <div class="text-danger text-center pb-2" *ngIf="signUpForm.get('username').errors.minlength">
                         <small class="text-12 px-2">{{'validation.username-min-length' | translate}}</small>
                       </div>
@@ -224,8 +218,7 @@
                 </div>
                 <div class="row">
                   <div class="col">
-                    <div *ngIf="signUpForm.get('password').invalid && (signUpForm.get('password').dirty
-                    || signUpForm.get('password').touched)">
+                    <div *ngIf="signUpForm.get('password').invalid && (signUpForm.get('password').dirty)">
                       <div class="text-danger pb-2" *ngIf="signUpForm.get('password').errors.required">
                         <small class="text-12 px-2">{{'validation.password-required' | translate}}</small>
                       </div>
@@ -251,8 +244,7 @@
                 </tag-input>
                 <div class="row py-2">
                   <div class="col px-2">
-                    <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty
-                  || signUpForm.get('categories').touched) || submitted">
+                    <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty) || submitted">
                       <div class="text-danger pb-2"
                         *ngIf="signUpForm.get('categories').errors && signUpForm.get('categories').errors.required">
                         <small class="text-12 px-2">{{'validation.category-required' | translate}}</small>
@@ -279,7 +271,7 @@
                 <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
               </div>
               <div class="col-2">
-                <bSwitch [switch-on-color]="" formControlName="invitationOption"></bSwitch>
+                <bSwitch formControlName="invitationOption"></bSwitch>
               </div>
             </div>
             <!-- !Hidden Submit button -->
@@ -296,7 +288,9 @@
             <img *ngIf="image" class="avatar border-gray cover-image" [src]="image">
             <div>
               <div style="height:0px;overflow:hidden">
-                <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
+                <form action="/uploadImage" method="post" enctype="multipart/form-data">
+                  <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
+                </form>
               </div>
               <button class="btn btn-primary" (click)="photoInput.click()">{{'form.upload-image' | translate}}</button>
             </div>

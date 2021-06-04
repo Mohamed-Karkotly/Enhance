@@ -24,13 +24,6 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: '**',
-    component: Error404Component,
-    data: {
-      title: 'Lost in 404 Galaxy',
-    },
-  },
 ];
 
 @NgModule({

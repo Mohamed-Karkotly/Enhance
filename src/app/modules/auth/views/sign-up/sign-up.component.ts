@@ -16,6 +16,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { TagInputModule } from 'ngx-chips';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { AuthService } from '../../auth.service';
+import { Router } from '@angular/router';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -54,7 +55,8 @@ export class SignUpComponent implements OnInit {
     private _translate: TranslateService,
     private _spinner: NgxSpinnerService,
     private _imageUploadService: ImageUploadService,
-    private _authService: AuthService
+    private _authService: AuthService,
+    private _router: Router
   ) {
     this.countriesButtonContent = this._translate.instant('form.country');
     this.citiesButtonContent = this._translate.instant('form.city');
@@ -160,8 +162,9 @@ export class SignUpComponent implements OnInit {
     /* this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
     this.initUser(); */
-    this.image && this.uploadImage();
+    //this.image && this.uploadImage();
     //this.signUp();
+    this._router.navigateByUrl('/control-panel');
   }
 
   validateForm() {
@@ -184,9 +187,9 @@ export class SignUpComponent implements OnInit {
 
   uploadImage() {
     this._imageUploadService.uploadImage(this.image).subscribe(
-      (res: any) => {
-        this.signUpForm.controls.progileImage.setValue(res.imageUrl);
-        console.warn(res);
+      (imageUrl: any) => {
+        //this.signUpForm.controls.progileImage.setValue(imageUrl);
+        console.warn(imageUrl);
       },
       (err) => {
         console.error(err.error);
@@ -206,17 +209,13 @@ export class SignUpComponent implements OnInit {
     );
   }
   processFile(event: any) {
-    const reader = new FileReader();
     const type = event.target.files[0].type;
     if (type.match(/image\/*/) == null) {
       return;
     }
     if (event.target.files && event.target.files.length) {
-      const [file] = event.target.files;
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.image = reader.result as string;
-      };
+      this.image = event.target.files.item(0);
+      console.warn(this.image);
     }
   }
 }

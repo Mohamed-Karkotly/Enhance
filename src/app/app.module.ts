@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { AppRoutingModule } from './app-routing.module';
 import {
   HttpClientModule,
@@ -15,21 +14,19 @@ import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/Error/error.interceptor';
 import { LoggerInterceptor } from './interceptors/Logger/logger.interceptor';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxSpinnerModule } from 'ngx-spinner';
-import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LandingPageModule } from './modules/landing-page/landing-page.module';
-import { SharedModule } from 'src/app/modules/shared/shared.module';
 import { ToastrModule } from 'ngx-toastr';
 import { AuthModule } from './modules/auth/auth.module';
+import { ControlPanelModule } from './modules/control-panel/control-panel.module';
+import { SidenavService } from './services/sidenav.service';
+import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,
     TranslateModule.forRoot({
@@ -39,18 +36,17 @@ import { AuthModule } from './modules/auth/auth.module';
         deps: [HttpClient],
       },
     }),
-    NgbModule,
-    NgxSpinnerModule,
-    NgxMaskModule.forRoot(),
-    AuthModule,
-    LandingPageModule,
-    ErrorPagesModule,
-    SharedModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
+    AuthModule,
+    LandingPageModule,
+    ControlPanelModule,
+    ErrorPagesModule,
+    LayoutModule,
+    ControlPanelModule
   ],
   providers: [
     AuthGuard,
@@ -69,6 +65,7 @@ import { AuthModule } from './modules/auth/auth.module';
       useClass: LoggerInterceptor,
       multi: true,
     },
+    SidenavService,
   ],
   bootstrap: [AppComponent],
 })
@@ -77,5 +74,3 @@ export class AppModule {}
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/translation/');
 }
-//Mask options configuration
-export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
