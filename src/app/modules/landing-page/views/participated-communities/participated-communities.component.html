@@ -1,7 +1,8 @@
 <!-- Communities List -->
 <section *ngIf="b">
   <div class="row m-2">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3" *ngFor="let community of [].constructor(6)">
+    <div fxLayoutAlign="start" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3"
+      *ngFor="let community of [].constructor(6)">
       <mat-card>
         <img mat-card-title src="../../../../../assets/img/jigsaw.jpg">
         <mat-card-content>
@@ -28,7 +29,7 @@
 <!-- //Communities List -->
 
 <!-- Empty State -->
-<section  *ngIf="!b">
+<section *ngIf="!b">
   <!-- SVG empty state -->
   <div class="row m-2">
     <div class="col h-100 text-center mt-5">

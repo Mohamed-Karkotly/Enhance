@@ -1,30 +1,14 @@
 <!-- Communities List -->
 <section *ngIf="b">
   <div class="row m-2">
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3" *ngFor="let community of [].constructor(6)">
+    <div fxLayoutAlign="start" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3"
+      *ngFor="let community of [].constructor(6)">
       <mat-card>
         <img mat-card-title src="../../../../../assets/img/discuss.jpg">
         <mat-card-content>
           <h6 class="text-center primary-color">School</h6>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus nostrum inventore eos dolor. Atque
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="d-flex place-between">
-          <button color="accent" class="text-start" mat-button>{{'button.manage' | translate}}</button>
-          <button color="warn" class="text-end" mat-button>{{'button.delete' | translate}}</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    <!-- TODO: Make cards with same height -->
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3">
-      <mat-card>
-        <img mat-card-title src="../../../../../assets/img/discuss.jpg">
-        <mat-card-content>
-          <h6 class="text-center primary-color">School</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus nostrum inventore eos dolor. Atque
-            aperiam tenetur quidem amet sint maiores quam iusto eaque et maxime, quaerat dolore repellat suscipit.
           </p>
         </mat-card-content>
         <mat-card-actions class="d-flex place-between">
@@ -34,7 +18,6 @@
       </mat-card>
     </div>
   </div>
-
   <!-- Community button -->
   <div class="row m-2">
     <div class="col my-4 text-center">
