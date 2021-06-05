@@ -71,3 +71,15 @@ body {
 .w-30 {
   width: 30%;
 }
+
+.bg {
+  background-color: white;
+}
+
+.bg-gradient {
+  background: linear-gradient(
+    to bottom right,
+    rgba(250, 214, 202),
+    rgba(197, 55, 7)
+  );
+}

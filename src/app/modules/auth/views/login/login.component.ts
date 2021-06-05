@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -18,7 +18,7 @@ import { AuthService } from '../../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
   input1Focus: boolean;
   input2Focus: boolean;
   submitted: boolean;
@@ -33,6 +33,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initLoginForm();
+  }
+
+  ngAfterViewInit(): void {
+    document.body.classList.add('bg-gradient');
   }
 
   initLoginForm() {

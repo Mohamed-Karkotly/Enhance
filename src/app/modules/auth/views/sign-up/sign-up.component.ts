@@ -29,7 +29,7 @@ TagInputModule.withDefaults({
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent implements OnInit, AfterViewInit {
   signUpForm: FormGroup;
   submitted: boolean; //Form submession for validation
   image: any;
@@ -70,6 +70,10 @@ export class SignUpComponent implements OnInit {
     //this.subscribeUser();
     this.getCategories();
     this.getCountries();
+  }
+
+  ngAfterViewInit(): void {
+    document.body.classList.add('bg-gradient');
   }
 
   initSignUpForm() {
