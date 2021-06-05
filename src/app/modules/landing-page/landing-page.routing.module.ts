@@ -1,8 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Error404Component } from '../error-pages/views/error404/error404.component';
+import { ChooseCommunityComponent } from './views/choose-community/choose-community.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  {
+    path: 'communities',
+    component: ChooseCommunityComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

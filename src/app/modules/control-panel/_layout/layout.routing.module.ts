@@ -15,6 +15,10 @@ const routes: Routes = [
         },
         children: [
           {
+            path: '',
+            component: ProfileComponent,
+          },
+          {
             path: 'profile',
             component: ProfileComponent,
           },

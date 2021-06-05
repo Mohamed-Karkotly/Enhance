@@ -24,11 +24,11 @@ export const routes: Routes = [
         loadChildren: () =>
           import('./modules/auth/auth.module').then((m) => m.AuthModule),
       },
-      {
+      /* {
         path: 'control-panel',
         loadChildren: () =>
           import('./modules/control-panel/_layout/layout.module').then((m) => m.LayoutModule),
-      },
+      }, */
     ],
   },
 ];

@@ -8,8 +8,18 @@ import { AngularMaterialModule } from 'src/app/angular-material/angular-material
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ChooseCommunityComponent } from './views/choose-community/choose-community.component';
+import { ParticipatedCommunitiesComponent } from './views/participated-communities/participated-communities.component';
+import { AdminCommunitiesComponent } from './views/admin-communities/admin-communities.component';
+
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [
+    HomeComponent,
+    ChooseCommunityComponent,
+    ParticipatedCommunitiesComponent,
+    AdminCommunitiesComponent,
+  ],
   imports: [
     CommonModule,
     LandingPageRoutingModule,
@@ -20,6 +30,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     FormsModule,
     FlexLayoutModule,
     NgxSpinnerModule,
+    NgbModule,
+    AngularMaterialModule,
   ],
 })
 export class LandingPageModule {}

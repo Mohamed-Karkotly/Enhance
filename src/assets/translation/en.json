@@ -79,7 +79,10 @@
     "close": "Close",
     "terms": "Terms & Privacy",
     "save": "Save",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "manage": "Manage",
+    "delete": "Delete",
+    "interact": "Interact"
   },
   "social": {
     "facebook": "Facebook",
@@ -150,5 +153,11 @@
     "sent": "Feedback sent successfully!",
     "oops": "Opps..",
     "failed": "Feedback failed to be sent."
+  },
+  "community": {
+    "admin": "Communities you manage",
+    "participated": "Communities you participate in",
+    "create": "Create a community",
+    "join": "Join a community"
   }
 }

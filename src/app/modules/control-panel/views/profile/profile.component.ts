@@ -122,13 +122,28 @@ export class ProfileComponent implements OnInit {
     this.signUpForm.controls.cityId.setValue(city.id);
   }
 
+  // Returns true if the user has changed the value in the form
+  isDifferent(obj: any, prop: string) {
+    return this.currentUser[prop] !== obj[prop];
+  }
+
   onSubmit() {
-    /* this.submitted = true;
+    let hasChanges: boolean = false;
+    this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
-    this.initUser(); */
-    //this.image && this.uploadImage();
-    //this.signUp();
-    this._router.navigateByUrl('/control-panel');
+    for (let prop in this.signUpForm.value) {
+      if (this.isDifferent(this.signUpForm.value, prop)) {
+        hasChanges = true;
+      }
+    }
+    console.warn(hasChanges);
+    // If no changes, cancel form submition
+    if (!hasChanges) {
+      return;
+    }
+    this.image && this.uploadImage();
+    //this.initUser();
+    //this.updateUser();
   }
 
   validateForm() {
@@ -161,7 +176,7 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  signUp() {
+  updateUser() {
     console.warn(this.user);
     this._authService.postSignUp(this.user).subscribe(
       (res) => {
@@ -172,6 +187,7 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
+
   processFile(event: any) {
     const type = event.target.files[0].type;
     if (type.match(/image\/*/) == null) {

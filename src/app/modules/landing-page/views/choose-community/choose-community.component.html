@@ -1,1 +1,15 @@
-<p>choose-community works!</p>
+<app-navbar></app-navbar>
+<div class="wrapper">
+  <div fxLayout="row" fxLayoutGap="16px" fxFill>
+    <div fxFlex="100" fxFill>
+      <mat-tab-group mat-stretch-tabs class="tab-group mat-elevation-z6">
+        <mat-tab label="{{'community.admin' | translate}}">
+          <app-admin-communities></app-admin-communities>
+        </mat-tab>
+        <mat-tab label="{{'community.participated' | translate}}">
+          <app-participated-communities></app-participated-communities>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

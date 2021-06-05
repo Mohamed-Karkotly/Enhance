@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatCardModule } from '@angular/material/card';
 const material = [
   MatIconModule,
   MatButtonModule,
@@ -16,6 +18,8 @@ const material = [
   MatStepperModule,
   MatFormFieldModule,
   MatInputModule,
+  MatTabsModule,
+  MatCardModule,
 ];
 @NgModule({
   imports: [...material],

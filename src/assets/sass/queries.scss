@@ -6,3 +6,15 @@
     text-align: end !important;
   }
 }
+
+@media only screen and (max-width: 992px) {
+  .w-md-40 {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .w-sm-50 {
+    width: 70%;
+  }
+}

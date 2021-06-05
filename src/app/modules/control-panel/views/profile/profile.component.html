@@ -178,13 +178,13 @@
           <label class="px-2">{{'form.categories' | translate}}</label>
           <tag-input [onlyFromAutocomplete]="true" formControlName="categories"
             secondaryPlaceholder="{{'form.add-category' | translate}}">
-            <span class="px-1">{{'form.prev-chosen' | translate}}</span><span class="px-1"
-              *ngFor="let category of currentUser.categories; last as isLast">{{category.name}}<span
-                *ngIf="!isLast">,</span></span>
             <tag-input-dropdown [showDropdownIfEmpty]="true" [autocompleteItems]="categories" [identifyBy]="'id'"
               [displayBy]="'name'">
             </tag-input-dropdown>
           </tag-input>
+          <span class="px-1">{{'form.prev-chosen' | translate}}</span><span class="px-1"
+            *ngFor="let category of currentUser.categories; last as isLast">{{category.name}}<span
+              *ngIf="!isLast">,</span></span>
           <div class="row py-2">
             <div class="col px-2">
               <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty) || submitted">
@@ -240,7 +240,7 @@
     </div>
     <div class="row">
       <div class="col text-center">
-        <button class="btn btn-primary">{{'button.save' | translate}}</button>
+        <button class="btn btn-primary" (click)="submit.click()">{{'button.save' | translate}}</button>
         <button class="btn btn-secondary" (click)="initSignUpForm()">{{'button.cancel' | translate}}</button>
       </div>
     </div>

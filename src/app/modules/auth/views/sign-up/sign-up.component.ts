@@ -164,7 +164,7 @@ export class SignUpComponent implements OnInit {
     this.initUser(); */
     //this.image && this.uploadImage();
     //this.signUp();
-    this._router.navigateByUrl('/control-panel');
+    this._router.navigateByUrl('/communities');
   }
 
   validateForm() {

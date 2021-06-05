@@ -1,0 +1,19 @@
+.wrapper {
+  margin-top: 50px;
+  padding: 16px;
+  min-height: calc(100% - 50px);
+  height: calc(100% - 50px);
+  box-sizing: border-box;
+}
+
+.tab-group {
+  height: 100%;
+}
+
+.tab-group mat-tab-body {
+  flex-grow: 1;
+}
+
+::ng-deep body {
+  background: unset !important;
+}
