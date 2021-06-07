@@ -23,9 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
-            "allowedCommonJsDependencies": [
-              "rellax/rellax.min"
-            ],
+            "allowedCommonJsDependencies": [],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -41,7 +39,6 @@
               "src/assets/sass/queries.scss"
             ],
             "scripts": [
-              "node_modules/rellax/rellax.min.js",
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
@@ -105,14 +102,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss",
-              "src/assets/sass/now-ui-kit.scss",
-              "src/assets/sass/globals.scss"
-            ],
-            "scripts": [
-              "node_modules/rellax/rellax.min.js"
-            ]
+            "styles": [],
+            "scripts": []
           }
         },
         "lint": {

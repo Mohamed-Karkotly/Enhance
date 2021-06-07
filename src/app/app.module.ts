@@ -9,7 +9,7 @@ import {
 } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { AuthGuard } from './guards/auth/auth.guard';
+import { AuthGuard } from './guards/auth.guard';
 import { AppComponent } from './app.component';
 import { AuthInterceptor } from './interceptors/Auth/auth.interceptor';
 import { ErrorInterceptor } from './interceptors/Error/error.interceptor';

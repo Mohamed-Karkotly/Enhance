@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Credentials } from 'src/app/models/API/credentials.interface';
 import { User } from 'src/app/models/entities/user.interface';
+import { StorageService } from 'src/app/services/storage.service';
 import { Login } from './actions/login';
 import { SignUp } from './actions/sign-up';
 
@@ -12,7 +13,7 @@ import { SignUp } from './actions/sign-up';
 export class AuthService {
   loginActoins: Login;
   signUpActions: SignUp;
-  constructor(http: HttpClient) {
+  constructor(private _storageService: StorageService, http: HttpClient) {
     this.loginActoins = new Login(http);
     this.signUpActions = new SignUp(http);
   }

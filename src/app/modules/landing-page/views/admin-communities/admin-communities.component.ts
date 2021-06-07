@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-communities',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminCommunitiesComponent implements OnInit {
   b = true;
-  constructor() {}
+  constructor(private _router: Router) {}
 
   ngOnInit(): void {}
+
+  getSelectedCommunity() {
+    this._router.navigateByUrl('/control-panel');
+  }
 }

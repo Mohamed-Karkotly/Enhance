@@ -8,8 +8,8 @@
         </a>
       </div>
       <div class="row" *ngIf="!logo">
-        <div class="col align-self-center p-0">
-          <a class="nav-link" routerLink="/">
+        <div class="col align-self-center p-0 cursor-pointer">
+          <a class="nav-link" (click)="goBack()">
             <i class="now-ui-icons arrows-1_minimal-left px-1"></i>
           </a>
         </div>
@@ -32,16 +32,22 @@
 
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <li *ngIf="signUp" class="nav-item text-center">
+        <li *ngIf="signUp" class="nav-item text-center cursor-pointer">
           <a class="nav-link" routerLink="/auth/sign-up">
             <i class="now-ui-icons users_single-02"></i>
             {{'button.sign-up' | translate}}
           </a>
         </li>
-        <li *ngIf="login" class="nav-item text-center">
+        <li *ngIf="login" class="nav-item text-center cursor-pointer">
           <a class="nav-link" routerLink="/auth/login">
             <i class="now-ui-icons users_circle-08"></i>
             {{'button.login' | translate}}
+          </a>
+        </li>
+        <li *ngIf="logout" class="nav-item text-center cursor-pointer">
+          <a class="nav-link" (click)="deleteUser()">
+            <i class="fa fa-sign-out-alt"></i>
+            {{'button.logout' | translate}}
           </a>
         </li>
         <li class="nav-item text-center">
@@ -74,8 +80,10 @@
               <i class="now-ui-icons location_world"></i>
             </a>
             <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right text-center overflow-hidden">
-              <a class="dropdown-item pl-4 cursor-pointer" (click)="chooseEnglish()">{{'language.english' | translate}}</a>
-              <a class="dropdown-item pl-4 cursor-pointer" (click)="chooseArabic()">{{'language.arabic' | translate}}</a>
+              <a class="dropdown-item pl-4 cursor-pointer" (click)="chooseEnglish()">{{'language.english' |
+                translate}}</a>
+              <a class="dropdown-item pl-4 cursor-pointer" (click)="chooseArabic()">{{'language.arabic' |
+                translate}}</a>
             </div>
           </div>
         </li>

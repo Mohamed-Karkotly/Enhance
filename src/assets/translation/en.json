@@ -37,7 +37,6 @@
     "login-instead": "Login instead",
     "upload-image": "Upload image",
     "agree": "By signing up, you agree to the Terms & Privacy",
-    "logout": "Logout",
     "profile": "Profile",
     "prev-chosen": "Previously Chosen:"
   },
@@ -82,7 +81,8 @@
     "cancel": "Cancel",
     "manage": "Manage",
     "delete": "Delete",
-    "interact": "Interact"
+    "interact": "Interact",
+    "logout": "Logout"
   },
   "social": {
     "facebook": "Facebook",
@@ -148,11 +148,17 @@
     "become-member": "Become a member!",
     "invitation-option": "Allow other members to invite me to communities out of my categories"
   },
-  "feedback": {
+  "toastr": {
     "thanks": "Thanks!",
-    "sent": "Feedback sent successfully!",
+    "feedback-sent": "Feedback sent successfully!",
     "oops": "Opps..",
-    "failed": "Feedback failed to be sent."
+    "feedback-failed": "Feedback failed to be sent.",
+    "email": "Email is already registered.",
+    "username": "Username is taken.",
+    "image": "Image failed to upload.",
+    "internet": "An internet connection error occured.",
+    "not-registered": "Email is not registered",
+    "mismatch": "Either username or password are wrong."
   },
   "community": {
     "admin": "Communities you manage",

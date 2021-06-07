@@ -12,14 +12,14 @@ const routes: Routes = [
         path: 'login',
         component: LoginComponent,
         data: {
-          title: 'Enhance - Sign in',
+          title: 'Sign in',
         },
       },
       {
         path: 'sign-up',
         component: SignUpComponent,
         data: {
-          title: 'Enhance - Sign up',
+          title: 'Sign up',
         },
       },
     ],

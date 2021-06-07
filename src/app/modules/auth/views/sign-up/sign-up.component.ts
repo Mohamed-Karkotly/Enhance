@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -17,6 +17,9 @@ import { TagInputModule } from 'ngx-chips';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { AuthService } from '../../auth.service';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
+import { ToastrService } from 'ngx-toastr';
+import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -29,10 +32,11 @@ TagInputModule.withDefaults({
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.scss'],
 })
-export class SignUpComponent implements OnInit, AfterViewInit {
+export class SignUpComponent implements OnInit {
   signUpForm: FormGroup;
   submitted: boolean; //Form submession for validation
   image: any;
+  imageSrc: any;
   //API Requests to be stored in the following interfaces
   categories: Category[];
   countries: CountryAPI[];
@@ -52,11 +56,14 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     private _formBuilder: FormBuilder,
     private _regexService: RegExService,
     private _sharedService: SharedService,
-    private _translate: TranslateService,
-    private _spinner: NgxSpinnerService,
     private _imageUploadService: ImageUploadService,
     private _authService: AuthService,
-    private _router: Router
+    private _router: Router,
+    private _storageService: StorageService,
+    private _toastr: ToastrService,
+    private _spinner: NgxSpinnerService,
+    private _errorService: ErrorHandlerService,
+    private _translate: TranslateService
   ) {
     this.countriesButtonContent = this._translate.instant('form.country');
     this.citiesButtonContent = this._translate.instant('form.city');
@@ -70,10 +77,6 @@ export class SignUpComponent implements OnInit, AfterViewInit {
     //this.subscribeUser();
     this.getCategories();
     this.getCountries();
-  }
-
-  ngAfterViewInit(): void {
-    document.body.classList.add('bg-gradient');
   }
 
   initSignUpForm() {
@@ -99,7 +102,7 @@ export class SignUpComponent implements OnInit, AfterViewInit {
         Validators.min(14),
         Validators.max(100),
       ]),
-      phone: new FormControl(''),
+      phone: new FormControl('', [Validators.required]),
       profession: new FormControl(''),
       username: new FormControl('', [
         Validators.minLength(2),
@@ -137,14 +140,18 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   getCountries() {
+    this._spinner.show();
     this._sharedService.getCountries().subscribe((countries: CountryAPI[]) => {
       this.countries = countries;
+      this._spinner.hide();
     });
   }
 
   getCategories() {
+    this._spinner.show();
     this._sharedService.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
+      this._spinner.hide();
     });
   }
 
@@ -163,12 +170,11 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit() {
-    /* this.submitted = true;
+    this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
-    this.initUser(); */
-    //this.image && this.uploadImage();
-    //this.signUp();
-    this._router.navigateByUrl('/communities');
+    this.initUser();
+    this.image && this.uploadImage();
+    !this.image && this.signUp();
   }
 
   validateForm() {
@@ -190,36 +196,64 @@ export class SignUpComponent implements OnInit, AfterViewInit {
   }
 
   uploadImage() {
+    this._spinner.show();
     this._imageUploadService.uploadImage(this.image).subscribe(
-      (imageUrl: any) => {
-        //this.signUpForm.controls.progileImage.setValue(imageUrl);
-        console.warn(imageUrl);
+      (response: any) => {
+        let imageUrl = response.imageUrl;
+        this.user.profileImage = imageUrl;
+        this.signUp();
       },
       (err) => {
+        if (this._errorService.handleError(err)) {
+          return;
+        }
         console.error(err.error);
+        let title = this._translate.instant('toastr.oops');
+        let body = this._translate.instant('toastr.image');
+        this._spinner.hide();
+        this._toastr.error(body, title);
       }
     );
   }
 
   signUp() {
-    console.warn(this.user);
+    this._spinner.show();
     this._authService.postSignUp(this.user).subscribe(
       (res) => {
-        console.warn(res);
+        this._storageService.setLocalObject('user', this.user);
+        this._router.navigateByUrl('/communities');
       },
       (err) => {
-        console.error(err.error);
+        if (this._errorService.handleError(err)) {
+          return;
+        }
+        if (err.error.errors[0].param === 'email') {
+          let title = this._translate.instant('toastr.oops');
+          let body = this._translate.instant('toastr.email');
+          this._spinner.hide();
+          this._toastr.error(body, title);
+        }
+        if (err.error.errors[0].param === 'username') {
+          let title = this._translate.instant('toastr.oops');
+          let body = this._translate.instant('toastr.username');
+          this._spinner.hide();
+          this._toastr.error(body, title);
+        }
       }
     );
   }
+
   processFile(event: any) {
     const type = event.target.files[0].type;
     if (type.match(/image\/*/) == null) {
       return;
     }
     if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => (this.imageSrc = reader.result);
+      reader.readAsDataURL(file);
       this.image = event.target.files.item(0);
-      console.warn(this.image);
     }
   }
 }

@@ -12,7 +12,7 @@
           </p>
         </mat-card-content>
         <mat-card-actions class="d-flex place-between">
-          <button color="accent" class="text-start" mat-button>{{'button.manage' | translate}}</button>
+          <button color="accent" class="text-start" mat-button (click)="getSelectedCommunity()">{{'button.manage' | translate}}</button>
           <button color="warn" class="text-end" mat-button>{{'button.delete' | translate}}</button>
         </mat-card-actions>
       </mat-card>

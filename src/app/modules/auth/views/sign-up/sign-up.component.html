@@ -1,5 +1,8 @@
 <app-navbar [login]="true"></app-navbar>
-<div class="container-fluid h-100 pt-6 px-5">
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<div class="container-fluid h-100 pt-6 px-5" BodyBackground>
   <div class="row align-items-center h-100 row-eq-height">
     <div class="col-md-8">
       <div class="card mb-0">
@@ -128,13 +131,20 @@
                   <label class="px-2">{{'form.phone' | translate}}</label>
                   <!-- TODO: Support internation phone numbers in future versions -->
                   <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}"
-                    mask="0000 000 000" maxlength="16" formControlName="phone">
-                  <!-- TODO: Add the following attributes after formControlName when you want to restore validation
-                      [ngClass]="{'is-invalid': submitted && form.phone.errors}"
-                      [ngClass]="{'is-valid': !form.phone.errors}"
-                    -->
+                    mask="0000 000 000" maxlength="16" formControlName="phone"
+                    [ngClass]="{'is-invalid': submitted && form.phone.errors}"
+                    [ngClass]="{'is-valid': !form.phone.errors}">
                 </div>
-                <!-- TODO: Uncomment tag below to restore phone validation -->
+                <div class="row">
+                  <div class="col">
+                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
+                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
+                        <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- TODO: Comment row above & Uncomment row below to restore full phone validation -->
                 <!-- <div class="row">
                   <div class="col">
                     <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
@@ -162,7 +172,7 @@
                   <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
                     ngbDropdownToggle>{{countriesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
-                    <a *ngFor="let country of countries" class="dropdown-item"
+                    <a *ngFor="let country of countries" class="dropdown-item cursor-pointer"
                       (click)="chooseCountry(country)">{{country.name}}</a>
                   </div>
                 </div>
@@ -173,7 +183,8 @@
                   <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
                     ngbDropdownToggle>{{citiesButtonContent | translate}}</button>
                   <div ngbDropdownMenu>
-                    <a *ngFor="let city of cities" class="dropdown-item" (click)="chooseCity(city)">{{city.name}}</a>
+                    <a *ngFor="let city of cities" class="dropdown-item cursor-pointer"
+                      (click)="chooseCity(city)">{{city.name}}</a>
                   </div>
                 </div>
               </div>
@@ -244,7 +255,8 @@
                 </tag-input>
                 <div class="row py-2">
                   <div class="col px-2">
-                    <div *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty) || submitted">
+                    <div
+                      *ngIf="signUpForm.get('categories').invalid && (signUpForm.get('categories').dirty) || submitted">
                       <div class="text-danger pb-2"
                         *ngIf="signUpForm.get('categories').errors && signUpForm.get('categories').errors.required">
                         <small class="text-12 px-2">{{'validation.category-required' | translate}}</small>
@@ -285,9 +297,9 @@
         <div class="card-body">
           <div class="text-center">
             <i *ngIf="!image" class="fas fa-user fa-6x pt-15 avatar border-gray"></i>
-            <img *ngIf="image" class="avatar border-gray cover-image" [src]="image">
+            <img *ngIf="imageSrc" class="avatar border-gray cover-image" [src]="imageSrc">
             <div>
-              <div style="height:0px;overflow:hidden">
+              <div class="h-0 overflow-hidden">
                 <form action="/uploadImage" method="post" enctype="multipart/form-data">
                   <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
                 </form>

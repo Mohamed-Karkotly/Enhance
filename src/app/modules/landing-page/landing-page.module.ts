@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChooseCommunityComponent } from './views/choose-community/choose-community.component';
 import { ParticipatedCommunitiesComponent } from './views/participated-communities/participated-communities.component';
 import { AdminCommunitiesComponent } from './views/admin-communities/admin-communities.component';
+import { CreateCommunityComponent } from './views/create-community/create-community.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AdminCommunitiesComponent } from './views/admin-communities/admin-commu
     ChooseCommunityComponent,
     ParticipatedCommunitiesComponent,
     AdminCommunitiesComponent,
+    CreateCommunityComponent,
   ],
   imports: [
     CommonModule,

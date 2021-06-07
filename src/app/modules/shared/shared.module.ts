@@ -9,12 +9,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { BodyBackgroundDirective } from 'src/app/directives/body-background.directive';
 
 const Shared = [
   NavbarComponent,
   FooterComponent,
   ModalComponent,
   SocialMediaComponent,
+  BodyBackgroundDirective
 ];
 @NgModule({
   declarations: [...Shared],

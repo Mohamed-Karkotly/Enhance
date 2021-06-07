@@ -1,4 +1,7 @@
+import { Location } from '@angular/common';
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StorageService } from 'src/app/services/storage.service';
 import { TranslationService } from 'src/app/services/translation.service';
 @Component({
   selector: 'app-navbar',
@@ -9,12 +12,16 @@ export class NavbarComponent implements OnInit {
   @Input() login?: boolean;
   @Input() signUp?: boolean;
   @Input() logo?: boolean;
+  @Input() logout?: boolean;
   private toggleButton: any;
   private sidebarVisible: boolean;
   public location: Location;
   constructor(
     private element: ElementRef,
-    private _translationService: TranslationService
+    private _router: Router,
+    private _location: Location,
+    private _translationService: TranslationService,
+    private _storageService: StorageService
   ) {
     this.sidebarVisible = false;
   }
@@ -55,5 +62,14 @@ export class NavbarComponent implements OnInit {
 
   chooseArabic() {
     this._translationService.selectArabic();
+  }
+
+  goBack() {
+    this._location.back();
+  }
+  deleteUser() {
+    this._storageService.removeLocalObject('user');
+    this._storageService.removeToken();
+    this._router.navigateByUrl('/auth/login');
   }
 }

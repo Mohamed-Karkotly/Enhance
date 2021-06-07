@@ -31,10 +31,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             case 403: //forbidden
               break;
             case 404: //not found
-              this.router.navigateByUrl('');
+              //this.router.navigateByUrl('');
               break;
             case 500: //internal server error
-              this.router.navigateByUrl('');
+              //this.router.navigateByUrl('');
               break;
           }
         }

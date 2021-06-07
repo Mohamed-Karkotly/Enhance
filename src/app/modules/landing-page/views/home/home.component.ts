@@ -1,4 +1,3 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -6,18 +5,16 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
-import { RellaxService } from 'src/app/helpers/rellax';
+import { ToastService } from 'src/app/services/toast.service';
 import { LandingPageService } from '../../landing-page.service';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  rellax: RellaxService;
   data: Date = new Date();
   focus: boolean;
   focus1: boolean;
@@ -27,12 +24,10 @@ export class HomeComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private _landingPageService: LandingPageService,
     private _spinner: NgxSpinnerService,
-    private _toastr: ToastrService,
-    private _translate: TranslateService
+    private _toastService: ToastService
   ) {}
 
   ngOnInit() {
-    this.rellax = new RellaxService();
     this.initFeedback();
   }
 
@@ -55,27 +50,16 @@ export class HomeComponent implements OnInit {
       this._spinner.show();
       this._landingPageService.postFeedback(feedbackForm.value).subscribe(
         () => {
-          this._spinner.hide();
-          let title = this._translate.instant('feedback.thanks');
-          let feedback = this._translate.instant('feedback.sent');
-          this._toastr.success(feedback, title);
+          this._toastService.showSuccess(
+            'toastr.thanks',
+            'toastr.feedback-sent'
+          );
           this.feedbackForm.reset();
         },
-        //! component scope error handling
-        (error: HttpErrorResponse) => {
-          console.error(error);
-          let title = this._translate.instant('feedback.oops');
-          let feedback = this._translate.instant('feedback.failed');
-          setTimeout(() => {
-            this._spinner.hide();
-            this._toastr.error(feedback, title);
-          }, 5000);
+        () => {
+          this._toastService.showError('toastr.oops', 'toastr.feedback-failed');
         }
       );
     }
-  }
-
-  ngOnDestroy() {
-    this.rellax.destroyRellaxAnimation();
   }
 }
