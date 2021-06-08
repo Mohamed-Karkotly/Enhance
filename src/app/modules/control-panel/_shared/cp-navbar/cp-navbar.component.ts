@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MenuItem } from 'src/app/interfaces/menu.interface';
+import { Router } from '@angular/router';
 import { SidenavService } from 'src/app/services/sidenav.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-cp-navbar',
@@ -8,7 +9,11 @@ import { SidenavService } from 'src/app/services/sidenav.service';
   styleUrls: ['./cp-navbar.component.scss'],
 })
 export class CpNavbarComponent implements OnInit {
-  constructor(private sidenav: SidenavService) {}
+  constructor(
+    private _router: Router,
+    private sidenav: SidenavService,
+    private _storageService: StorageService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -18,5 +23,11 @@ export class CpNavbarComponent implements OnInit {
 
   getIsSidenavOpened() {
     return this.sidenav.sidenavOpened;
+  }
+
+  deleteUser() {
+    this._storageService.removeLocalObject('user');
+    this._storageService.removeToken();
+    this._router.navigateByUrl('/auth/login');
   }
 }

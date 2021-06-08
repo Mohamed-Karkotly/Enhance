@@ -14,7 +14,8 @@
       <div ngbDropdownMenu>
         <a routerLink="profile" class="dropdown-item text-center"><i class="fa fa-user"></i><span
             class="px-2">{{'form.profile' | translate}}</span></a>
-        <a class="dropdown-item text-center"><i class="fa fa-sign-out-alt"></i><span class="px-2">{{'button.logout' |
+        <a class="dropdown-item text-center cursor-pointer" (click)="deleteUser()"><i
+            class="fa fa-sign-out-alt"></i><span class="px-2">{{'button.logout' |
             translate}}</span></a>
       </div>
     </div>
