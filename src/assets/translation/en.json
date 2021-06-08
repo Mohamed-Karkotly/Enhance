@@ -82,7 +82,8 @@
     "manage": "Manage",
     "delete": "Delete",
     "interact": "Interact",
-    "logout": "Logout"
+    "logout": "Logout",
+    "communities": "Communities"
   },
   "social": {
     "facebook": "Facebook",

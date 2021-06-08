@@ -84,7 +84,7 @@ export class ProfileComponent implements OnInit {
         Validators.min(14),
         Validators.max(100),
       ]),
-      phone: new FormControl(this.currentUser.phone),
+      phone: new FormControl(this.currentUser.phone, [Validators.required]),
       profession: new FormControl(this.currentUser.profession),
       cityId: new FormControl(this.currentUser.city, [Validators.required]),
       categories: new FormControl('', [Validators.required]),

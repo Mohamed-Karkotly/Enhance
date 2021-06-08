@@ -9,10 +9,12 @@ import { TranslationService } from 'src/app/services/translation.service';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  @Input() login?: boolean;
-  @Input() signUp?: boolean;
-  @Input() logo?: boolean;
-  @Input() logout?: boolean;
+  @Input() showLogo?: boolean;
+  @Input() inCommunities?: boolean;
+  showLogin: boolean;
+  showSignUp: boolean;
+  showLogout: boolean;
+  showCommunity: boolean;
   private toggleButton: any;
   private sidebarVisible: boolean;
   public location: Location;
@@ -27,10 +29,26 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.subscribeToken();
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName('navbar-toggler')[0];
   }
 
+  subscribeToken() {
+    this._storageService.watchStorage().subscribe((tokenExist: boolean) => {
+      if (tokenExist) {
+        this.showLogin = false;
+        this.showSignUp = false;
+        this.showLogout = true;
+        this.showCommunity = true;
+      } else {
+        this.showLogin = true;
+        this.showSignUp = true;
+        this.showLogout = false;
+        this.showCommunity = false;
+      }
+    });
+  }
   openSidenav() {
     const toggleButton = this.toggleButton;
     const html = document.getElementsByTagName('html')[0];
@@ -67,6 +85,7 @@ export class NavbarComponent implements OnInit {
   goBack() {
     this._location.back();
   }
+
   deleteUser() {
     this._storageService.removeLocalObject('user');
     this._storageService.removeToken();

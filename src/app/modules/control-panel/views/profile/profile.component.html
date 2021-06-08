@@ -114,25 +114,18 @@
             <label class="px-2">{{'form.phone' | translate}}</label>
             <!-- TODO: Support internation phone numbers in future versions -->
             <input type="text" class="form-control" placeholder="{{'form.phone-mask' | translate}}" mask="0000 000 000"
-              maxlength="16" formControlName="phone">
-            <!-- TODO: Add the following attributes after formControlName when you want to restore validation
-                      [ngClass]="{'is-invalid': submitted && form.phone.errors}"
-                      [ngClass]="{'is-valid': !form.phone.errors}"
-                    -->
+              maxlength="16" formControlName="phone" [ngClass]="{'is-invalid': submitted && form.phone.errors}"
+              [ngClass]="{'is-valid': !form.phone.errors}">
           </div>
-          <!-- TODO: Uncomment tag below to restore phone validation -->
-          <!-- <div class="row">
-                  <div class="col">
-                    <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
-                        <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
-                      </div>
-                      <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.pattern">
-                        <small class="text-12 px-2">{{'validation.phone-invalid' | translate}}</small>
-                      </div>
-                    </div>
-                  </div>
-                </div> -->
+          <div class="row">
+            <div class="col">
+              <div *ngIf="signUpForm.get('phone').invalid && (signUpForm.get('phone').dirty)">
+                <div class="text-danger pb-2" *ngIf="signUpForm.get('phone').errors.required">
+                  <small class="text-12 px-2">{{'validation.phone-required' | translate}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <!-- Profession -->
         <div class="col-12 col-sm-6 col-md-3 px-1">
@@ -221,8 +214,8 @@
       <button class="d-none" type="submit" #submit></button>
     </form>
   </div>
-  <div class="col-md-4 px-4">
-    <div class="row">
+  <div class="col-md-4 px-4 flex-column">
+    <div class="row flex-column-content">
       <div class="col">
         <div class="text-center">
           <img class="avatar border-gray cover-image" [src]="currentUser.profileImage">
@@ -241,6 +234,8 @@
     <div class="row">
       <div class="col text-center">
         <button class="btn btn-primary" (click)="submit.click()">{{'button.save' | translate}}</button>
+      </div>
+      <div class="col text-center">
         <button class="btn btn-secondary" (click)="initSignUpForm()">{{'button.cancel' | translate}}</button>
       </div>
     </div>

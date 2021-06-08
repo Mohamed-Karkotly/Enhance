@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StorageService {
-  constructor() {}
+  _tokenExist: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true);
+
+  constructor() {
+    if (this.getToken() !== null) {
+      this._tokenExist.next(true);
+    } else {
+      this._tokenExist.next(false);
+    }
+  }
+
+  watchStorage(): Observable<any> {
+    return this._tokenExist.asObservable();
+  }
 
   setToken(token: string) {
     localStorage.setItem('token', token);
+    this._tokenExist.next(true);
   }
 
   getToken() {
@@ -16,6 +30,7 @@ export class StorageService {
 
   removeToken() {
     localStorage.removeItem('token');
+    this._tokenExist.next(false);
   }
 
   setLocalObject(key: string, value: any) {

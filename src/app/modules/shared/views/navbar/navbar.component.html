@@ -1,13 +1,13 @@
 <nav class="navbar navbar-expand-lg bg-primary fixed-top py-0" color-on-scroll="500">
   <div class="container">
     <div class="row flex-spacer">
-      <div *ngIf="logo" class="col col-md-6 text-start align-self-center">
+      <div *ngIf="showLogo" class="col col-md-6 text-start align-self-center">
         <img class="n-logo mx-3" src="assets/img/enhance-logo.png" alt="">
         <a class="navbar-brand" fxHide.md fxHide.lt-sm>
           {{'enhance' | translate}}
         </a>
       </div>
-      <div class="row" *ngIf="!logo">
+      <div class="row" *ngIf="!showLogo">
         <div class="col align-self-center p-0 cursor-pointer">
           <a class="nav-link" (click)="goBack()">
             <i class="now-ui-icons arrows-1_minimal-left px-1"></i>
@@ -29,29 +29,34 @@
         </div>
       </div>
     </div>
-
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ml-auto">
-        <li *ngIf="signUp" class="nav-item text-center cursor-pointer">
+        <li *ngIf="showSignUp" class="nav-item text-center cursor-pointer">
           <a class="nav-link" routerLink="/auth/sign-up">
             <i class="now-ui-icons users_single-02"></i>
             {{'button.sign-up' | translate}}
           </a>
         </li>
-        <li *ngIf="login" class="nav-item text-center cursor-pointer">
+        <li *ngIf="showLogin" class="nav-item text-center cursor-pointer">
           <a class="nav-link" routerLink="/auth/login">
             <i class="now-ui-icons users_circle-08"></i>
             {{'button.login' | translate}}
           </a>
         </li>
-        <li *ngIf="logout" class="nav-item text-center cursor-pointer">
+        <li *ngIf="showCommunity && !inCommunities" class="nav-item text-center cursor-pointer">
+          <a class="nav-link" routerLink="/communities">
+            <i class="fa fa-fax fa-lg px-1"></i>
+            {{'button.communities' | translate}}
+          </a>
+        </li>
+        <li *ngIf="showLogout" class="nav-item text-center cursor-pointer">
           <a class="nav-link" (click)="deleteUser()">
-            <i class="fa fa-sign-out-alt"></i>
+            <i class="fa fa-sign-out-alt fa-lg px-1"></i>
             {{'button.logout' | translate}}
           </a>
         </li>
         <li class="nav-item text-center">
-          <app-modal withPadding=true></app-modal>
+          <app-modal></app-modal>
         </li>
         <li class="nav-item text-center">
           <a href="https://www.facebook.com/enhance.platform" class="nav-link" rel="tooltip"
