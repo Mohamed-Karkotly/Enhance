@@ -13,6 +13,7 @@ import { ChooseCommunityComponent } from './views/choose-community/choose-commun
 import { ParticipatedCommunitiesComponent } from './views/participated-communities/participated-communities.component';
 import { AdminCommunitiesComponent } from './views/admin-communities/admin-communities.component';
 import { CreateCommunityComponent } from './views/create-community/create-community.component';
+import { JoinCommunityComponent } from './views/join-community/join-community.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CreateCommunityComponent } from './views/create-community/create-commun
     ParticipatedCommunitiesComponent,
     AdminCommunitiesComponent,
     CreateCommunityComponent,
+    JoinCommunityComponent,
   ],
   imports: [
     CommonModule,
