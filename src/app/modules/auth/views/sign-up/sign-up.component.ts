@@ -195,6 +195,20 @@ export class SignUpComponent implements OnInit {
       .value.map(({ id }) => id);
   }
 
+  processFile(event: any) {
+    const type = event.target.files[0].type;
+    if (type.match(/image\/*/) == null) {
+      return;
+    }
+    if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => (this.imageSrc = reader.result);
+      reader.readAsDataURL(file);
+      this.image = event.target.files.item(0);
+    }
+  }
+
   uploadImage() {
     this._spinner.show();
     this._imageUploadService.uploadImage(this.image).subscribe(
@@ -203,6 +217,7 @@ export class SignUpComponent implements OnInit {
         this.user.profileImage = imageUrl;
         this.signUp();
       },
+      //TODO: Use ToastService to handle errors instead of this
       (err) => {
         if (this._errorService.handleError(err)) {
           return;
@@ -223,6 +238,7 @@ export class SignUpComponent implements OnInit {
         this._storageService.setLocalObject('user', this.user);
         this._router.navigateByUrl('/communities');
       },
+      //TODO: Use ToastService to handle errors instead of this
       (err) => {
         if (this._errorService.handleError(err)) {
           return;
@@ -241,19 +257,5 @@ export class SignUpComponent implements OnInit {
         }
       }
     );
-  }
-
-  processFile(event: any) {
-    const type = event.target.files[0].type;
-    if (type.match(/image\/*/) == null) {
-      return;
-    }
-    if (event.target.files && event.target.files.length) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      reader.onload = () => (this.imageSrc = reader.result);
-      reader.readAsDataURL(file);
-      this.image = event.target.files.item(0);
-    }
   }
 }

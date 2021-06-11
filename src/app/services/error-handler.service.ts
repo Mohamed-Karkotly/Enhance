@@ -9,16 +9,26 @@ import { ToastService } from './toast.service';
   providedIn: 'root',
 })
 export class ErrorHandlerService {
+  //TODO: Clean this mess
   title: string;
   body: string;
   isInternetConnectionError: boolean;
+
   constructor(private _toastService: ToastService) {}
 
   handleError(error: HttpErrorResponse): boolean {
-    if (error.status === 0 && error.error instanceof ProgressEvent) {
+    if (this.checkConnectionError(error)) {
       this.isInternetConnectionError = true;
       this._toastService.showError('toastr.oops', 'toastr.internet');
       return this.isInternetConnectionError;
+    } else {
+      return false;
+    }
+  }
+
+  checkConnectionError(error: HttpErrorResponse): boolean {
+    if (error.status === 0 && error.error instanceof ProgressEvent) {
+      return true;
     } else {
       return false;
     }

@@ -34,9 +34,7 @@ export class LoginComponent implements OnInit {
     private _regexService: RegExService,
     private _spinner: NgxSpinnerService,
     private _storageService: StorageService,
-    private _toastr: ToastrService,
     private _errorService: ErrorHandlerService,
-    private _translate: TranslateService,
     private _router: Router,
     private _toastService: ToastService
   ) {}

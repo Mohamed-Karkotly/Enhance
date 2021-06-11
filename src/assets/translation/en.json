@@ -28,9 +28,13 @@
     "address-mask": "Abdullah Bin Rawtha Street, Kafar Suseh",
     "profession": "Profession",
     "profession-mask": "Engineer",
+    "category": "Category",
     "categories": "Categories",
+    "subcategories": "Tag your community with custom subcategories",
     "add-category": "Add desired categories",
     "category-description": "This can be changed later",
+    "subcategory-description": "Add custom community tags",
+    "subcategory-secondary-description": "Those tags will be used to tag posts inside your community",
     "about-me": "About me",
     "about-me-mask": "Researcher, storyteller, and public speaker",
     "create-account": "Create Account",
@@ -38,7 +42,15 @@
     "upload-image": "Upload image",
     "agree": "By signing up, you agree to the Terms & Privacy",
     "profile": "Profile",
-    "prev-chosen": "Previously Chosen:"
+    "prev-chosen": "Previously Chosen:",
+    "communityName": "Community Name",
+    "communityName-mask": "aleppo.city7",
+    "displayName": "Display Name",
+    "displayName-mask": "Aleppo",
+    "communityDescription": "Community Description",
+    "communityDescription-mask": "The offical community of Aleppo City.",
+    "create-community": "Create a community",
+    "tag-community": "Tag your community with one of our categories"
   },
   "validation": {
     "firstName-required": "First name is required",
@@ -69,7 +81,15 @@
     "country-required": "Country is required",
     "address-required": "Address is required",
     "profession-required": "Profession is required",
-    "category-required": "Choose at least 1 category"
+    "1category-required": "Category is required",
+    "category-required": "Choose at least 1 category",
+    "subcategory-required": "Choose at least 1 subcategory",
+    "communityName-required": "Community Name is required",
+    "communityName-min-length": "Community Name must be at least 2 characters long",
+    "communityName-max-length": "Community Name cannot be more than 30 characters long",
+    "displayName-required": "Community Name is required",
+    "displayName-min-length": "Community Name must be at least 2 characters long",
+    "displayName-max-length": "Community Name cannot be more than 30 characters long"
   },
   "button": {
     "login": "Login",
@@ -83,7 +103,8 @@
     "delete": "Delete",
     "interact": "Interact",
     "logout": "Logout",
-    "communities": "Communities"
+    "communities": "Communities",
+    "create": "Create"
   },
   "social": {
     "facebook": "Facebook",
@@ -159,7 +180,9 @@
     "image": "Image failed to upload.",
     "internet": "An internet connection error occured.",
     "not-registered": "Email is not registered",
-    "mismatch": "Either username or password are wrong."
+    "mismatch": "Either username or password are wrong.",
+    "warning": "Warning!",
+    "lost": "Some important information are lost due to internet lose"
   },
   "community": {
     "admin": "Communities you manage",

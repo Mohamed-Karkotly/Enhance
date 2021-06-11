@@ -14,6 +14,7 @@ import { ParticipatedCommunitiesComponent } from './views/participated-communiti
 import { AdminCommunitiesComponent } from './views/admin-communities/admin-communities.component';
 import { CreateCommunityComponent } from './views/create-community/create-community.component';
 import { JoinCommunityComponent } from './views/join-community/join-community.component';
+import { TagInputModule } from 'ngx-chips';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,7 @@ import { JoinCommunityComponent } from './views/join-community/join-community.co
     FlexLayoutModule,
     NgxSpinnerModule,
     NgbModule,
-    AngularMaterialModule,
+    TagInputModule
   ],
 })
 export class LandingPageModule {}
