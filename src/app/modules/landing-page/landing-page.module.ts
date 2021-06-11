@@ -15,6 +15,7 @@ import { AdminCommunitiesComponent } from './views/admin-communities/admin-commu
 import { CreateCommunityComponent } from './views/create-community/create-community.component';
 import { JoinCommunityComponent } from './views/join-community/join-community.component';
 import { TagInputModule } from 'ngx-chips';
+import { NgxInputSearchModule } from 'ngx-input-search';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { TagInputModule } from 'ngx-chips';
     FlexLayoutModule,
     NgxSpinnerModule,
     NgbModule,
-    TagInputModule
+    TagInputModule,
+    NgxInputSearchModule
   ],
 })
 export class LandingPageModule {}

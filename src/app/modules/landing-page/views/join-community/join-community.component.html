@@ -1,9 +1,50 @@
 <app-navbar></app-navbar>
-<app-navbar></app-navbar>
 <section class="container-fluid mt-6">
   <div class="row">
-    <div class="col">
-      <p>join-community works!</p>
+    <div class="col-12 col-md-6 mx-auto">
+      <div class="form-group text-center">
+        <label class="px-2">{{'community.search' | translate}}</label>
+        <input class="form-control" placeholder="{{'form.search-mask' | translate}}" type="text" [stringLength]="2"
+          [debounceTime]="1000" (ngxInputSearch)="searchCommunity($event)" />
+      </div>
     </div>
   </div>
+  <!-- *Empty State* -->
+  <section *ngIf="!b">
+    <!-- SVG empty state -->
+    <div class="row m-2">
+      <div class="col h-100 text-center mt-5">
+        <img class="w-30 w-md-40 w-sm-50" src="../../../../../assets/img/search.jpg">
+      </div>
+    </div>
+    <!-- Search paragraph -->
+    <div class="row m-2">
+      <div class="col my-4 text-center">
+        <p *ngIf="!isSearching">{{'community.startTyping' | translate}}</p>
+      </div>
+    </div>
+  </section>
+  <!-- *//Empty State* -->
+  <!-- *Search Result* -->
+  <section>
+    <div class="row" *ngIf="b">
+      <div fxLayout="row wrap" class="col-12 col-sm-6 col-lg-4 col-xl-3 p-3"
+        *ngFor="let community of [].constructor(6)">
+        <mat-card fxLayout="column" class="mat-elevation-z4">
+          <img mat-card-title src="../../../../../assets/img/discuss.jpg">
+          <mat-card-content fxFlex>
+            <h6 class="text-center primary-color">School</h6>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus nostrum inventore eos dolor. Atque
+            </p>
+          </mat-card-content>
+          <mat-card-actions fxFlexAlign="center">
+            <button color="accent" mat-button (click)="joinSelectedCommunity()">{{'button.join' |
+              translate}}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </section>
+  <!-- *//Search Result* -->
 </section>

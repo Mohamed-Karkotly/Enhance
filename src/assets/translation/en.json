@@ -50,7 +50,8 @@
     "communityDescription": "Community Description",
     "communityDescription-mask": "The offical community of Aleppo City.",
     "create-community": "Create a community",
-    "tag-community": "Tag your community with one of our categories"
+    "tag-community": "Tag your community with one of our categories",
+    "search-mask": "e.g. aleppo university"
   },
   "validation": {
     "firstName-required": "First name is required",
@@ -104,7 +105,8 @@
     "interact": "Interact",
     "logout": "Logout",
     "communities": "Communities",
-    "create": "Create"
+    "create": "Create",
+    "join": "Join"
   },
   "social": {
     "facebook": "Facebook",
@@ -188,6 +190,8 @@
     "admin": "Communities you manage",
     "participated": "Communities you participate in",
     "create": "Create a community",
-    "join": "Join a community"
+    "join": "Join a community",
+    "search": "Search Communities by name",
+    "startTyping": "Start typing to search for all matching results"
   }
 }

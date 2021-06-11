@@ -29,6 +29,11 @@ import { LayoutModule } from '@angular/cdk/layout';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    AuthModule,
+    LandingPageModule,
+    ControlPanelModule,
+    ErrorPagesModule,
+    LayoutModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -41,12 +46,6 @@ import { LayoutModule } from '@angular/cdk/layout';
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }), // ToastrModule added
-    AuthModule,
-    LandingPageModule,
-    ControlPanelModule,
-    ErrorPagesModule,
-    LayoutModule,
-    ControlPanelModule
   ],
   providers: [
     AuthGuard,
