@@ -11,6 +11,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatRippleModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+
 const material = [
   MatIconModule,
   MatButtonModule,
@@ -24,6 +27,8 @@ const material = [
   MatCardModule,
   MatRippleModule,
   MatChipsModule,
+  MatSortModule,
+  MatTableModule
 ];
 @NgModule({
   imports: [...material],
