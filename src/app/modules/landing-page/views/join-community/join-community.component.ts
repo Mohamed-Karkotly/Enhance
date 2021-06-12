@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-join-community',
@@ -6,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./join-community.component.scss'],
 })
 export class JoinCommunityComponent implements OnInit {
-  b = false;
+  isMatched = false;
   isSearching: boolean;
-  constructor() {
+  constructor(private _spinner: NgxSpinnerService) {
     this.isSearching = false;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._spinner.show();
+  }
 
   searchCommunity($event: Event) {
     this.isSearching = true;

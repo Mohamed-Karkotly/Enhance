@@ -1,7 +1,8 @@
 {
   "enhance": "Enhance",
   "spinner": {
-    "processing": "Processing..."
+    "processing": "Processing...",
+    "searching": "Searching..."
   },
   "language": {
     "english": "English",

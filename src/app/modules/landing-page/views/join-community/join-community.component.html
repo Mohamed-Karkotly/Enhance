@@ -5,12 +5,12 @@
       <div class="form-group text-center">
         <label class="px-2">{{'community.search' | translate}}</label>
         <input class="form-control" placeholder="{{'form.search-mask' | translate}}" type="text" [stringLength]="2"
-          [debounceTime]="1000" (ngxInputSearch)="searchCommunity($event)" />
+          [debounceTime]="1000" (ngxInputSearch)="searchCommunity($event)" (emptyInput)="isSearching = false">
       </div>
     </div>
   </div>
   <!-- *Empty State* -->
-  <section *ngIf="!b">
+  <section *ngIf="!isMatched && !isSearching">
     <!-- SVG empty state -->
     <div class="row m-2">
       <div class="col h-100 text-center mt-5">
@@ -25,9 +25,20 @@
     </div>
   </section>
   <!-- *//Empty State* -->
+  <!-- *Search Spinner* -->
+  <section class="center" *ngIf="isSearching">
+    <div class="row mt-auto center">
+      <div class="col text-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- *//Search Spinner* -->
   <!-- *Search Result* -->
   <section>
-    <div class="row" *ngIf="b">
+    <div class="row" *ngIf="isMatched">
       <div fxLayout="row wrap" class="col-12 col-sm-6 col-lg-4 col-xl-3 p-3"
         *ngFor="let community of [].constructor(6)">
         <mat-card fxLayout="column" class="mat-elevation-z4">
