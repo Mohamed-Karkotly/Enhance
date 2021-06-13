@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  FormArray,
   FormBuilder,
   FormControl,
   FormGroup,
@@ -46,19 +45,22 @@ export class ProfileComponent implements OnInit {
     private _spinner: NgxSpinnerService,
     private _imageUploadService: ImageUploadService,
     private _authService: AuthService,
-    private _router: Router,
     private _storageService: StorageService
   ) {
-    this.currentUser = this._storageService.getLocalObject('user');
-    console.warn(this.currentUser);
-    this.countriesButtonContent = this.currentUser.city.country.name;
-    this.citiesButtonContent = this.currentUser.city.name;
+    this.constructProfile();
   }
 
   ngOnInit() {
     this.initSignUpForm();
     this.getCategories();
     this.getCountries();
+  }
+
+  constructProfile() {
+    this.currentUser = this._storageService.getLocalObject('user');
+    console.warn(this.currentUser);
+    this.countriesButtonContent = this.currentUser.city.country.name;
+    this.citiesButtonContent = this.currentUser.city.name;
   }
 
   initSignUpForm() {
@@ -94,6 +96,11 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  reInitProfile() {
+    this.constructProfile();
+    this.initSignUpForm();
+  }
+  
   get form() {
     return this.signUpForm.controls;
   }

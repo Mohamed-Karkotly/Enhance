@@ -11,6 +11,13 @@ export const routes: Routes = [
       ),
   },
   {
+    path: 'communities',
+    loadChildren: () =>
+      import('./modules/community/community.module').then(
+        (m) => m.CommunityModule
+      ),
+  },
+  {
     path: 'auth',
     loadChildren: () =>
       import('./modules/auth/auth.module').then((m) => m.AuthModule),

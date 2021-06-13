@@ -17,8 +17,7 @@ import { ErrorHandlerService } from 'src/app/services/error-handler.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
-import { LandingPageService } from '../../landing-page.service';
-import { formatCurrency } from '@angular/common';
+import { CommunityService } from '../../community.service';
 @Component({
   selector: 'app-create-community',
   templateUrl: './create-community.component.html',
@@ -39,7 +38,7 @@ export class CreateCommunityComponent implements OnInit {
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   constructor(
     private _formBuilder: FormBuilder,
-    private _landingPageService: LandingPageService,
+    private _communityService: CommunityService,
     private _sharedService: SharedService,
     private _imageUploadService: ImageUploadService,
     private _router: Router,
@@ -182,7 +181,7 @@ export class CreateCommunityComponent implements OnInit {
   //TODO: Check that the spinner hides after signingup cmmunity with an image (Also in signUp)
   signUpCommunity() {
     this._spinner.show();
-    this._landingPageService.postCommunity(this.community).subscribe(
+    this._communityService.postCommunity(this.community).subscribe(
       (res) => {
         this._router.navigateByUrl('/communities');
       },

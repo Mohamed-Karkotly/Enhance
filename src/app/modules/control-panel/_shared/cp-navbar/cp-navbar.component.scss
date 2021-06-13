@@ -8,3 +8,10 @@ mat-toolbar {
   height: 50px;
   border-radius: 50%;
 }
+
+.dropdown-menu {
+  .dropdown.show &,
+  &.open {
+    transform: translate(-50px, 82px) !important;
+  }
+}
