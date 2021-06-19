@@ -13,8 +13,9 @@
           </p>
         </mat-card-content>
         <mat-card-actions class="d-flex place-between">
-          <button color="accent" class="text-start" mat-button>{{'button.interact' | translate}}</button>
-          <button color="warn" class="text-end" mat-button>{{'button.delete' | translate}}</button>
+          <button type="button" routerLink="/download-app" color="accent" class="text-start"
+            mat-button>{{'button.interact' | translate}}</button>
+          <button type="button" color="warn" class="text-end" mat-button>{{'button.delete' | translate}}</button>
         </mat-card-actions>
       </mat-card>
     </div>
@@ -22,7 +23,8 @@
   <!-- Community button -->
   <div class="row m-2">
     <div class="col my-4 text-center">
-      <button mat-raised-button color="primary" class="text-center" routerLink="join-community">{{'community.join' | translate}}</button>
+      <button mat-raised-button color="primary" class="text-center" routerLink="join-community">{{'community.join' |
+        translate}}</button>
     </div>
   </div>
 </section>

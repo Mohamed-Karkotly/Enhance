@@ -29,6 +29,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.initFeedback();
+    this._spinner.hide();
   }
 
   initFeedback() {

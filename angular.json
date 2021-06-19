@@ -36,6 +36,7 @@
               "src/assets/sass/globals.scss",
               "src/assets/sass/background-images.scss",
               "src/assets/sass/browser-defaults.scss",
+              "src/assets/flaticon/flaticon.css",
               "src/assets/sass/queries.scss"
             ],
             "scripts": [

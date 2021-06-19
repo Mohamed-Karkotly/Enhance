@@ -16,6 +16,7 @@ import { CreateCommunityComponent } from '../community/views/create-community/cr
 import { JoinCommunityComponent } from '../community/views/join-community/join-community.component';
 import { TagInputModule } from 'ngx-chips';
 import { NgxInputSearchModule } from 'ngx-input-search';
+import { DownloadAppComponent } from './views/download-app/download-app.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { NgxInputSearchModule } from 'ngx-input-search';
     AdminCommunitiesComponent,
     CreateCommunityComponent,
     JoinCommunityComponent,
+    DownloadAppComponent,
   ],
   imports: [
     CommonModule,

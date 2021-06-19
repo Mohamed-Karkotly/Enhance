@@ -13,7 +13,7 @@ export class LandingPageService {
     this.feedbackActions = new FeedbackActions(http);
   }
 
-  postFeedback(feedback: Feedback): Observable<any> {
+  postFeedback(feedback: Feedback): Observable<Feedback> {
     return this.feedbackActions.createFeedback(feedback);
   }
 }
