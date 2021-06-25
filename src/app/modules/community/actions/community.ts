@@ -5,10 +5,14 @@ import { CRUDService } from 'src/app/services/crud.service';
 
 export class CommunityActions extends CRUDService<Community> {
   constructor(http: HttpClient) {
-    super(http, '/community');
+    super(http, 'community');
   }
 
   createCommunity(community: Community): Observable<Community> {
     return this.createEntity(community);
+  }
+
+  deleteCommunity(communityId: string): Observable<Community> {
+    return this.deleteEntity({communityId});
   }
 }

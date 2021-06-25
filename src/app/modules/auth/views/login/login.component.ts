@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -7,9 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { ToastrService } from 'ngx-toastr';
 import { Credentials } from 'src/app/models/API/credentials.interface';
 import { User } from 'src/app/models/entities/user.interface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
@@ -77,6 +75,7 @@ export class LoginComponent implements OnInit {
         this._spinner.hide();
         this._storageService.setToken(user.jwtToken);
         this._storageService.setLocalObject('user', user);
+        this._storageService.setLocalObject('credentials', credentials);
         this._router.navigateByUrl('/communities');
       },
       (err: HttpErrorResponse) => {

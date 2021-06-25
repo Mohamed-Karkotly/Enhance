@@ -13,7 +13,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatExpansionModule } from "@angular/material/expansion";
 const material = [
   MatIconModule,
   MatButtonModule,
@@ -28,7 +28,8 @@ const material = [
   MatRippleModule,
   MatChipsModule,
   MatSortModule,
-  MatTableModule
+  MatTableModule,
+  MatExpansionModule
 ];
 @NgModule({
   imports: [...material],

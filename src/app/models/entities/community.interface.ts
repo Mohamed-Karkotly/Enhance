@@ -6,7 +6,7 @@ export interface Community {
   name: string;
   label: string;
   image: string;
-  subcategories: any[];
+  subCategories: any[];
   primary_color?: string;
   accent_color?: string;
   warn_color?: string;

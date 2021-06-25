@@ -31,9 +31,9 @@ export class CRUDService<T> {
     return this.http.put<T>(url, body);
   }
 
-  deleteEntity(id: number): Observable<T> {
-    const url = this.entityUrl(id);
-    return this.http.delete<T>(url);
+  deleteEntity(query?: { [key: string]: string }): Observable<T> {
+    const params = new HttpParams({ fromObject: query });
+    return this.http.delete<T>(this.apiURL, {params});
   }
 
   protected entityUrl(id: number): string {

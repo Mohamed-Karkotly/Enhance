@@ -3,6 +3,10 @@
   "spinner": {
     "processing": "جاري المعالجة"
   },
+  "language": {
+    "english": "الانجليزية",
+    "arabic": "العربية"
+  },
   "form": {
     "firstName": "الاسم الأول",
     "firstName-mask": "جون",
@@ -61,7 +65,17 @@
     "login": "تسجيل الدخول",
     "sign-up": "تسجيل",
     "send-message": "إرسال",
-    "close": "إغلاق"
+    "close": "إغلاق",
+    "terms": "سياسة الخصوصية",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "manage": "إدارة",
+    "delete": "حذف",
+    "interact": "تفاعل",
+    "logout": "تسجيل الخروج",
+    "communities": "المجتمعات",
+    "create": "إنشاء",
+    "join": "انضم"
   },
   "navbar": {
     "sign-up": "تسجيل",

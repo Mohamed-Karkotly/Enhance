@@ -36,34 +36,11 @@
         <!-- *//Image* -->
         <!---> Name, Label Row -->
         <div class="col-12 col-md-8">
+          <!-- TODO: Delete Name Row -->
+          <!-- !Important -->
           <div class="row p-3">
-            <!-- *Name* -->
-            <div class="col-12 col-sm-6">
-              <div class="form-group">
-                <label class="px-2">{{'form.communityName' | translate}}</label>
-                <input type="text" class="form-control" placeholder="{{'form.communityName-mask' | translate}}"
-                  formControlName="name" [ngClass]="{'is-invalid': submitted && form.name.errors}"
-                  [ngClass]="{'is-valid': !form.name.errors}">
-              </div>
-              <div class="row">
-                <div class="col">
-                  <div *ngIf="communityForm.get('name').invalid && (communityForm.get('name').dirty)">
-                    <div class="text-danger pb-2" *ngIf="communityForm.get('name').errors.required">
-                      <small class="text-12 px-2">{{'validation.communityName-required' | translate}}</small>
-                    </div>
-                    <div class="text-danger text-center pb-2" *ngIf="communityForm.get('name').errors.minlength">
-                      <small class="text-12 px-2">{{'validation.communityName-min-length' | translate}}</small>
-                    </div>
-                    <div class="text-danger text-center pb-2" *ngIf="communityForm.get('name').errors.maxlength">
-                      <small class="text-12 px-2">{{'validation.communityName-max-length' | translate}}</small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- *//Name* -->
             <!-- *Label* -->
-            <div class="col-12 col-sm-6">
+            <div class="col-12">
               <div class="form-group">
                 <label class="px-2">{{'form.displayName' | translate}}</label>
                 <input type="text" class="form-control" placeholder="{{'form.displayName-mask' | translate}}"
@@ -134,7 +111,7 @@
           <mat-form-field class="w-100">
             <mat-label>{{'form.subcategory-description' | translate}}</mat-label>
             <mat-chip-list #chipList aria-label="Subcategory selection">
-              <mat-chip *ngFor="let subcategory of subcategories" (removed)="removeSubcategory(subcategory)">
+              <mat-chip *ngFor="let subcategory of subCategories" (removed)="removeSubcategory(subcategory)">
                 {{subcategory}}
                 <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>

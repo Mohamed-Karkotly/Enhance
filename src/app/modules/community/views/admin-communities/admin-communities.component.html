@@ -1,49 +1,83 @@
-<!-- Communities List -->
-<section *ngIf="b">
-  <div class="row m-2">
-    <div fxLayoutAlign="start" class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3"
-      *ngFor="let community of [].constructor(6)">
-      <mat-card>
-        <img mat-card-title src="../../../../../assets/img/discuss.jpg">
-        <mat-card-content>
-          <h6 class="text-center primary-color">School</h6>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus nostrum inventore eos dolor. Atque
-          </p>
-        </mat-card-content>
-        <mat-card-actions class="d-flex place-between">
-          <button color="accent" class="text-start" mat-button (click)="getSelectedCommunity()">{{'button.manage' |
-            translate}}</button>
-          <button color="warn" class="text-end" mat-button>{{'button.delete' | translate}}</button>
-        </mat-card-actions>
-      </mat-card>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<section *ngIf="loaded">
+  <!-- Communities List -->
+  <section *ngIf="communities.length">
+    <div class="row m-2">
+      <!-- Add to the following div: fxLayoutAlign="start" to make them all the same height-->
+      <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3" *ngFor="let community of communities">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{community.label}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <img class="minimized-image mx-auto" mat-card-title src="{{community.image}}">
+          <mat-card-content>
+            <h6 class="text-center primary-color">{{community.label}}</h6>
+            <p>{{community.description}}</p>
+          </mat-card-content>
+          <mat-card-actions class="d-flex place-between">
+            <button color="accent" class="text-start" mat-button (click)="getSelectedCommunity(community.id)">{{'button.manage' |
+              translate}}</button>
+            <button color="warn" class="text-end" mat-button (click)="openModal(deleteModal)">{{'button.delete' |
+              translate}}</button>
+          </mat-card-actions>
+        </mat-expansion-panel>
+        <!-- *Delete Modal* -->
+        <ng-template #deleteModal let-c="close" let-d="dismiss">
+          <div class="modal-header justify-content-center">
+            <button type="button" class="close" (click)="d('Cross click')">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <h4 class="title title-up">Confirmation</h4>
+          </div>
+          <div class="modal-body">
+            <p class="text-center">Are you sure you want to delete this community?</p>
+          </div>
+          <div class="modal-footer d-block">
+            <div class="row">
+              <div class="col text-center">
+                <button type="button" class="btn btn-danger" (click)="c('Close click'); deleteCommunity(community.id)">{{'button.delete' |
+                  translate}}</button>
+              </div>
+              <div class="col text-center">
+                <button type="button" class="btn btn-secondary" (click)="c('Close click')">{{'button.close' |
+                  translate}}</button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <!-- *//Delete Modal* -->
+      </div>
     </div>
-  </div>
-  <!-- Community button -->
-  <div class="row m-2">
-    <div class="col my-4 text-center">
-      <button mat-raised-button color="accent" class="text-center" routerLink="create-community">{{'community.create' |
-        translate}}</button>
+    <!-- Community button -->
+    <div class="row m-2">
+      <div class="col my-4 text-center">
+        <button mat-raised-button color="accent" class="text-center" routerLink="create-community">{{'community.create'
+          |
+          translate}}</button>
+      </div>
     </div>
-  </div>
-</section>
-<!-- //Communities List -->
+  </section>
+  <!-- //Communities List -->
 
-<!-- Empty State -->
-<section *ngIf="!b">
-  <!-- SVG empty state -->
-  <div class="row m-2">
-    <div class="col h-100 text-center mt-5">
-      <img class="w-30 w-md-40 w-sm-50" src="../../../../../assets/img/discuss.jpg">
+  <!-- Empty State -->
+  <section *ngIf="!communities.length">
+    <!-- SVG empty state -->
+    <div class="row m-2">
+      <div class="col h-100 text-center mt-5">
+        <img class="w-30 w-md-40 w-sm-50" src="../../../../../assets/img/discuss.jpg">
+      </div>
     </div>
-  </div>
-  <!-- Community button -->
-  <div class="row m-2">
-    <div class="col my-4 text-center">
-      <button mat-raised-button color="accent" routerLink="create-community">{{'community.create' |
-        translate}}</button>
+    <!-- Community button -->
+    <div class="row m-2">
+      <div class="col my-4 text-center">
+        <button mat-raised-button color="accent" routerLink="create-community">{{'community.create' |
+          translate}}</button>
+      </div>
     </div>
-  </div>
+  </section>
+  <!-- //Empty State -->
 </section>
-
-<!-- //Empty State -->

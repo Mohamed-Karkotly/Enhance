@@ -175,17 +175,22 @@
   },
   "toastr": {
     "thanks": "Thanks!",
-    "feedback-sent": "Feedback sent successfully!",
+    "feedback-sent": "Feedback sent successfully.",
     "oops": "Opps..",
     "feedback-failed": "Feedback failed to be sent.",
     "email": "Email is already registered.",
     "username": "Username is taken.",
     "image": "Image failed to upload.",
     "internet": "An internet connection error occured.",
-    "not-registered": "Email is not registered",
+    "not-registered": "Email is not registered.",
     "mismatch": "Either username or password are wrong.",
     "warning": "Warning!",
-    "lost": "Some important information are lost due to internet lose"
+    "lost": "Some important information are lost due to internet lose.",
+    "done": "Done!",
+    "communityCreated": "Community is created successfully.",
+    "communityDeleted": "Community is deleted successfully.",
+    "expired": "Your session expired!",
+    "refreshed": "We've just refreshed your session, please try again."
   },
   "community": {
     "admin": "Communities you manage",

@@ -31,7 +31,7 @@ export class CreateCommunityComponent implements OnInit {
   community: Community;
   //API Requests to be stored in the following interfaces
   categories: Category[];
-  subcategories: string[];
+  subCategories: string[];
   categoriesButtonContent: string;
   showCategoryError: boolean;
   showSubcategoryError: boolean;
@@ -47,7 +47,7 @@ export class CreateCommunityComponent implements OnInit {
     private _errorService: ErrorHandlerService,
     private _translate: TranslateService
   ) {
-    this.subcategories = [];
+    this.subCategories = [];
     this.categoriesButtonContent = this._translate.instant('form.category');
   }
 
@@ -59,11 +59,6 @@ export class CreateCommunityComponent implements OnInit {
   initCommunityForm() {
     this.communityForm = this._formBuilder.group({
       image: new FormControl(''),
-      name: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
-      ]),
       label: new FormControl('', [
         Validators.required,
         Validators.minLength(2),
@@ -71,7 +66,7 @@ export class CreateCommunityComponent implements OnInit {
       ]),
       description: new FormControl(''),
       categoryId: new FormControl('', [Validators.required]),
-      subcategories: new FormControl('', [Validators.required]),
+      subCategories: new FormControl('', [Validators.required]),
     });
   }
 
@@ -98,17 +93,17 @@ export class CreateCommunityComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       this.showSubcategoryError = false;
-      if (!this.subcategories.includes(value)) {
-        this.subcategories.push(value);
+      if (!this.subCategories.includes(value)) {
+        this.subCategories.push(value);
       }
     }
   }
 
   removeSubcategory(subcategory: string): void {
-    const index = this.subcategories.indexOf(subcategory);
+    const index = this.subCategories.indexOf(subcategory);
 
     if (index >= 0) {
-      this.subcategories.splice(index, 1);
+      this.subCategories.splice(index, 1);
     }
   }
 
@@ -119,7 +114,7 @@ export class CreateCommunityComponent implements OnInit {
   }
 
   onSubmit() {
-    this.communityForm.controls.subcategories.setValue(this.subcategories);
+    this.communityForm.controls.subCategories.setValue(this.subCategories);
     this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
     this.initCommunityCategory();
@@ -132,7 +127,7 @@ export class CreateCommunityComponent implements OnInit {
       if (this.communityForm.controls.categoryId.invalid) {
         this.showCategoryError = true;
       }
-      if (this.communityForm.controls.subcategories.invalid) {
+      if (this.communityForm.controls.subCategories.invalid) {
         this.showSubcategoryError = true;
       }
       return false;
@@ -143,7 +138,7 @@ export class CreateCommunityComponent implements OnInit {
 
   initCommunityCategory() {
     this.community = this.communityForm.value;
-    this.community.subcategories = this.subcategories;
+    this.community.subCategories = this.subCategories;
   }
 
   processFile(event: any) {
@@ -183,9 +178,13 @@ export class CreateCommunityComponent implements OnInit {
     this._spinner.show();
     this._communityService.postCommunity(this.community).subscribe(
       (res) => {
-        this._router.navigateByUrl('/communities');
+        console.warn(res);
+        this._spinner.hide();
+        this._toastService.showSuccess("toastr.done", "toastr.communityCreated");
+        this.communityForm.reset();
       },
       (err) => {
+        console.warn(err);
         if (this._errorService.handleError(err)) {
           return;
         }
