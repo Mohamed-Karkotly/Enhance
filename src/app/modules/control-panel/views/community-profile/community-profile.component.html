@@ -1,1 +1,128 @@
-<p>community-profile works!</p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<section class="container-fluid" *ngIf="currentCommunity">
+  <div>
+    <!-- *Community Form* -->
+    <form [formGroup]="communityForm" (ngSubmit)="onSubmit()">
+      <!--->Image, Name, Label Row -->
+      <div class="row">
+        <!-- *Image* -->
+        <div class="col-12 col-md-4 text-center">
+          <div class="row">
+            <div class="col">
+              <i *ngIf="!imageSrc" class="fa fa-building fa-6x pt-3 avatar" aria-hidden="true"></i>
+              <img *ngIf="imageSrc" class="avatar cover-image" [src]="imageSrc">
+              <div class="h-0 overflow-hidden">
+                <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
+              </div>
+            </div>
+          </div>
+          <div class="row py-3">
+            <div class="col">
+              <button type="button" class="btn btn-primary" (click)="photoInput.click()">{{'form.upload-image' |
+                translate}}</button>
+            </div>
+          </div>
+        </div>
+        <!-- *//Image* -->
+        <!---> Name, Label Row -->
+        <div class="col-12 col-md-8">
+          <!-- TODO: Delete Name Row -->
+          <!-- !Important -->
+          <div class="row p-3">
+            <!-- *Label* -->
+            <div class="col-12">
+              <div class="form-group">
+                <label class="px-2">{{'form.displayName' | translate}}</label>
+                <input type="text" class="form-control" placeholder="{{'form.displayName-mask' | translate}}"
+                  formControlName="label" [ngClass]="{'is-invalid': submitted && form.label.errors}"
+                  [ngClass]="{'is-valid': !form.label.errors}">
+              </div>
+              <div class="row">
+                <div class="col">
+                  <div *ngIf="communityForm.get('label').invalid && (communityForm.get('label').dirty)">
+                    <div class="text-danger pb-2" *ngIf="communityForm.get('label').errors.required">
+                      <small class="text-12 px-2">{{'validation.displayName-required' | translate}}</small>
+                    </div>
+                    <div class="text-danger text-center pb-2" *ngIf="communityForm.get('label').errors.minlength">
+                      <small class="text-12 px-2">{{'validation.displayName-min-length' | translate}}</small>
+                    </div>
+                    <div class="text-danger text-center pb-2" *ngIf="communityForm.get('label').errors.maxlength">
+                      <small class="text-12 px-2">{{'validation.displayName-max-length' | translate}}</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- *//Label* -->
+          </div>
+          <!-- *Description* -->
+          <div class="row">
+            <div class="col-12 px-2Point4">
+              <div class="form-group">
+                <label>{{'form.communityDescription' | translate}}</label>
+                <textarea rows="2" cols="80" class="form-control p-0"
+                  placeholder="{{'form.communityDescription-mask' | translate}}"
+                  formControlName="description"></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- *//Description* -->
+        </div>
+      </div>
+      <!-- *Category* -->
+      <div class="row px-3 py-1 justify-content-center">
+        <div class="col-12 col-lg-6 align-self-center">
+          <p class="mb-0 text-center">Main Category</p>
+        </div>
+        <div class="col-12 col-sm-6">
+          <div ngbDropdown class="dropdown" placement="bottom-left">
+            <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
+              ngbDropdownToggle>{{categoriesButtonContent | translate}}</button>
+            <div ngbDropdownMenu>
+              <a *ngFor="let category of categories" class="dropdown-item cursor-pointer"
+                (click)="chooseCategory(category)">{{category.name}}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- *//Category* -->
+      <div class="row py-1 justify-content-center text-center m-0">
+        <div class="col-12 col-md-6 align-self-center">
+          <label class="m-0">Chosen Subcategories</label>
+        </div>
+        <div class="col-12 col-md-6 px-4 text-center">
+          <mat-form-field class="w-100">
+            <mat-label>{{'form.subcategory-description' | translate}}</mat-label>
+            <mat-chip-list #chipList aria-label="Subcategory selection">
+              <mat-chip *ngFor="let subcategory of subCategories" (removed)="removeSubcategory(subcategory)">
+                {{subcategory.name}}
+                <mat-icon matChipRemove>cancel</mat-icon>
+              </mat-chip>
+              <input placeholder="{{'form.subcategory-secondary-description' | translate}}" [matChipInputFor]="chipList"
+                (matChipInputTokenEnd)="addSubcategory($event)" #chipInput (keyup.enter)="chipInput.value = ''"
+                (blur)="chipInput.value = ''" [matChipInputAddOnBlur]="true">
+            </mat-chip-list>
+          </mat-form-field>
+          <div class="row">
+            <div class="col px-2">
+              <div class="text-danger pb-2" *ngIf="showSubcategoryError">
+                <small class="text-12 px-2">{{'validation.subcategory-required' | translate}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center">
+          <button class="btn btn-primary">{{'button.save' | translate}}</button>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-secondary" type="button" (click)="initialize()">{{'button.cancel' |
+            translate}}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>

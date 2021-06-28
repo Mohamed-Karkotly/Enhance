@@ -1,8 +1,18 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SidenavService } from 'src/app/services/sidenav.service';
-import { MenuItem } from 'src/app/interfaces/menu.interface';
+import { CommunicationService } from 'src/app/services/communication.service';
+import { StorageService } from 'src/app/services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cp-sidebar',
@@ -11,28 +21,31 @@ import { MenuItem } from 'src/app/interfaces/menu.interface';
 })
 export class CpSidebarComponent implements OnInit, AfterViewInit {
   @ViewChild('sidenav') public sidenav: MatSidenav;
+  communityId: any;
+  communityName: string;
+  categoryName: string;
+  coverImage: string;
+  loaded: boolean;
+  constructor(
+    private _sidenavService: SidenavService,
+    private _observer: BreakpointObserver,
+    private _communicationService: CommunicationService
+  ) {}
 
-  menuItems: MenuItem[] = [
-    {
-      path: '',
-      title: '',
-    },
-    {
-      path: '',
-      title: '',
-    },
-  ];
-  constructor(private sidenavService: SidenavService, private observer: BreakpointObserver) {}
-
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._communicationService.getData().subscribe((res) => {
+      this.recieveCommunity(res);
+      this.loaded = true;
+    });
+  }
 
   ngAfterViewInit(): void {
-    this.sidenavService.setSidenav(this.sidenav);
+    this._sidenavService.setSidenav(this.sidenav);
     this.observeSidenav();
   }
 
   observeSidenav() {
-    this.observer.observe(['(max-width: 992px)']).subscribe((res) => {
+    this._observer.observe(['(max-width: 992px)']).subscribe((res) => {
       if (res.matches) {
         this.sidenav.mode = 'over';
         this.sidenav.close();
@@ -40,5 +53,12 @@ export class CpSidebarComponent implements OnInit, AfterViewInit {
         this.sidenav.mode = 'side';
       }
     });
+  }
+
+  recieveCommunity(community: any) {
+    this.communityId = community.id;
+    this.communityName = community.label;
+    this.coverImage = community.coverImage;
+    this.categoryName = community.category.name;
   }
 }

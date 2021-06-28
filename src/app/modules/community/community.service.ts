@@ -27,6 +27,9 @@ export class CommunityService {
     return this.communityActions.deleteCommunity(`${id}`);
   }
 
+  updateCommunity(community: any): Observable<any> {
+    return this.communityActions.updateCommunity(community);
+  }
   getOwnedCommunities(): Observable<any> {
     return this.ownedCommunitiesActions.readCommunities();
   }

@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit {
     this.constructProfile();
     this.initSignUpForm();
   }
-  
+
   get form() {
     return this.signUpForm.controls;
   }

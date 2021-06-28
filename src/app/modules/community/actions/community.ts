@@ -12,7 +12,14 @@ export class CommunityActions extends CRUDService<Community> {
     return this.createEntity(community);
   }
 
+  readCommunity(communityId: string): Observable<Community> {
+    return this.readEntity({ communityId });
+  }
+
+  updateCommunity(community: any): Observable<any> {
+    return this.updateEntity(community);
+  }
   deleteCommunity(communityId: string): Observable<Community> {
-    return this.deleteEntity({communityId});
+    return this.deleteEntity({ communityId });
   }
 }

@@ -21,19 +21,18 @@ export class CRUDService<T> {
     return this.http.get<T[]>(this.apiURL, { params });
   }
 
-  readEntity(id: number): Observable<T> {
-    const url = this.entityUrl(id);
-    return this.http.get<T>(url);
+  readEntity(query?: { [key: string]: string }): Observable<T> {
+    const params = new HttpParams({ fromObject: query });
+    return this.http.get<T>(this.apiURL, { params });
   }
 
-  updateEntity(id: number, body: T): Observable<T> {
-    const url = this.entityUrl(id);
-    return this.http.put<T>(url, body);
+  updateEntity(body: T): Observable<T> {
+    return this.http.put<T>(this.apiURL, body);
   }
 
   deleteEntity(query?: { [key: string]: string }): Observable<T> {
     const params = new HttpParams({ fromObject: query });
-    return this.http.delete<T>(this.apiURL, {params});
+    return this.http.delete<T>(this.apiURL, { params });
   }
 
   protected entityUrl(id: number): string {

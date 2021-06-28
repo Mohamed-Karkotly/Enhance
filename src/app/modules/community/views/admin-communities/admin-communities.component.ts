@@ -73,8 +73,4 @@ export class AdminCommunitiesComponent implements OnInit {
       centered: true,
     });
   }
-
-  getSelectedCommunity(id: number) {
-    this._router.navigate(['/control-panel', id]);
-  }
 }

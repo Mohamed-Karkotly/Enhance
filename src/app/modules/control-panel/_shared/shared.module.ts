@@ -6,6 +6,8 @@ import { CpNavbarComponent } from './cp-navbar/cp-navbar.component';
 import { CpSidebarComponent } from './cp-sidebar/cp-sidebar.component';
 import { AngularMaterialModule } from 'src/app/angular-material/angular-material.module';
 import { TranslateModule } from '@ngx-translate/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgxInputSearchModule } from 'ngx-input-search';
 
 const _shared = [CpNavbarComponent, CpSidebarComponent];
 @NgModule({
@@ -16,6 +18,8 @@ const _shared = [CpNavbarComponent, CpSidebarComponent];
     NgbModule,
     AngularMaterialModule,
     TranslateModule,
+    FlexLayoutModule,
+    NgxInputSearchModule,
   ],
   exports: [..._shared],
 })

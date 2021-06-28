@@ -6,10 +6,22 @@
   </button>
   <span>{{'enhance' | translate}}</span>
   <span class="flex-spacer"></span>
-  <div>
+  <span>
+    <a fxShow="true" fxHide.lt-md="true" class="btn btn-sm p-3 btn-primary" (click)="removeCommunity()">
+      <i class="fa fa-fax fa-sm px-1"></i>
+      {{'button.communities' | translate}}
+    </a>
+  </span>
+  <span>
+    <a fxShow="true" fxHide.lt-sm="true" class="btn btn-sm p-3 btn-primary" (click)="openModal(addMemberModal)">
+      <i class="fa fa-user fa-sm px-1"></i>
+      Add members
+    </a>
+  </span>
+  <div fxShow="true" fxHide.lt-sm="true">
     <div ngbDropdown class="dropdown">
       <div class="btn btn-primary dropdown-toggle w-100 btn-border-radius" ngbDropdownToggle>
-        <img class="avatar" src="../../../../../assets/img/members/Mohamed_Karkotly.jpg" alt="">
+        <img class="avatar" src="{{user.profileImage}}" alt="">
       </div>
       <div ngbDropdownMenu class="dropdown-menu">
         <a routerLink="profile" class="dropdown-item text-center"><i class="fa fa-user"></i><span
@@ -20,5 +32,65 @@
       </div>
     </div>
   </div>
-
 </mat-toolbar>
+
+<ng-template #addMemberModal let-c="close" let-d="dismiss">
+  <div class="modal-header justify-content-center">
+    <button type="button" class="close" (click)="d('Cross click'); isSearching = false">
+      <i class="now-ui-icons ui-1_simple-remove"></i>
+    </button>
+    <h4 class="title title-up">Search for members</h4>
+  </div>
+  <div class="modal-body py-3">
+    <input class="form-control" placeholder="e.g. Mohamed Karkotly" type="text" [stringLength]="2" [debounceTime]="1000"
+      (ngxInputSearch)="searchMember($event)" (emptyInput)="isSearching = false">
+  </div>
+  <!-- *Search Spinner* -->
+  <section class="center" *ngIf="isSearching">
+    <div class="row mt-auto center">
+      <div class="col text-center">
+        <div class="spinner-border" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- *//Search Spinner* -->
+  <!-- Found Users -->
+  <section>
+    <div class="row px-2 justify-content-around">
+      <div class="col-12 col-md-5 mat-elevation-z6 m-2 p-3" *ngFor="let item of [].constructor(5)">
+        <div class="row">
+          <div class="col-4 px-4 align-self-center">
+            <img class="avatar" src="{{user.profileImage}}" alt="">
+          </div>
+          <div class="col-7 align-self-center">
+            <div class="row">
+              <div class="col">
+                <p class="mb-0">{{user.firstName}} {{user.lastName}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="mb-0">{{user.profession}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- //Found Users -->
+  <div class="modal-footer d-block">
+    <div class="row">
+      <div class="col text-center">
+        <button type="button" class="btn btn-primary" (click)="c('Close click'); searchMember($event)">Search</button>
+      </div>
+      <div class="col text-center">
+        <button type="button" class="btn btn-secondary" (click)="c('Close click'); isSearching = false">{{'button.close'
+          |
+          translate}}</button>
+      </div>
+    </div>
+  </div>
+</ng-template>

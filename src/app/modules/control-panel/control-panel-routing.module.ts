@@ -5,7 +5,7 @@ import { Error404Component } from '../error-pages/views/error404/error404.compon
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     canActivate: [AuthGuard],
     loadChildren: () =>
       import('src/app/modules/control-panel/_layout/layout.module').then(
