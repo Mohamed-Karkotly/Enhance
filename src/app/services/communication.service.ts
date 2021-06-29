@@ -5,19 +5,29 @@ import { Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class CommunicationService {
-  private _subject = new Subject<any>();
+  private _userSubject = new Subject<any>();
+  private _communitySubject = new Subject<any>();
 
   constructor() {}
 
-  sendData(data: any) {
-    this._subject.next(data);
+  sendCommunityData(data: any) {
+    this._communitySubject.next(data);
   }
 
-  getData(): Observable<any> {
-    return this._subject.asObservable();
+  sendUserData(data: any) {
+    this._userSubject.next(data);
+  }
+
+  getCommunityData(): Observable<any> {
+    return this._communitySubject.asObservable();
+  }
+
+  getUserData(): Observable<any> {
+    return this._userSubject.asObservable();
   }
 
   clear() {
-    this._subject.next();
+    this._communitySubject.next();
+    this._userSubject.next();
   }
 }

@@ -91,10 +91,11 @@ export class CommunityProfileComponent implements OnInit {
         this.currentCommunity = community;
         this.subCategories = community.subcategories;
         this.subCategoriesCopy = community.subcategories;
+        console.warn(community);
         this.categoriesButtonContent = community.category.name;
         this.initCommunityForm();
         this.loaded = true;
-        this._communicationService.sendData(community);
+        this._communicationService.sendCommunityData(community);
         this._storageService.setLocalObject('community', community);
       });
   }
@@ -260,7 +261,7 @@ export class CommunityProfileComponent implements OnInit {
         );
         copy.category = copy.category[0];
         copy.coverImage = copy.image;
-        this._communicationService.sendData(copy);
+        this._communicationService.sendCommunityData(copy);
         this._storageService.setLocalObject('community', copy);
       },
       (err) => {

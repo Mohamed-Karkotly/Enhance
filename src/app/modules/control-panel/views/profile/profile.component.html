@@ -1,3 +1,6 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
 <div class="row">
   <div class="col-md-8 px-4">
     <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" #signUp>
@@ -63,7 +66,7 @@
             <label class="px-2">{{'form.email' | translate}}</label>
             <input type="email" class="form-control" placeholder="{{'form.email-mask' | translate}}"
               formControlName="email" [ngClass]="{'is-invalid': submitted && form.email.errors}"
-              [ngClass]="{'is-valid': !form.email.errors}">
+              [ngClass]="{'is-valid': !form.email.errors}" disabled>
           </div>
           <div class="row">
             <div class="col">
@@ -218,7 +221,7 @@
     <div class="row flex-column-content">
       <div class="col">
         <div class="text-center">
-          <img class="avatar border-gray cover-image" [src]="currentUser.profileImage">
+          <img class="avatar border-gray cover-image" [src]="imageSrc">
           <div>
             <div class="d-none">
               <!-- TODO: Check with those directives in the form tag -->

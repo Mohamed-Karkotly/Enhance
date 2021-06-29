@@ -1,18 +1,8 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { CommunicationService } from 'src/app/services/communication.service';
-import { StorageService } from 'src/app/services/storage.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cp-sidebar',
@@ -33,7 +23,7 @@ export class CpSidebarComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
-    this._communicationService.getData().subscribe((res) => {
+    this._communicationService.getCommunityData().subscribe((res) => {
       this.recieveCommunity(res);
       this.loaded = true;
     });

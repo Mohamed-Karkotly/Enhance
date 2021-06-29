@@ -14,6 +14,6 @@ export interface User {
 	age: number;
 	joinedAt: string;
 	city: CityAPI;
-	categories: Category[];
+	categories: any[];
 	jwtToken: string;
 }

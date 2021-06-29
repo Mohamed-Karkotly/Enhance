@@ -21,7 +21,7 @@ export class AuthService {
     return this.loginActoins.createLogin(credentials);
   }
 
-  postSignUp(user: User): Observable<User> {
+  postSignUp(user: any): Observable<User> {
     return this.signUpActions.createSignUp(user);
   }
 }

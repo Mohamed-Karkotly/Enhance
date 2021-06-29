@@ -5,18 +5,19 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { CountryAPI } from 'src/app/models/API/country-api.interface';
+import { UpdatedUser } from 'src/app/models/API/updated-user';
 import { Category } from 'src/app/models/entities/category.interface';
 import { City } from 'src/app/models/entities/city.interface';
 import { User } from 'src/app/models/entities/user.interface';
-import { AuthService } from 'src/app/modules/auth/auth.service';
 import { SharedService } from 'src/app/modules/shared/shared.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 import { ImageUploadService } from 'src/app/services/image-upload.service';
 import { RegExService } from 'src/app/services/reg-ex.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { ControlPanelService } from '../../control-panel.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,12 +25,16 @@ import { StorageService } from 'src/app/services/storage.service';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  updatedUser = {} as UpdatedUser;
   signUpForm: FormGroup;
   submitted: boolean; //Form submession for validation
   image: any;
+  imageSrc: any;
   //API Requests to be stored in the following interfaces
   categories: Category[];
   countries: CountryAPI[];
+  categoriesCopy: number[];
+  categoriesFullCopy: any[];
   cities: City[];
   user: User;
   currentUser: User;
@@ -44,8 +49,9 @@ export class ProfileComponent implements OnInit {
     private _translate: TranslateService,
     private _spinner: NgxSpinnerService,
     private _imageUploadService: ImageUploadService,
-    private _authService: AuthService,
-    private _storageService: StorageService
+    private _cpService: ControlPanelService,
+    private _storageService: StorageService,
+    private _communicationService: CommunicationService
   ) {
     this.constructProfile();
   }
@@ -58,7 +64,11 @@ export class ProfileComponent implements OnInit {
 
   constructProfile() {
     this.currentUser = this._storageService.getLocalObject('user');
-    console.warn(this.currentUser);
+    this.imageSrc = this.currentUser.profileImage;
+    this.updatedUser.city = this.currentUser.city;
+    this.updatedUser.phone = this.currentUser.phone;
+    this.updatedUser.email = this.currentUser.email;
+    this.categoriesCopy = this.currentUser.categories.map(({ id }) => id);
     this.countriesButtonContent = this.currentUser.city.country.name;
     this.citiesButtonContent = this.currentUser.city.name;
   }
@@ -77,10 +87,10 @@ export class ProfileComponent implements OnInit {
         Validators.maxLength(30),
         Validators.pattern(this._regexService.name),
       ]),
-      email: new FormControl(this.currentUser.email, [
-        Validators.required,
-        Validators.pattern(this._regexService.email),
-      ]),
+      email: new FormControl(
+        { value: this.currentUser.email, disabled: true },
+        [Validators.required, Validators.pattern(this._regexService.email)]
+      ),
       age: new FormControl(this.currentUser.age, [
         Validators.required,
         Validators.min(14),
@@ -118,6 +128,7 @@ export class ProfileComponent implements OnInit {
   }
 
   chooseCountry(country: CountryAPI) {
+    this.updatedUser.city.country.name = country.name;
     this.countriesButtonContent = country.name;
     this.cities = country.cities;
     this.citiesButtonContent = this._translate.instant('form.city');
@@ -125,6 +136,8 @@ export class ProfileComponent implements OnInit {
   }
 
   chooseCity(city: City) {
+    this.updatedUser.city.name = city.name;
+    this.updatedUser.city.id = city.id;
     this.citiesButtonContent = city.name;
     this.signUpForm.controls.cityId.setValue(city.id);
   }
@@ -143,14 +156,13 @@ export class ProfileComponent implements OnInit {
         hasChanges = true;
       }
     }
-    console.warn(hasChanges);
     // If no changes, cancel form submition
     if (!hasChanges) {
       return;
     }
+    this.initUser();
     this.image && this.uploadImage();
-    //this.initUser();
-    //this.updateUser();
+    !this.image && this.updateUser();
   }
 
   validateForm() {
@@ -166,16 +178,41 @@ export class ProfileComponent implements OnInit {
 
   initUser() {
     this.user = this.signUpForm.value;
+    this.categoriesFullCopy = this.user.categories;
     this.user.categories = this.signUpForm
       .get('categories')
       .value.map(({ id }) => id);
+    this.assignUpdatedUser();
   }
-
+  assignUpdatedUser() {
+    this.updatedUser.firstName = this.user.firstName;
+    this.updatedUser.lastName = this.user.lastName;
+    this.updatedUser.bio = this.user.bio;
+    this.updatedUser.profession = this.user.profession;
+    this.updatedUser.phone = this.user.phone;
+    this.updatedUser.age = this.user.age;
+    this.updatedUser.profileImage = this.user.profileImage;
+    this.updatedUser.cityId = this.form['cityId'].value.id;
+    this.updatedUser.invitationOption = this.user.invitationOption;
+    this.updatedUser.deletedCategories = this.categoriesCopy.filter(function (
+      e
+    ) {
+      return this.indexOf(e) < 0;
+    },
+    this.user.categories);
+    this.updatedUser.addedCategories = this.user.categories.filter(
+      (category) => !this.categoriesCopy.includes(category)
+    );
+  }
   uploadImage() {
+    this._spinner.show();
     this._imageUploadService.uploadImage(this.image).subscribe(
-      (imageUrl: any) => {
+      (res: any) => {
+        console.warn(res.imageUrl);
         //this.signUpForm.controls.progileImage.setValue(imageUrl);
-        console.warn(imageUrl);
+        this.updatedUser.profileImage = res.imageUrl;
+        this.imageSrc = res.imageUrl;
+        this.updateUser();
       },
       (err) => {
         console.error(err.error);
@@ -184,10 +221,32 @@ export class ProfileComponent implements OnInit {
   }
 
   updateUser() {
-    console.warn(this.user);
-    this._authService.postSignUp(this.user).subscribe(
+    this._spinner.show();
+    this._cpService.updateUser(this.updatedUser).subscribe(
       (res) => {
+        let finalUser: any = {};
+        finalUser.id = this.currentUser.id;
+        finalUser.firstName = this.updatedUser.firstName;
+        finalUser.lastName = this.updatedUser.lastName;
+        finalUser.bio = this.updatedUser.bio;
+        finalUser.profession = this.updatedUser.profession;
+        finalUser.invitationOption = this.updatedUser.invitationOption;
+        finalUser.profileImage = this.imageSrc;
+        finalUser.age = this.updatedUser.age;
+        finalUser.categories = this.categoriesFullCopy;
+        finalUser.city = this.updatedUser.city;
+        finalUser.cityId = finalUser.city.id;
+        finalUser.email = this.updatedUser.email;
+        finalUser.phone = this.updatedUser.phone;
+        7;
+        this.categories = this.categoriesFullCopy;
+        this.currentUser.categories = this.categories;
+        console.warn(finalUser);
+        this._storageService.setLocalObject('user', finalUser);
+        this._communicationService.sendUserData(finalUser);
+
         console.warn(res);
+        this._spinner.hide();
       },
       (err) => {
         console.error(err.error);
@@ -201,8 +260,11 @@ export class ProfileComponent implements OnInit {
       return;
     }
     if (event.target.files && event.target.files.length) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = () => (this.imageSrc = reader.result);
+      reader.readAsDataURL(file);
       this.image = event.target.files.item(0);
-      console.warn(this.image);
     }
   }
 }

@@ -20,6 +20,7 @@ import { Router } from '@angular/router';
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { Credentials } from 'src/app/models/API/credentials.interface';
 
 TagInputModule.withDefaults({
   tagInput: {
@@ -37,6 +38,7 @@ export class SignUpComponent implements OnInit {
   submitted: boolean; //Form submession for validation
   image: any;
   imageSrc: any;
+  credentials = {} as Credentials;
   //API Requests to be stored in the following interfaces
   categories: Category[];
   countries: CountryAPI[];
@@ -236,7 +238,19 @@ export class SignUpComponent implements OnInit {
     this._authService.postSignUp(this.user).subscribe(
       (res) => {
         this._storageService.setLocalObject('user', this.user);
-        this._router.navigateByUrl('/communities');
+        this.saveCredentials();
+        this._authService
+          .postLogin(this.credentials)
+          .subscribe((user: User) => {
+            this._spinner.hide();
+            this._storageService.setToken(user.jwtToken);
+            this._storageService.setLocalObject('user', user);
+            this._storageService.setLocalObject(
+              'credentials',
+              this.credentials
+            );
+            this._router.navigateByUrl('/communities');
+          });
       },
       //TODO: Use ToastService to handle errors instead of this
       (err) => {
@@ -257,5 +271,11 @@ export class SignUpComponent implements OnInit {
         }
       }
     );
+  }
+
+  saveCredentials() {
+    this.credentials.email = this.signUpForm.controls.email.value;
+    this.credentials.password = this.signUpForm.controls.password.value;
+    this._storageService.setLocalObject('credentials', this.credentials);
   }
 }

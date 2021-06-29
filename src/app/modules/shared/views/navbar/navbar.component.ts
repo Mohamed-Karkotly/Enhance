@@ -87,8 +87,7 @@ export class NavbarComponent implements OnInit {
   }
 
   deleteUser() {
-    this._storageService.removeLocalObject('user');
-    this._storageService.removeToken();
+    this._storageService.clear();
     this._router.navigateByUrl('/auth/login');
   }
 }
