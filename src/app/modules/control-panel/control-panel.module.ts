@@ -5,7 +5,6 @@ import { SharedModule } from './_shared/shared.module';
 import { MembersComponent } from './views/members/members.component';
 import { PostsComponent } from './views/posts/posts.component';
 import { ConnectionsComponent } from './views/connections/connections.component';
-import { FeaturingComponent } from './views/featuring/featuring.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,15 +17,16 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagInputModule } from 'ngx-chips';
 import { NgxMaskModule } from 'ngx-mask';
+import { PendingRequestsComponent } from './views/pending-requests/pending-requests.component';
 
 @NgModule({
   declarations: [
     CommunityProfileComponent,
     ConnectionsComponent,
-    FeaturingComponent,
     MembersComponent,
     PostsComponent,
     ProfileComponent,
+    PendingRequestsComponent,
   ],
   imports: [
     CommonModule,

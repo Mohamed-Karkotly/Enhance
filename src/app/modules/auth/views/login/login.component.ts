@@ -88,6 +88,9 @@ export class LoginComponent implements OnInit {
         if (err.status === 401) {
           this._toastService.showError('toastr.oops', 'toastr.mismatch');
         }
+        if (err.status === 500) {
+          this._toastService.showError('toastr.oops', 'toastr.mismatch');
+        }
       }
     );
   }

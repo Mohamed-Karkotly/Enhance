@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { Error404Component } from '../../error-pages/views/error404/error404.component';
 import { CommunityProfileComponent } from '../views/community-profile/community-profile.component';
 import { MembersComponent } from '../views/members/members.component';
+import { PendingRequestsComponent } from '../views/pending-requests/pending-requests.component';
 import { ProfileComponent } from '../views/profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
 
@@ -28,6 +29,10 @@ const routes: Routes = [
           {
             path: 'members',
             component: MembersComponent,
+          },
+          {
+            path: 'pending-requests',
+            component: PendingRequestsComponent,
           },
         ],
       },

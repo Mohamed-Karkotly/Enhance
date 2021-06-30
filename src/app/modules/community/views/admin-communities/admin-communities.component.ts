@@ -16,7 +16,6 @@ export class AdminCommunitiesComponent implements OnInit {
   loaded: boolean;
   communities: Community[];
   constructor(
-    private _router: Router,
     private _communityService: CommunityService,
     private _modalService: NgbModal,
     private _spinner: NgxSpinnerService,

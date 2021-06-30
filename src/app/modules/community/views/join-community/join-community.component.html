@@ -1,11 +1,30 @@
 <app-navbar></app-navbar>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
 <section class="container-fluid mt-6">
+  <div class="row">
+    <div class="col text-center">
+      <mat-radio-group aria-label="Select an option" [(ngModel)]="chosenOption">
+        <mat-radio-button (click)="reset()" class="p-2" value="1">Search by name</mat-radio-button>
+        <mat-radio-button (click)="reset()" class="p-2" value="2">Search by category</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
   <div class="row">
     <div class="col-12 col-md-6 mx-auto">
       <div class="form-group text-center">
-        <label class="px-2">{{'community.search' | translate}}</label>
-        <input class="form-control" placeholder="{{'form.search-mask' | translate}}" type="text" [stringLength]="2"
-          [debounceTime]="1000" (ngxInputSearch)="searchCommunity($event)" (emptyInput)="isSearching = false">
+        <input *ngIf="chosenOption === '1'" class="form-control" placeholder="{{'form.search-mask' | translate}}"
+          type="text" [stringLength]="2" [debounceTime]="500" (ngxInputSearch)="searchCommunityByName($event)"
+          (emptyInput)="clearSearchResults()">
+        <div *ngIf="chosenOption === '2'" ngbDropdown class="dropdown" placement="bottom-left">
+          <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
+            ngbDropdownToggle>{{categoriesButtonContent | translate}}</button>
+          <div ngbDropdownMenu>
+            <a *ngFor="let category of categories" class="dropdown-item cursor-pointer"
+              (click)="searchCommunityByCategory(category)">{{category.name}}</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -20,7 +39,8 @@
     <!-- Search paragraph -->
     <div class="row m-2">
       <div class="col my-4 text-center">
-        <p *ngIf="!isSearching">{{'community.startTyping' | translate}}</p>
+        <p *ngIf="!isSearching && !isEmptyResult">{{'community.startTyping' | translate}}</p>
+        <p *ngIf="isEmptyResult">No communities found</p>
       </div>
     </div>
   </section>
@@ -38,19 +58,17 @@
   <!-- *//Search Spinner* -->
   <!-- *Search Result* -->
   <section>
-    <div class="row" *ngIf="isMatched">
-      <div fxLayout="row wrap" class="col-12 col-sm-6 col-lg-4 col-xl-3 p-3"
-        *ngFor="let community of [].constructor(6)">
+    <div class="row" *ngIf="communities.length">
+      <div fxLayout="row wrap" class="col-12 col-sm-6 col-lg-4 col-xl-3 p-3 justify-content-around"
+        *ngFor="let community of communities">
         <mat-card fxLayout="column" class="mat-elevation-z4">
-          <img mat-card-title src="../../../../../assets/img/discuss.jpg">
+          <img class="minimized-image mx-auto" mat-card-title src="{{community.image}}">
           <mat-card-content fxFlex>
-            <h6 class="text-center primary-color">School</h6>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex delectus nostrum inventore eos dolor. Atque
-            </p>
+            <h6 class="text-center primary-color">{{community.label}}</h6>
+            <p>{{community.description}}</p>
           </mat-card-content>
           <mat-card-actions fxFlexAlign="center">
-            <button color="accent" mat-button (click)="joinSelectedCommunity()">{{'button.join' |
+            <button color="accent" mat-button (click)="joinSelectedCommunity(community.id)">{{'button.join' |
               translate}}</button>
           </mat-card-actions>
         </mat-card>

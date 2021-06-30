@@ -40,6 +40,7 @@ export class CpNavbarComponent implements OnInit {
   }
 
   deleteUser() {
+    this._storageService.removeToken();
     this._storageService.clear();
     this._router.navigateByUrl('/auth/login');
   }

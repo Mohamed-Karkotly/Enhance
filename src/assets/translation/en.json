@@ -52,7 +52,7 @@
     "communityDescription-mask": "The offical community of Aleppo City.",
     "create-community": "Create a community",
     "tag-community": "Tag your community with one of our categories",
-    "search-mask": "e.g. aleppo university"
+    "search-mask": "e.g. ITE"
   },
   "validation": {
     "firstName-required": "First name is required",
@@ -191,6 +191,7 @@
     "done": "Done!",
     "communityCreated": "Community is created successfully.",
     "communityUpdated": "Community is updated successfully.",
+    "communityJoined": "Join request was sent successfully.",
     "communityDeleted": "Community is deleted successfully.",
     "expired": "Your session expired!",
     "refreshed": "We've just refreshed your session, please try again."

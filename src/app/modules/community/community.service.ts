@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Community } from 'src/app/models/entities/community.interface';
 import { CommunityActions } from './actions/community';
+import { CommunitySearchActions } from './actions/community-search';
+import { JoinCommunityActions } from './actions/join-community';
 import { JoinedCommunityActions } from './actions/joined-communities';
 import { OwnedCommunityActions } from './actions/owned-communities';
 
@@ -13,10 +15,14 @@ export class CommunityService {
   communityActions: CommunityActions;
   ownedCommunitiesActions: OwnedCommunityActions;
   joinedCommunityActions: JoinedCommunityActions;
+  searchCommunityActions: CommunitySearchActions;
+  joinCommunityActions: JoinCommunityActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.ownedCommunitiesActions = new OwnedCommunityActions(http);
     this.joinedCommunityActions = new JoinedCommunityActions(http);
+    this.searchCommunityActions = new CommunitySearchActions(http);
+    this.joinCommunityActions = new JoinCommunityActions(http);
   }
 
   postCommunity(community: Community): Observable<any> {
@@ -30,11 +36,26 @@ export class CommunityService {
   updateCommunity(community: any): Observable<any> {
     return this.communityActions.updateCommunity(community);
   }
+
   getOwnedCommunities(): Observable<any> {
     return this.ownedCommunitiesActions.readCommunities();
   }
 
   getJoinedCommunities(): Observable<any> {
     return this.joinedCommunityActions.readCommunities();
+  }
+
+  getCommunitiesByName(label: string): Observable<any> {
+    return this.searchCommunityActions.readCommunitiesByName(label);
+  }
+
+  getCommunitiesByCategory(categoryId: number): Observable<any> {
+    return this.searchCommunityActions.readCommunitiesByCategory(
+      `${categoryId}`
+    );
+  }
+
+  postJoinCommunity(communityId: number): Observable<any> {
+    return this.joinCommunityActions.createJoin(`${communityId}`);
   }
 }

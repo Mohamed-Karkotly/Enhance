@@ -12,8 +12,9 @@ export class CRUDService<T> {
     this.apiURL = `${this.baseURL}/${this.route}`;
   }
 
-  createEntity(body: T): Observable<T> {
-    return this.http.post<T>(this.apiURL, body);
+  createEntity(body: T, query?: { [key: string]: string }): Observable<T> {
+    const params = new HttpParams({ fromObject: query });
+    return this.http.post<T>(this.apiURL, body, { params });
   }
 
   readEntities(query?: { [key: string]: string }): Observable<T[]> {

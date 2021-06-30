@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Community } from 'src/app/models/entities/community.interface';
 import { CommunityActions } from '../community/actions/community';
+import { PendingRequestActions } from './actions/pending-request';
 import { UserActions } from './actions/user';
 
 @Injectable({
@@ -11,9 +11,11 @@ import { UserActions } from './actions/user';
 export class ControlPanelService {
   communityActions: CommunityActions;
   userActions: UserActions;
+  pendingRequestsActions: PendingRequestActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.userActions = new UserActions(http);
+    this.pendingRequestsActions = new PendingRequestActions(http);
   }
 
   getCommunityById(id: number): Observable<any> {
@@ -26,5 +28,9 @@ export class ControlPanelService {
 
   updateUser(user: any): Observable<any> {
     return this.userActions.updateUser(user);
+  }
+
+  getPendingRequests(communityId: number): Observable<any> {
+    return this.pendingRequestsActions.readPendingRequests(`${communityId}`);
   }
 }

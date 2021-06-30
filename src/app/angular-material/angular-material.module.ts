@@ -13,7 +13,9 @@ import { MatRippleModule } from '@angular/material/core';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { MatExpansionModule } from "@angular/material/expansion";
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
+
 const material = [
   MatIconModule,
   MatButtonModule,
@@ -29,7 +31,8 @@ const material = [
   MatChipsModule,
   MatSortModule,
   MatTableModule,
-  MatExpansionModule
+  MatExpansionModule,
+  MatRadioModule,
 ];
 @NgModule({
   imports: [...material],
