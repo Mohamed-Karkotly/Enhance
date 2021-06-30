@@ -1,7 +1,7 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
   <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
 </ngx-spinner>
-<section *ngIf="loaded">
+<section class="h-460" *ngIf="loaded">
   <!-- Communities List -->
   <section *ngIf="communities.length">
     <div class="row m-2">
@@ -19,8 +19,9 @@
             <p>{{community.description}}</p>
           </mat-card-content>
           <mat-card-actions class="d-flex place-between py-2">
-            <button color="accent" class="text-start" mat-button
-              [routerLink]="[ '/control-panel',community.id]">{{'button.manage' |
+            <!-- TODO: Store This ID in the localStorage so that the control panel view won't blink when clicking manage -->
+            <button color="accent" class="text-start" mat-button (click)="manageCommunity(community)">{{'button.manage'
+              |
               translate}}</button>
             <button color="warn" class="text-end" mat-button (click)="openModal(deleteModal)">{{'button.delete' |
               translate}}</button>

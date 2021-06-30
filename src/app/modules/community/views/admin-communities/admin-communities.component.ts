@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Community } from 'src/app/models/entities/community.interface';
 import { ErrorHandlerService } from 'src/app/services/error-handler.service';
+import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { CommunityService } from '../../community.service';
 
@@ -20,7 +21,9 @@ export class AdminCommunitiesComponent implements OnInit {
     private _modalService: NgbModal,
     private _spinner: NgxSpinnerService,
     private _toast: ToastService,
-    private _errorService: ErrorHandlerService
+    private _errorService: ErrorHandlerService,
+    private _router: Router,
+    private _storageService: StorageService
   ) {
     this.loaded = false;
     this.communities = [];
@@ -40,10 +43,15 @@ export class AdminCommunitiesComponent implements OnInit {
       },
       (err) => {
         this.loaded = true;
-        console.warn(err);
+        console.error(err);
         this._spinner.hide();
       }
     );
+  }
+
+  manageCommunity(community: Community) {
+    this._storageService.setLocalObject('community', community);
+    this._router.navigate(['/control-panel', community.id]);
   }
 
   deleteCommunity(communityId: number) {

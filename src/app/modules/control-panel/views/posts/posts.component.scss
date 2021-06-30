@@ -1,0 +1,21 @@
+.wrapper {
+  min-height: calc(100% - 50px);
+  height: calc(100% - 50px);
+  box-sizing: border-box;
+}
+
+.tab-group mat-tab-body {
+  flex-grow: 1;
+}
+
+mat-tab-group {
+  margin: -1.3rem;
+}
+
+.mat-tab-body-wrapper {
+  flex-grow: 1;
+}
+
+:host ::ng-deep .mat-tab-body-wrapper {
+  height: 413px;
+}

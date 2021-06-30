@@ -22,13 +22,25 @@
             </div>
           </div>
           <div class="col-3 align-self-center">
-            <button class="btn btn-info btn-round btn-simple btn-sm">Accept</button>
+            <button class="btn btn-info btn-round btn-simple btn-sm" (click)="acceptJoin(user)">Accept</button>
           </div>
           <div class="col-3 align-self-center">
-            <button class="btn btn-danger btn-round btn-simple btn-sm">Decline</button>
+            <button class="btn btn-danger btn-round btn-simple btn-sm" (click)="declineJoin(user)">Decline</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Empty State -->
+  <section *ngIf="!users.length && loaded">
+    <!-- SVG empty state -->
+    <div class="row">
+      <div class="col h-100 text-center mt-5">
+        <img class="w-30 w-md-40 w-sm-50" src="../../../../../assets/img/undraw_No_data_re_kwbl.png">
+        <p>No pending requests</p>
+      </div>
+    </div>
+  </section>
+  <!-- //Empty State -->
 </section>

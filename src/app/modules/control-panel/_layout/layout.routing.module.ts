@@ -4,6 +4,7 @@ import { Error404Component } from '../../error-pages/views/error404/error404.com
 import { CommunityProfileComponent } from '../views/community-profile/community-profile.component';
 import { MembersComponent } from '../views/members/members.component';
 import { PendingRequestsComponent } from '../views/pending-requests/pending-requests.component';
+import { PostsComponent } from '../views/posts/posts.component';
 import { ProfileComponent } from '../views/profile/profile.component';
 import { LayoutComponent } from './layout/layout.component';
 
@@ -33,6 +34,10 @@ const routes: Routes = [
           {
             path: 'pending-requests',
             component: PendingRequestsComponent,
+          },
+          {
+            path: 'posts',
+            component: PostsComponent,
           },
         ],
       },

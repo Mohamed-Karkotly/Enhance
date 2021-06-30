@@ -193,6 +193,8 @@
     "communityUpdated": "Community is updated successfully.",
     "communityJoined": "Join request was sent successfully.",
     "communityDeleted": "Community is deleted successfully.",
+    "userAccepted": "User is accepted successfully",
+    "userDeclined": "User is declined successfully",
     "expired": "Your session expired!",
     "refreshed": "We've just refreshed your session, please try again."
   },

@@ -180,11 +180,14 @@ export class CreateCommunityComponent implements OnInit {
       (res) => {
         console.warn(res);
         this._spinner.hide();
-        this._toastService.showSuccess("toastr.done", "toastr.communityCreated");
+        this._toastService.showSuccess(
+          'toastr.done',
+          'toastr.communityCreated'
+        );
         this.communityForm.reset();
       },
       (err) => {
-        console.warn(err);
+        console.error(err);
         if (this._errorService.handleError(err)) {
           return;
         }

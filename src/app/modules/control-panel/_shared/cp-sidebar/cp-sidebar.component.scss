@@ -26,6 +26,7 @@ mat-sidenav {
   overflow-y: auto;
   overflow-x: hidden;
   padding: 1.32rem;
+  background-color: white;
 }
 
 mat-sidenav-container {
@@ -40,7 +41,7 @@ mat-sidenav-container {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  font-size: .9rem;
+  font-size: 0.9rem;
 
   mat-icon {
     margin-right: 8px;
