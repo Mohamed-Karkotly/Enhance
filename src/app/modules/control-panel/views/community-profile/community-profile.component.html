@@ -1,8 +1,8 @@
 <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
   <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
 </ngx-spinner>
-<section class="container-fluid" *ngIf="currentCommunity">
-  <div>
+<section class="h-420">
+  <div class="container-fluid" *ngIf="currentCommunity">
     <!-- *Community Form* -->
     <form [formGroup]="communityForm" (ngSubmit)="onSubmit()">
       <!--->Image, Name, Label Row -->

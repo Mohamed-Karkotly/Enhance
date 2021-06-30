@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { User } from 'src/app/models/entities/user.interface';
 import { StorageService } from 'src/app/services/storage.service';
 import { ControlPanelService } from '../../control-panel.service';
@@ -13,7 +14,8 @@ export class PendingRequestsComponent implements OnInit {
   communityId: number;
   constructor(
     private _cpService: ControlPanelService,
-    private _storageService: StorageService
+    private _storageService: StorageService,
+    private _spinner: NgxSpinnerService
   ) {
     this.users = [];
     this.communityId = this._storageService.getLocalObject('community').id;
@@ -25,11 +27,12 @@ export class PendingRequestsComponent implements OnInit {
   }
 
   getPendingRequests() {
+    this._spinner.show();
     this._cpService
       .getPendingRequests(this.communityId)
       .subscribe((requests: any[]) => {
         this.users = requests;
-        console.warn(requests);
+        this._spinner.hide();
       });
   }
 }

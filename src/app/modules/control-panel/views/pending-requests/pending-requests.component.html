@@ -1,20 +1,31 @@
-<section *ngIf="users.length">
-  <div class="row px-2 justify-content-around">
-    <div class="col-12 col-md-5 mat-elevation-z4 m-2 p-1" *ngFor="let user of users">
-      <div class="row">
-        <div class="col-4 px-4 align-self-center">
-          <img class="small-image avatar" src="{{user.profile_image}}" alt="">
-        </div>
-        <div class="col-7 align-self-center">
-          <div class="row">
-            <div class="col">
-              <p class="mb-0">{{user.first_name}} {{user.last_name}}</p>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<section class="h-420">
+  <div *ngIf="users.length">
+    <div class="row px-2 justify-content-around">
+      <div class="col-12 col-md-5 mat-elevation-z4 m-2 p-1" *ngFor="let user of users">
+        <div class="row">
+          <div class="col-3 px-4 align-self-center">
+            <img class="small-image avatar" src="{{user.profile_image}}" alt="">
+          </div>
+          <div class="col-3 align-self-center">
+            <div class="row">
+              <div class="col">
+                <p class="mb-0">{{user.first_name}} {{user.last_name}}</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <p class="mb-0">{{user.profession}}</p>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <p class="mb-0">{{user.profession}}</p>
-            </div>
+          <div class="col-3 align-self-center">
+            <button class="btn btn-info btn-round btn-simple btn-sm">Accept</button>
+          </div>
+          <div class="col-3 align-self-center">
+            <button class="btn btn-danger btn-round btn-simple btn-sm">Decline</button>
           </div>
         </div>
       </div>

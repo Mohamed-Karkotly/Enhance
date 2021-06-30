@@ -3,6 +3,8 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { CommunicationService } from 'src/app/services/communication.service';
+import { ControlPanelService } from '../../control-panel.service';
+import { StorageService } from 'src/app/services/storage.service';
 
 @Component({
   selector: 'app-cp-sidebar',
@@ -15,17 +17,18 @@ export class CpSidebarComponent implements OnInit, AfterViewInit {
   communityName: string;
   categoryName: string;
   coverImage: string;
-  loaded: boolean;
   constructor(
     private _sidenavService: SidenavService,
     private _observer: BreakpointObserver,
-    private _communicationService: CommunicationService
+    private _communicationService: CommunicationService,
+    private _storageService: StorageService
   ) {}
 
   ngOnInit(): void {
+    let community = this._storageService.getLocalObject('community');
+    this.recieveCommunity(community);
     this._communicationService.getCommunityData().subscribe((res) => {
       this.recieveCommunity(res);
-      this.loaded = true;
     });
   }
 
