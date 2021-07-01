@@ -127,6 +127,12 @@ body {
   height: 130px;
 }
 
+.small-image {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+}
+
 .post-user-image {
   height: 40px;
   width: 40px;

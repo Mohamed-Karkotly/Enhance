@@ -14,6 +14,7 @@ import { ControlPanelService } from '../../control-panel.service';
 })
 export class PostsComponent implements OnInit {
   posts: Post[];
+  categoryPosts: Post[];
   postParams = {} as PostParams;
   subcategories: SubCategory[];
   loaded: boolean;
@@ -33,7 +34,6 @@ export class PostsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPosts();
-    this.getPostsBySubcategory(this.subcategories[0]);
   }
 
   getAllPosts() {
@@ -42,20 +42,22 @@ export class PostsComponent implements OnInit {
       this.posts = posts;
       this.loaded = true;
       this._spinner.hide();
-      console.warn(posts);
     });
   }
 
-  getPostsBySubcategory(subcategory: SubCategory) {
-    this.postParams.subCategoryId = subcategory.id;
+  getPostsBySubcategory(subcategory: any) {
+    //TODO: Handle getting posts by category on tab click
+    console.warn(subcategory);
+
+    /* this.postParams.subCategoryId = subcategory.id;
     this._spinner.show();
     this._cpService
       .getPostsBySubcategory(this.postParams)
       .subscribe((posts) => {
-        this.posts = posts;
+        this.categoryPosts = posts;
         this.loaded = true;
         this._spinner.hide();
-        console.warn(posts);
-      });
+        console.warn('Category POSTS', this.categoryPosts);
+      }); */
   }
 }

@@ -27,7 +27,6 @@ import { ControlPanelService } from '../../control-panel.service';
   styleUrls: ['./community-profile.component.scss'],
 })
 export class CommunityProfileComponent implements OnInit {
-  state$: Observable<object>;
   loaded: boolean;
   communityId: number;
   communityForm: FormGroup;
@@ -64,7 +63,6 @@ export class CommunityProfileComponent implements OnInit {
   ) {
     this.subCategories = [];
     this.categoriesButtonContent = this._translate.instant('form.category');
-    this.loaded = false;
     this.getIdParam();
     this.constructCommunityForm();
   }
@@ -263,6 +261,7 @@ export class CommunityProfileComponent implements OnInit {
         );
         copy.category = copy.category[0];
         copy.coverImage = copy.image;
+        copy.communityId = this.communityId;
         this._communicationService.sendCommunityData(copy);
         this._storageService.setLocalObject('community', copy);
       },
