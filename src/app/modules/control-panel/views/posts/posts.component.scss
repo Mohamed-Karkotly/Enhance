@@ -19,3 +19,16 @@ mat-tab-group {
 :host ::ng-deep .mat-tab-body-wrapper {
   height: 413px;
 }
+
+.card-body {
+  height: 100%;
+  min-height: auto;
+}
+
+.card-footer {
+  background-color: unset;
+}
+
+.card {
+  border-radius: 1rem;
+}
