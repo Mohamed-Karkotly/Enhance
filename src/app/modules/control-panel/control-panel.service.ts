@@ -79,4 +79,16 @@ export class ControlPanelService {
       priority
     );
   }
+
+  deletePost(
+    postId: number,
+    communityId: number,
+    userCommunityId: number
+  ): Observable<any> {
+    return this.postActions.deletePost(
+      `${postId}`,
+      `${communityId}`,
+      `${userCommunityId}`
+    );
+  }
 }

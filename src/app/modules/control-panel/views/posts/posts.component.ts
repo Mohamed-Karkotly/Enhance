@@ -17,6 +17,7 @@ export class PostsComponent implements OnInit {
   categoryPosts: Post[];
   postParams = {} as PostParams;
   subcategories: SubCategory[];
+  community: any;
   loaded: boolean;
   constructor(
     private _cpService: ControlPanelService,
@@ -24,11 +25,10 @@ export class PostsComponent implements OnInit {
     private _spinner: NgxSpinnerService,
     private _toast: ToastService
   ) {
-    let community = this._storageService.getLocalObject('community');
-    this.subcategories = community.subcategories;
-    this.postParams.communityId = community.id;
-    this.postParams.userCommunityId = community.userSettings.id;
-    console.warn(community);
+    this.community = this._storageService.getLocalObject('community');
+    this.subcategories = this.community.subcategories;
+    this.postParams.communityId = this.community.id;
+    this.postParams.userCommunityId = this.community.userSettings.id;
     this.posts = [];
   }
 
@@ -61,5 +61,20 @@ export class PostsComponent implements OnInit {
         this._spinner.hide();
         console.warn('Category POSTS', this.categoryPosts);
       }); */
+  }
+
+  deletePost(post: Post, index: number) {
+    this._spinner.show();
+    this._cpService
+      .deletePost(post.id, this.community.id, this.community.userSettings.id)
+      .subscribe(
+        () => {
+          this._spinner.hide();
+          this.posts.splice(index, 1);
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }
 }

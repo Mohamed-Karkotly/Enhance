@@ -27,4 +27,16 @@ export class PostActions extends CRUDService<Post> {
       subCategoryId: params.subCategoryId,
     });
   }
+
+  deletePost(
+    postId: string,
+    communityId: string,
+    userCommunityId: string
+  ): Observable<any> {
+    return this.deleteEntity({
+      postId: postId,
+      communityId: communityId,
+      userCommunityId: userCommunityId,
+    });
+  }
 }
