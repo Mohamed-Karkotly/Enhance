@@ -18,6 +18,7 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { TagInputModule } from 'ngx-chips';
 import { NgxMaskModule } from 'ngx-mask';
 import { PendingRequestsComponent } from './views/pending-requests/pending-requests.component';
+import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { PendingRequestsComponent } from './views/pending-requests/pending-reque
     PostsComponent,
     ProfileComponent,
     PendingRequestsComponent,
+    UserSettingsComponent,
   ],
   imports: [
     CommonModule,

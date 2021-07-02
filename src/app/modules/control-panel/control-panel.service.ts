@@ -7,6 +7,7 @@ import { CommunityJoinActions } from './actions/community-join';
 import { PendingRequestActions } from './actions/pending-request';
 import { PostActions } from './actions/post';
 import { UserActions } from './actions/user';
+import { UserSettingsActions } from './actions/user-settings';
 
 @Injectable({
   providedIn: 'root',
@@ -17,12 +18,14 @@ export class ControlPanelService {
   pendingRequestsActions: PendingRequestActions;
   communityJoinActions: CommunityJoinActions;
   postActions: PostActions;
+  userSettingsActions: UserSettingsActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.userActions = new UserActions(http);
     this.pendingRequestsActions = new PendingRequestActions(http);
     this.communityJoinActions = new CommunityJoinActions(http);
     this.postActions = new PostActions(http);
+    this.userSettingsActions = new UserSettingsActions(http);
   }
 
   getCommunityById(id: number): Observable<any> {
@@ -31,6 +34,10 @@ export class ControlPanelService {
 
   updateCommunity(community: any): Observable<any> {
     return this.communityActions.updateCommunity(community);
+  }
+
+  getUserById(id: any): Observable<any> {
+    return this.userActions.readUser(id);
   }
 
   updateUser(user: any): Observable<any> {
@@ -54,5 +61,17 @@ export class ControlPanelService {
 
   getPostsBySubcategory(params: PostParams): Observable<any> {
     return this.postActions.readPosts(params);
+  }
+
+  putUserSettings(
+    communityId: number,
+    userId: number,
+    priority: number
+  ): Observable<any> {
+    return this.userSettingsActions.updateUserSettings(
+      communityId,
+      userId,
+      priority
+    );
   }
 }

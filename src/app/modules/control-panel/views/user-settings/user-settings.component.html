@@ -1,0 +1,121 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<section class="h-420">
+  <div class="row" *ngIf="loaded">
+    <div class="col-md-8 px-4">
+      <form [formGroup]="userForm" (ngSubmit)="onSubmit()" #signUp>
+        <!-- *General information Row* -->
+        <div class="row py-1">
+          <!-- First name -->
+          <div class="col-12 col-sm-6 col-md-3 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.firstName' | translate}}</label>
+              <input type="text" class="form-control" formControlName="firstName">
+            </div>
+          </div>
+          <!-- Last name -->
+          <div class="col-12 col-sm-6 col-md-3 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.lastName' | translate}}</label>
+              <input type="text" class="form-control" formControlName="lastName">
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="col-12 col-sm-6 col-md-4 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.email' | translate}}</label>
+              <input type="email" class="form-control" formControlName="email">
+            </div>
+          </div>
+          <!-- Age -->
+          <div class="col-12 col-sm-6 col-md-2 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.age' | translate}}</label>
+              <input type="number" class="form-control" min="14" max="100" formControlName="age">
+            </div>
+          </div>
+        </div>
+        <!-- *//General information Row* -->
+        <!-- *Extra information - Location - Preferences Row* -->
+        <div class="row py-1">
+          <!-- Phone -->
+          <div class="col-12 col-sm-6 col-md-3 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.phone' | translate}}</label>
+              <input type="text" class="form-control" formControlName="phone">
+            </div>
+          </div>
+          <!-- Profession -->
+          <div class="col-12 col-sm-6 col-md-3 px-1">
+            <div class="form-group">
+              <label class="px-2">{{'form.profession' | translate}}</label>
+              <input type="text" class="form-control" formControlName="profession">
+            </div>
+          </div>
+          <!-- Country -->
+          <div class="col-12 col-sm-6 col-md-3 flex-end px-1">
+            <button type="button" class="btn btn-primary w-100 btn-border-radius cursor-not-allowed" disabled>
+              {{countriesButtonContent | translate}}
+            </button>
+          </div>
+          <!-- City -->
+          <div class="col-12 col-sm-6 col-md-3 flex-end px-1">
+            <button type="button" class="btn btn-primary w-100 btn-border-radius cursor-not-allowed" disabled>
+              {{citiesButtonContent | translate}}
+            </button>
+          </div>
+        </div>
+        <!-- *//Extra information - Location - Preferences Row* -->
+        <!-- *About me row* -->
+        <div class="row py-1">
+          <div class="col-md-12 px-3">
+            <div class="form-group">
+              <label>{{'form.about-me' | translate}}</label>
+              <textarea rows="2" cols="80" class="form-control p-0" formControlName="bio"></textarea>
+            </div>
+          </div>
+        </div>
+        <!-- *//About me row* -->
+        <div class="row pt-1">
+          <div class="col-12 col-md-10">
+            <label class="px-2">{{'sign-up.invitation-option' | translate}}</label>
+          </div>
+          <div class="col-2">
+            <bSwitch formControlName="invitationOption"></bSwitch>
+          </div>
+        </div>
+        <!-- -> Hidden Submit button -->
+        <button class="d-none" type="submit" #submit></button>
+        <div class="row mt-5 pt-4">
+          <div class="col-8">
+            <label>Change user prority (Allowed Range is between 0 and 10)</label>
+          </div>
+          <div class="col-4">
+            <input type="number" class="form-control" min="0" max="10" [(ngModel)]="priority"
+              [ngModelOptions]="{standalone: true}" oninput="this.value = Math.round(this.value); this.value =
+            !!this.value && Math.abs(this.value) >= 0 && Math.abs(this.value) <= 10? Math.abs(this.value) : null"
+              placeholder="{{priority}}">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4 px-4 flex-column">
+      <div class="row flex-column-content">
+        <div class="col pt-4 mt-1">
+          <div class="text-center">
+            <img class="avatar border-gray cover-image" [src]="user.profileImage">
+          </div>
+        </div>
+      </div>
+      <div class="row pt-4 mt-180">
+        <div class="col text-center">
+          <button class="btn btn-primary" (click)="submit.click()">{{'button.save' | translate}}</button>
+        </div>
+        <div class="col text-center">
+          <button class="btn btn-secondary" (click)="initSignUpForm()">{{'button.cancel' | translate}}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

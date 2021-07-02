@@ -10,4 +10,8 @@ export class UserActions extends CRUDService<any> {
   updateUser(user: any): Observable<any> {
     return this.updateEntity(user);
   }
+
+  readUser(id: string): Observable<any> {
+    return this.readEntity({ id: id });
+  }
 }

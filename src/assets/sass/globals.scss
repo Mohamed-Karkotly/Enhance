@@ -152,3 +152,14 @@ body {
 .h-460 {
   height: 460px;
 }
+
+.cursor-not-allowed {
+  &:hover {
+    cursor: not-allowed;
+    opacity: 0.65;
+  }
+}
+
+.place-content-space-around {
+  place-content: space-around;
+}

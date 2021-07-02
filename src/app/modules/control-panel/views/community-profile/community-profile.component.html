@@ -96,7 +96,7 @@
           <mat-form-field class="w-100">
             <mat-label>{{'form.subcategory-description' | translate}}</mat-label>
             <mat-chip-list #chipList aria-label="Subcategory selection">
-              <mat-chip *ngFor="let subcategory of subCategories" (removed)="removeSubcategory(subcategory)">
+              <mat-chip *ngFor="let subcategory of subcategories" (removed)="removeSubcategory(subcategory)">
                 {{subcategory.name}}
                 <mat-icon matChipRemove>cancel</mat-icon>
               </mat-chip>

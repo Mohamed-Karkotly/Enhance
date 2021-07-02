@@ -44,11 +44,19 @@ export class MembersComponent implements OnInit {
   getCommunity() {
     this._spinner.show();
     this._cpService.getCommunityById(this.communityId).subscribe((res) => {
-      this.users = res.users;
+      this.users = this.getUniqueArr(res.users);
       this.dataSource = new MatTableDataSource(this.users);
       this.loaded = true;
       this._spinner.hide();
       console.warn(this.users);
     });
+  }
+
+  getUniqueArr(array: Array<any>) {
+    const mapObj = {};
+    array.forEach((element) => {
+      mapObj[element.id] = element;
+    });
+    return Object.values(mapObj);
   }
 }

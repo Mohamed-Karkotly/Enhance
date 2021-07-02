@@ -10,8 +10,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Observable } from 'rxjs';
 import { Category } from 'src/app/models/entities/category.interface';
+import { SubCategory } from 'src/app/models/entities/subcategory.interface';
 import { CommunityService } from 'src/app/modules/community/community.service';
 import { SharedService } from 'src/app/modules/shared/shared.service';
 import { CommunicationService } from 'src/app/services/communication.service';
@@ -21,6 +21,64 @@ import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ControlPanelService } from '../../control-panel.service';
 
+export interface SentCommunity {
+  communityId: number;
+  categoryId: number;
+  label: string;
+  image: string;
+  description: string;
+  deletedSubcategories: number[];
+  addedSubcategories: string[];
+  updatedSubcategories: SubCategory[];
+}
+
+export interface UserSetting {
+  id: number;
+  communityName: string;
+  primaryColor?: any;
+  accentColor?: any;
+  warnColor?: any;
+  communityRating?: any;
+  userRating?: any;
+  priority: number;
+  isJoined: boolean;
+  restrictions?: any;
+}
+
+export interface Setting {
+  id: number;
+  communityName: string;
+  communityRating?: any;
+  userRating?: any;
+  priority: number;
+  userId: number;
+}
+
+export interface User {
+  id: number;
+  first_name: string;
+  last_name: string;
+  profile_image: string;
+  bio: string;
+  profession: string;
+  settings: Setting;
+}
+
+export interface Community {
+  id: number;
+  label: string;
+  description: string;
+  primaryColor?: any;
+  accentColor?: any;
+  warnColor?: any;
+  verified: boolean;
+  deletedAt?: any;
+  coverImage: string;
+  category: Category;
+  subcategories: SubCategory[];
+  userSettings: UserSetting;
+  users: User[];
+}
 @Component({
   selector: 'app-community-profile',
   templateUrl: './community-profile.component.html',
@@ -34,12 +92,11 @@ export class CommunityProfileComponent implements OnInit {
   image: any;
   imageSrc: any;
   community: any;
-  currentCommunity: any;
-  copy: any = {};
+  currentCommunity: Community;
   //API Requests to be stored in the following interfaces
-  categories: Category[];
-  subCategories: any[];
-  subCategoriesCopy: any[] = [];
+  categories: Category[] = [];
+  subcategories: any[] = [];
+  subcategoriesCopy: any[] = [];
   categoriesButtonContent: string;
   showCategoryError: boolean;
   showSubcategoryError: boolean;
@@ -61,7 +118,6 @@ export class CommunityProfileComponent implements OnInit {
     private _communicationService: CommunicationService,
     private _storageService: StorageService
   ) {
-    this.subCategories = [];
     this.categoriesButtonContent = this._translate.instant('form.category');
     this.getIdParam();
     this.constructCommunityForm();
@@ -80,21 +136,16 @@ export class CommunityProfileComponent implements OnInit {
   constructCommunityForm() {
     this._cpService
       .getCommunityById(this.communityId)
-      .subscribe((community: any) => {
-        this.copy.imageSrc = community.coverImage;
-        this.copy.subCategories = community.subcategories;
-        this.copy.categoriesButtonContent = community.category.name;
-        this.copy.subCategoriesCopy = community.subcategories;
+      .subscribe((community: Community) => {
         this.imageSrc = community.coverImage;
         this.currentCommunity = community;
-        this.subCategories = community.subcategories;
-        this.subCategoriesCopy = community.subcategories;
-        console.warn(community);
+        this.subcategories = community.subcategories;
+        this.subcategoriesCopy = community.subcategories;
         this.categoriesButtonContent = community.category.name;
         this.initCommunityForm();
-        this.loaded = true;
         this._communicationService.sendCommunityData(community);
         this._storageService.setLocalObject('community', community);
+        this.loaded = true;
       });
   }
 
@@ -110,20 +161,21 @@ export class CommunityProfileComponent implements OnInit {
       categoryId: new FormControl(this.currentCommunity.category.id, [
         Validators.required,
       ]),
-      subCategories: new FormControl(this.currentCommunity.subCategories, [
+      subCategories: new FormControl(this.currentCommunity.subcategories, [
         Validators.required,
       ]),
     });
   }
 
-  initialize() {
-    this.initCommunityForm();
-    this.imageSrc = this.copy.imageSrc;
-    this.subCategories = this.subCategoriesCopy;
-    this.categoriesButtonContent = this.copy.categoriesButtonContent;
-  }
   get form() {
     return this.communityForm.controls;
+  }
+
+  initialize() {
+    this.categoriesButtonContent = this._translate.instant('form.category');
+    this.getIdParam();
+    this.constructCommunityForm();
+    this.getCategories();
   }
 
   getCategories() {
@@ -131,9 +183,7 @@ export class CommunityProfileComponent implements OnInit {
     this._sharedService.getCategories().subscribe(
       (categories: Category[]) => {
         this.categories = categories;
-        setTimeout(() => {
-          this._spinner.hide();
-        }, 700);
+        this._spinner.hide();
       },
       (err) => {
         if (this._errorService.checkConnectionError(err)) {
@@ -148,21 +198,21 @@ export class CommunityProfileComponent implements OnInit {
     const value = (event.value || '').trim();
     if (value) {
       this.showSubcategoryError = false;
-      if (!this.subCategories.includes(value)) {
+      if (!this.subcategories.includes(value)) {
         subCategory.id = -1;
         subCategory.name = event.value;
-        this.subCategories.push(subCategory);
+        this.subcategories.push(subCategory);
         this.addedSubcategories.push(subCategory.name);
       }
     }
   }
 
   removeSubcategory(subcategory: any): void {
-    const index = this.subCategories.indexOf(subcategory);
+    const index = this.subcategories.indexOf(subcategory);
     if (index >= 0) {
-      if (this.subCategoriesCopy.some((s) => s.id === subcategory.id)) {
-        this.deletedSubcategories.push(this.subCategories[index]);
-        this.subCategories.splice(index, 1);
+      if (this.subcategoriesCopy.some((s) => s.id === subcategory.id)) {
+        this.deletedSubcategories.push(this.subcategories[index]);
+        this.subcategories.splice(index, 1);
       }
       if (subcategory.id === -1) {
         this.deletedSubcategories.splice(
@@ -182,7 +232,7 @@ export class CommunityProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    this.communityForm.controls.subCategories.setValue(this.subCategories);
+    this.communityForm.controls.subCategories.setValue(this.subcategories);
     this.submitted = true;
     if (!this.validateForm()) return; // stop here if form is invalid
     this.initCommunityCategory();
@@ -246,24 +296,21 @@ export class CommunityProfileComponent implements OnInit {
   }
 
   updateCommunity() {
-    let finalCommunity = this.assignParameters();
+    delete this.community.subCategories;
+    this.community.communityId = this.communityId;
     this._spinner.show();
-    this._communityService.updateCommunity(finalCommunity).subscribe(
+    this._communityService.updateCommunity(this.community).subscribe(
       (res) => {
         this._spinner.hide();
         this._toastService.showSuccess(
           'toastr.done',
           'toastr.communityUpdated'
         );
-        let copy: any = finalCommunity;
-        copy.category = this.categories.filter(
-          (x) => x.id === finalCommunity.categoryId
-        );
-        copy.category = copy.category[0];
-        copy.coverImage = copy.image;
-        copy.communityId = this.communityId;
-        this._communicationService.sendCommunityData(copy);
-        this._storageService.setLocalObject('community', copy);
+        this._communicationService.sendCommunityData(this.community);
+        this.categoriesButtonContent = this._translate.instant('form.category');
+        this.getIdParam();
+        this.constructCommunityForm();
+        this.getCategories;
       },
       (err) => {
         this._spinner.hide();
@@ -273,21 +320,5 @@ export class CommunityProfileComponent implements OnInit {
         }
       }
     );
-  }
-
-  assignParameters() {
-    let finalCommunity: any = {};
-    finalCommunity.categoryId = this.communityForm.controls['categoryId'].value;
-    finalCommunity.label = this.communityForm.controls['label'].value;
-    finalCommunity.communityId = +this.communityId;
-    finalCommunity.description =
-      this.communityForm.controls['description'].value;
-    finalCommunity.updatedSubcategories = [];
-    finalCommunity.deletedSubcategories = this.deletedSubcategories.map(
-      ({ id }) => id
-    );
-    finalCommunity.addedSubcategories = this.addedSubcategories;
-    finalCommunity.image = this.community.image;
-    return finalCommunity;
   }
 }

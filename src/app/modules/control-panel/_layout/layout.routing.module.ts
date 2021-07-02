@@ -6,6 +6,7 @@ import { MembersComponent } from '../views/members/members.component';
 import { PendingRequestsComponent } from '../views/pending-requests/pending-requests.component';
 import { PostsComponent } from '../views/posts/posts.component';
 import { ProfileComponent } from '../views/profile/profile.component';
+import { UserSettingsComponent } from '../views/user-settings/user-settings.component';
 import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
@@ -38,6 +39,10 @@ const routes: Routes = [
           {
             path: 'posts',
             component: PostsComponent,
+          },
+          {
+            path: 'members/user-settings/:id',
+            component: UserSettingsComponent,
           },
         ],
       },
