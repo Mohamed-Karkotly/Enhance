@@ -120,7 +120,8 @@
   "modal": {
     "privacy": "Privacy Policy for Enhance",
     "confirmation": "Confirmation",
-    "sureDeleteCommunity": "Are you sure you want to delete this community?"
+    "sureDeleteCommunity": "Are you sure you want to delete this community?",
+    "sureLeaveCommunity": "Are you sure you want to leave this community?"
   },
   "footer": {
     "designed-by": "Designed By Enhance",
@@ -141,7 +142,7 @@
     "who-we-are": "Who we are?",
     "who-we-are-description": "We are a platform that want to give people the power to build community and bring the thoughts closer together.\nWe empower lot of people to share ideas, offer support and make a difference.\nIt's known that everyone cares about the work they’re doing. and our duty is to help our community have the safest and most positive experiences possible.",
     "quote": "As a community manager, organizing thoughts never been easier.",
-    "quotee": "Hamza Hazeen",
+    "quotee": "Jhon Smith",
     "principles": "Our principles are what we stand for. They are beliefs we hold deeply and make trade offs to pursue.",
     "principle-1-header": "Give People a Voice",
     "principle-1": "People deserve to be heard and to have a voice — even when that means defending the right of people we disagree with.",

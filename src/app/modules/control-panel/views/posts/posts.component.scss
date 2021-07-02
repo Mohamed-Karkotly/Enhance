@@ -32,9 +32,11 @@ mat-tab-group {
 .card {
   border-radius: 1rem;
   height: 350px;
-  overflow: auto;
 }
 
+.card-body {
+  overflow: auto;
+}
 .x2 {
   font-size: 30px;
 }

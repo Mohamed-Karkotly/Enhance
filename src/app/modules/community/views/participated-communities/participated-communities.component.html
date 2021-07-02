@@ -1,6 +1,6 @@
-<section *ngIf="loaded">
+<section *ngIf="loaded" class="h-460">
   <!-- Communities List -->
-  <section class="h-460" *ngIf="communities.length">
+  <section *ngIf="communities.length">
     <div class="row m-2">
       <!-- Add to the following div: fxLayoutAlign="start" to make them all the same height-->
       <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 p-3" *ngFor="let community of communities">
@@ -16,11 +16,9 @@
             <p>{{community.description}}</p>
           </mat-card-content>
           <mat-card-actions class="d-flex place-between py-2">
-            <button color="accent" class="text-start" mat-button
-              [routerLink]="[ '/control-panel',community.id]">{{'button.manage' |
+            <button color="accent" class="text-start" mat-button [routerLink]="[ '/download-app']">{{'button.interact' |
               translate}}</button>
-            <button color="warn" class="text-end" mat-button (click)="openModal(deleteModal)">{{'button.delete' |
-              translate}}</button>
+            <button color="warn" class="text-end" mat-button (click)="openModal(deleteModal)">Leave</button>
           </mat-card-actions>
         </mat-expansion-panel>
         <!-- *Delete Modal* -->
@@ -32,14 +30,13 @@
             <h4 class="title title-up">{{'modal.confirmation' | translate}}</h4>
           </div>
           <div class="modal-body">
-            <p class="text-center">{{'modal.sureDeleteCommunity' | translate}}</p>
+            <p class="text-center">{{'modal.sureLeaveCommunity' | translate}}</p>
           </div>
           <div class="modal-footer d-block">
             <div class="row">
               <div class="col text-center">
                 <button type="button" class="btn btn-danger"
-                  (click)="c('Close click'); deleteCommunity(community.id)">{{'button.delete' |
-                  translate}}</button>
+                  (click)="c('Close click'); deleteCommunity(community.id)">Leave</button>
               </div>
               <div class="col text-center">
                 <button type="button" class="btn btn-secondary" (click)="c('Close click')">{{'button.close' |
@@ -76,5 +73,5 @@
       </div>
     </div>
   </section>
-
   <!-- //Empty State -->
+</section>
