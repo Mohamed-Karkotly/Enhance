@@ -197,7 +197,9 @@
     "userDeclined": "User is declined successfully",
     "expired": "Your session expired!",
     "refreshed": "We've just refreshed your session, please try again.",
-    "posted": "Posted successfully."
+    "posted": "Posted successfully.",
+    "priorityUpdated": "User priority updated successfully.",
+    "moreParams": "There are some missing params."
   },
   "community": {
     "admin": "Communities you manage",

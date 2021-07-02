@@ -9,6 +9,7 @@ import { City } from 'src/app/models/entities/city.interface';
 import { User } from 'src/app/models/entities/user.interface';
 import { SharedService } from 'src/app/modules/shared/shared.service';
 import { StorageService } from 'src/app/services/storage.service';
+import { ToastService } from 'src/app/services/toast.service';
 import { ControlPanelService } from '../../control-panel.service';
 
 @Component({
@@ -33,11 +34,11 @@ export class UserSettingsComponent implements OnInit {
     private _sharedService: SharedService,
     private _spinner: NgxSpinnerService,
     private _cpService: ControlPanelService,
-    private _storageService: StorageService
+    private _storageService: StorageService,
+    private _toast: ToastService
   ) {
     this.getIdParam();
     this.communityId = this._storageService.getLocalObject('community').id;
-    console.warn(this.communityId);
   }
 
   ngOnInit() {
@@ -55,8 +56,6 @@ export class UserSettingsComponent implements OnInit {
     this._spinner.show();
     this._cpService.getUserById(this.userId).subscribe((res) => {
       this.user = res;
-      console.warn(this.user);
-
       this.initSignUpForm();
       this.citiesButtonContent = this.user.city.name;
       this.countriesButtonContent = this.user.city.country.name;
@@ -100,12 +99,11 @@ export class UserSettingsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(+this.communityId, +this.userId, +this.priority);
     this._spinner.show();
     this._cpService
       .putUserSettings(+this.communityId, +this.userId, +this.priority)
       .subscribe((res) => {
-        console.warn(res);
+        this._toast.showSuccess('toastr.done', 'toastr.priorityUpdated');
         this._spinner.hide();
       });
   }

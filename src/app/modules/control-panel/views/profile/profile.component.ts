@@ -208,7 +208,6 @@ export class ProfileComponent implements OnInit {
     this._spinner.show();
     this._imageUploadService.uploadImage(this.image).subscribe(
       (res: any) => {
-        console.warn(res.imageUrl);
         //this.signUpForm.controls.progileImage.setValue(imageUrl);
         this.updatedUser.profileImage = res.imageUrl;
         this.imageSrc = res.imageUrl;

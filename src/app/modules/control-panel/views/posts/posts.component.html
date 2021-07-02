@@ -17,51 +17,66 @@
                       <div class="px-3 pt-3 pb-0">
                         <div class="row">
                           <div class="col-8">
-                            <h6 class="category text-danger">
-                              <i class="now-ui-icons media-2_sound-wave"></i> subcategory
+                            <h6 *ngIf="post.type == 1" class="category text-success">
+                              <i class="fas fa-lightbulb"></i>
+                              Suggestion
+                            </h6>
+                            <h6 *ngIf="post.type == 2" class="category text-danger">
+                              <i class="now-ui-icons media-2_sound-wave"></i>
+                              Objection
                             </h6>
                             <h5 class="card-title">{{post.title}}</h5>
                           </div>
                           <div class="col-4 text-end mt-n2">
                             <div class="row">
                               <div class="col">
-                                <mat-icon class="cursor-pointer">expand_less</mat-icon>
+                                <mat-icon class="cursor-pointer x2"
+                                  [ngClass]="post.userVoteValue == 1?'text-success':''" (click)="upVote(post)">
+                                  expand_less</mat-icon>
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                <mat-icon class="cursor-pointer">expand_more</mat-icon>
+                                <mat-icon class="cursor-pointer x2"
+                                  [ngClass]="post.userVoteValue == -1?'text-danger':''" (click)="downVote(post)">
+                                  expand_more</mat-icon>
                               </div>
                             </div>
                           </div>
                         </div>
                         <p class="card-description">{{post.description}}</p>
-                        <div class="card-footer px-0 pt-2">
-                          <div class="row px-3">
-                            <div class="col-8 p-0 align-self-center">
-                              <div class="author">
-                                <img class="avatar img-raised post-user-image" src="{{post.user.profileImage}}">
-                                <span class="px-2">{{post.user.firstName}} {{post.user.lastName}}</span>
-                              </div>
-                            </div>
-                            <div class="col-4 p-0 text-center align-self-center">
-                              <div class="row">
-                                <div class="col py-0 text-end align-self-center">
-                                  <mat-icon>poll</mat-icon>
-                                </div>
-                                <div class="col p-0 text-center mt-n1 align-self-center">
-                                  <span>{{post.votes}}</span>
+                        <div [ngClass]="post.attachments[0]?'':'card-bottom' ">
+                          <div class="card-footer px-0 pt-2">
+                            <div class="row px-3">
+                              <div class="col-8 p-0 align-self-center">
+                                <div class="author">
+                                  <img *ngIf="!post.isAnonymous" class="avatar img-raised post-user-image"
+                                    src="{{post.user.profileImage}}">
+                                  <i *ngIf="post.isAnonymous" class="fas fa-question-circle"></i>
+                                  <span *ngIf="!post.isAnonymous" class="px-2">{{post.user.firstName}}
+                                    {{post.user.lastName}}</span>
+                                  <span *ngIf="post.isAnonymous" class="px-2">Anonymous</span>
                                 </div>
                               </div>
+                              <div class="col-4 p-0 text-center align-self-center">
+                                <div class="row">
+                                  <div class="col py-0 text-end align-self-center">
+                                    <mat-icon>poll</mat-icon>
+                                  </div>
+                                  <div class="col p-0 text-center mt-n1 align-self-center">
+                                    <span>{{post.votes}}</span>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="row px-3 pt-2">
-                            <p class="text-muted">Published at: {{post.createdAt | date: 'fullDate'}}</p>
-                          </div>
-                          <div class="row">
-                            <div class="col-12 text-center">
-                              <button type="button" class="btn btn-danger btn-round btn-simple btn-sm"
-                                (click)="deletePost(post, i)">Delete</button>
+                            <div class="row px-3 pt-2">
+                              <p class="text-muted">Published at: {{post.createdAt | date: 'fullDate'}}</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-12 text-center">
+                                <button type="button" class="btn btn-danger btn-round btn-simple btn-sm"
+                                  (click)="deletePost(post, i)">Delete</button>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -80,8 +95,13 @@
                       <div class="px-3 pt-3 pb-0">
                         <div class="row">
                           <div class="col-8">
-                            <h6 class="category text-danger">
-                              <i class="now-ui-icons media-2_sound-wave"></i> subcategory
+                            <h6 *ngIf="post.type == 1" class="category text-success">
+                              <i class="fas fa-lightbulb"></i>
+                              Suggestion
+                            </h6>
+                            <h6 *ngIf="post.type == 2" class="category text-danger">
+                              <i class="now-ui-icons media-2_sound-wave"></i>
+                              Objection
                             </h6>
                             <h5 class="card-title">{{post.title}}</h5>
                           </div>
@@ -99,28 +119,38 @@
                           </div>
                         </div>
                         <p class="card-description">{{post.description}}</p>
-                        <div class="card-footer px-0 pt-2">
-                          <div class="row px-3">
-                            <div class="col-8 p-0 align-self-center">
-                              <div class="author">
-                                <img class="avatar img-raised post-user-image" src="{{post.user.profileImage}}">
-                                <span class="px-2">{{post.user.firstName}} {{post.user.lastName}}</span>
-                              </div>
-                            </div>
-                            <div class="col-4 p-0 text-center align-self-center">
-                              <div class="row">
-                                <div class="col py-0 text-end align-self-center">
-                                  <mat-icon>poll</mat-icon>
-                                </div>
-                                <div class="col p-0 text-center mt-n1 align-self-center">
-                                  <span>{{post.votes}}</span>
+                        <div [ngClass]="post.attachments[0]?'':'card-bottom' ">
+                          <div class="card-footer px-0 pt-2">
+                            <div class="row px-3">
+                              <div class="col-8 p-0 align-self-center">
+                                <div class="author">
+                                  <img *ngIf="!post.isAnonymous" class="avatar img-raised post-user-image"
+                                    src="{{post.user.profileImage}}">
+                                  <i *ngIf="post.isAnonymous" class="fas fa-question-circle"></i>
+                                  <span *ngIf="!post.isAnonymous" class="px-2">{{post.user.firstName}}
+                                    {{post.user.lastName}}</span>
+                                  <span *ngIf="post.isAnonymous" class="px-2">Anonymous</span>
                                 </div>
                               </div>
+                              <div class="col-4 p-0 text-center align-self-center">
+                                <div class="row">
+                                  <div class="col py-0 text-end align-self-center">
+                                    <mat-icon>poll</mat-icon>
+                                  </div>
+                                  <div class="col p-0 text-center mt-n1 align-self-center">
+                                    <span>{{post.votes}}</span>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
-                          </div>
-                          <div class="row px-3 pt-2">
-                            <div class="col-6">
+                            <div class="row px-3 pt-2">
                               <p class="text-muted">Published at: {{post.createdAt | date: 'fullDate'}}</p>
+                            </div>
+                            <div class="row">
+                              <div class="col-12 text-center">
+                                <button type="button" class="btn btn-danger btn-round btn-simple btn-sm"
+                                  (click)="deletePost(post, i)">Delete</button>
+                              </div>
                             </div>
                           </div>
                         </div>

@@ -35,7 +35,6 @@ export class PendingRequestsComponent implements OnInit {
     this._cpService
       .getPendingRequests(this.communityId)
       .subscribe((requests: any[]) => {
-        console.warn(requests);
         this.users = requests;
         this._spinner.hide();
         this.loaded = true;

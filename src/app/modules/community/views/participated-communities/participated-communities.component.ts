@@ -39,7 +39,6 @@ export class ParticipatedCommunitiesComponent implements OnInit {
       },
       (err) => {
         this.loaded = true;
-        console.warn(err);
         this._spinner.hide();
       }
     );

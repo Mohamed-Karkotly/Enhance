@@ -44,11 +44,13 @@ export class MembersComponent implements OnInit {
   getCommunity() {
     this._spinner.show();
     this._cpService.getCommunityById(this.communityId).subscribe((res) => {
+      console.warn(res);
       this.users = this.getUniqueArr(res.users);
+      console.warn(this.users);
+
       this.dataSource = new MatTableDataSource(this.users);
       this.loaded = true;
       this._spinner.hide();
-      console.warn(this.users);
     });
   }
 

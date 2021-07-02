@@ -9,6 +9,7 @@ import { PendingRequestActions } from './actions/pending-request';
 import { PostActions } from './actions/post';
 import { UserActions } from './actions/user';
 import { UserSettingsActions } from './actions/user-settings';
+import { VoteActions } from './actions/vote';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class ControlPanelService {
   communityJoinActions: CommunityJoinActions;
   postActions: PostActions;
   userSettingsActions: UserSettingsActions;
+  voteActions: VoteActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.userActions = new UserActions(http);
@@ -27,6 +29,7 @@ export class ControlPanelService {
     this.communityJoinActions = new CommunityJoinActions(http);
     this.postActions = new PostActions(http);
     this.userSettingsActions = new UserSettingsActions(http);
+    this.voteActions = new VoteActions(http);
   }
 
   getCommunityById(id: number): Observable<any> {
@@ -90,5 +93,17 @@ export class ControlPanelService {
       `${communityId}`,
       `${userCommunityId}`
     );
+  }
+
+  postUpVote(postId: number, userCommunityId: number): Observable<any> {
+    return this.voteActions.createVote(postId, userCommunityId, 1);
+  }
+
+  postDownVote(postId: number, userCommunityId: number): Observable<any> {
+    return this.voteActions.createVote(postId, userCommunityId, -1);
+  }
+
+  postResetVote(postId: number, userCommunityId: number): Observable<any> {
+    return this.voteActions.createVote(postId, userCommunityId, 0);
   }
 }

@@ -178,7 +178,6 @@ export class CreateCommunityComponent implements OnInit {
     this._spinner.show();
     this._communityService.postCommunity(this.community).subscribe(
       (res) => {
-        console.warn(res);
         this._spinner.hide();
         this._toastService.showSuccess(
           'toastr.done',

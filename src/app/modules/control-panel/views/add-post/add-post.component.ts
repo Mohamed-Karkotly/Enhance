@@ -67,11 +67,9 @@ export class AddPostComponent implements OnInit {
   }
 
   uploadImage() {
-    console.warn(this.post);
     this._spinner.show();
     this._imageUploadService.uploadImage(this.image).subscribe(
       (response: any) => {
-        console.warn(response);
         let imageUrl = response.imageUrl;
         this.images.push(imageUrl);
         this.post.attachments = this.images;
@@ -97,12 +95,14 @@ export class AddPostComponent implements OnInit {
     this._spinner.show();
     this._cpService.postPost(post).subscribe(
       (res) => {
-        console.warn(res);
         this._spinner.hide();
         this._toastService.showSuccess('toastr.done', 'toastr.posted');
       },
       (err) => {
         console.error(err);
+        if (err.status == 400) {
+          this._toastService.showError('toastr.oops', 'toastr.moreParams');
+        }
       }
     );
   }
