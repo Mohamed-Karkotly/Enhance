@@ -1,0 +1,112 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#f96332" type="square-jelly-box" [fullScreen]="true">
+  <h6 class="white-color">{{'spinner.processing' | translate}}</h6>
+</ngx-spinner>
+<section class="h-420">
+  <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+    <div class="row py-3">
+      <!-- Subcategory -->
+      <div class="col-6">
+        <div class="row">
+          <div class="col-6 align-self-center">
+            <p class="m-0">Choose post's subcategory</p>
+          </div>
+          <div class="col-6">
+            <div ngbDropdown class="dropdown" placement="bottom-left">
+              <button type="button" class="btn btn-primary dropdown-toggle w-100 btn-border-radius"
+                ngbDropdownToggle>{{subcategoryButtonContent}}</button>
+              <div ngbDropdownMenu>
+                <a *ngFor="let subcategory of subcategories" class="dropdown-item cursor-pointer"
+                  (click)="chooseSubcategory(subcategory)">
+                  {{subcategory.name}}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- //Subcategory -->
+
+      <!-- Post Type -->
+      <div class="col-6 align-self-center">
+        <mat-radio-group aria-label="Select an option" formControlName="type">
+          <div class="row">
+            <div class="col-6 align-self-center">
+              <p class="m-0">Choose post type</p>
+            </div>
+            <div class="col-3 text-center align-self-center">
+              <mat-radio-button class="p-2" value="1" [checked]="true">Suggestion</mat-radio-button>
+            </div>
+            <div class="col-3 text-center align-self-center">
+              <mat-radio-button class="p-2" value="2">Objection</mat-radio-button>
+            </div>
+          </div>
+        </mat-radio-group>
+      </div>
+      <!-- //Post Type -->
+    </div>
+
+    <div class="row">
+      <!-- Post Title -->
+      <div class="col-6">
+        <div class="row">
+          <div class="col-6">
+            <p>Post title</p>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" formControlName="title">
+          </div>
+        </div>
+      </div>
+      <!-- //Post Title -->
+      <div class="col-6">
+        <!-- isAnonymous Option -->
+        <div class="row">
+          <div class="col-10">
+            <p>Would you like to post this anonymously?</p>
+          </div>
+          <div class="col-2">
+            <bSwitch formControlName="isAnonymous"></bSwitch>
+          </div>
+        </div>
+        <!-- //isAnonymous Option -->
+      </div>
+    </div>
+
+    <div class="row pb-3 pt-5">
+      <!-- Post Description -->
+      <div class="col-6">
+        <div class="col-12 text-center">
+          <p>Post Description</p>
+        </div>
+        <div class="col-12">
+          <textarea rows="5" cols="80" class="form-control" formControlName="description" placeholder="description..">
+
+          </textarea>
+        </div>
+      </div>
+      <!-- //Post Description -->
+
+      <!-- Attachments -->
+      <div class="col-6">
+        <div class="text-center">
+          <img class="post-image border-gray cover-image" [ngClass]="imageSrc? 'visible' : 'invisible'"
+            [src]="imageSrc">
+          <div>
+            <div class="d-none">
+              <input type="file" #photoInput accept="image/*" (change)="processFile($event)" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="photoInput.click()">{{'form.upload-image' |
+              translate}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //Attachments -->
+
+    <div class="row">
+      <div class="col-12 text-center">
+        <button class="btn btn-primary">Post</button>
+      </div>
+    </div>
+  </form>
+</section>

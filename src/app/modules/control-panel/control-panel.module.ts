@@ -19,6 +19,7 @@ import { TagInputModule } from 'ngx-chips';
 import { NgxMaskModule } from 'ngx-mask';
 import { PendingRequestsComponent } from './views/pending-requests/pending-requests.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
+import { AddPostComponent } from './views/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { UserSettingsComponent } from './views/user-settings/user-settings.compo
     ProfileComponent,
     PendingRequestsComponent,
     UserSettingsComponent,
+    AddPostComponent,
   ],
   imports: [
     CommonModule,

@@ -40,6 +40,8 @@ export class PostsComponent implements OnInit {
     this._spinner.show();
     this._cpService.getAllPosts(this.postParams).subscribe((posts) => {
       this.posts = posts;
+      console.warn(this.posts);
+
       this.loaded = true;
       this._spinner.hide();
     });

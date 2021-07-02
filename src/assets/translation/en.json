@@ -196,7 +196,8 @@
     "userAccepted": "User is accepted successfully",
     "userDeclined": "User is declined successfully",
     "expired": "Your session expired!",
-    "refreshed": "We've just refreshed your session, please try again."
+    "refreshed": "We've just refreshed your session, please try again.",
+    "posted": "Posted successfully."
   },
   "community": {
     "admin": "Communities you manage",

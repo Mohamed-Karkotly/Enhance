@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PostParams } from 'src/app/models/API/post-params.interface';
+import { Post } from 'src/app/models/entities/post.interface';
 import { CommunityActions } from '../community/actions/community';
 import { CommunityJoinActions } from './actions/community-join';
 import { PendingRequestActions } from './actions/pending-request';
@@ -61,6 +62,10 @@ export class ControlPanelService {
 
   getPostsBySubcategory(params: PostParams): Observable<any> {
     return this.postActions.readPosts(params);
+  }
+
+  postPost(post: Post): Observable<any> {
+    return this.postActions.createPost(post);
   }
 
   putUserSettings(

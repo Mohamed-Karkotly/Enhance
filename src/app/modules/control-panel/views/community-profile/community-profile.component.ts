@@ -145,6 +145,7 @@ export class CommunityProfileComponent implements OnInit {
         this.initCommunityForm();
         this._communicationService.sendCommunityData(community);
         this._storageService.setLocalObject('community', community);
+        this._storageService.setLocalObject('owner', community.users[0]);
         this.loaded = true;
       });
   }

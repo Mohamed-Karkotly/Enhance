@@ -1,9 +1,15 @@
+import { Attachments } from './attachment.interface';
+import { User } from './user.interface';
 export interface Post {
   id: number;
-  user_community_id: number;
-  subcategory_id: number;
-  post_state_id: number;
   type: number;
+  title: string;
   description: string;
-  is_anonymous: boolean; //Has a default value of false
+  isAnonymous: boolean;
+  deletedAt?: any;
+  createdAt: string;
+  votes: number;
+  attachments: any[];
+  userVoteValue: number;
+  user: User;
 }
