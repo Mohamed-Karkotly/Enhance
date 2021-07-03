@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PostParams } from 'src/app/models/API/post-params.interface';
@@ -17,6 +18,14 @@ export enum VotingStates {
   selector: 'app-posts',
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(700, style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class PostsComponent implements OnInit {
   voteState: VotingStates;
@@ -44,6 +53,7 @@ export class PostsComponent implements OnInit {
   }
 
   getAllPosts() {
+    this.loaded = false;
     this.posts = [];
     this._spinner.show();
     this._cpService.getAllPosts(this.postParams).subscribe((posts) => {
@@ -57,6 +67,7 @@ export class PostsComponent implements OnInit {
   }
 
   getPostsBySubcategory(event: any) {
+    this.categoryPosts = [];
     if (event.index == 0) {
       this.getAllPosts();
       return;
