@@ -5,6 +5,7 @@ import { PostParams } from 'src/app/models/API/post-params.interface';
 import { Post } from 'src/app/models/entities/post.interface';
 import { CommunityActions } from '../community/actions/community';
 import { CommunityJoinActions } from './actions/community-join';
+import { DeleteMemberActions } from './actions/delete-member';
 import { PendingRequestActions } from './actions/pending-request';
 import { PostActions } from './actions/post';
 import { UserActions } from './actions/user';
@@ -22,6 +23,7 @@ export class ControlPanelService {
   postActions: PostActions;
   userSettingsActions: UserSettingsActions;
   voteActions: VoteActions;
+  deleteMemberActions: DeleteMemberActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.userActions = new UserActions(http);
@@ -30,6 +32,7 @@ export class ControlPanelService {
     this.postActions = new PostActions(http);
     this.userSettingsActions = new UserSettingsActions(http);
     this.voteActions = new VoteActions(http);
+    this.deleteMemberActions = new DeleteMemberActions(http);
   }
 
   getCommunityById(id: number): Observable<any> {
@@ -105,5 +108,9 @@ export class ControlPanelService {
 
   postResetVote(postId: number, userCommunityId: number): Observable<any> {
     return this.voteActions.createVote(postId, userCommunityId, 0);
+  }
+
+  deleteMember(userCommunityId: string): Observable<any> {
+    return this.deleteMemberActions.deleteMember(userCommunityId);
   }
 }

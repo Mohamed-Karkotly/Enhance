@@ -240,11 +240,8 @@ export class ProfileComponent implements OnInit {
         7;
         this.categories = this.categoriesFullCopy;
         this.currentUser.categories = this.categories;
-        console.warn(finalUser);
         this._storageService.setLocalObject('user', finalUser);
         this._communicationService.sendUserData(finalUser);
-
-        console.warn(res);
         this._spinner.hide();
       },
       (err) => {

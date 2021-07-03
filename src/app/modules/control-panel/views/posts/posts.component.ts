@@ -52,7 +52,6 @@ export class PostsComponent implements OnInit {
         post.createdAt = new Date(post.createdAt);
       });
       this.loaded = true;
-      console.warn(posts);
       this._spinner.hide();
     });
   }
@@ -70,7 +69,6 @@ export class PostsComponent implements OnInit {
         this.categoryPosts = posts;
         this.loaded = true;
         this._spinner.hide();
-        console.warn('Category POSTS', this.categoryPosts);
       });
   }
 

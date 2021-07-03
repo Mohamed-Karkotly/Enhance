@@ -57,8 +57,6 @@ export class JoinCommunityComponent implements OnInit {
       .getCommunitiesByName(emittedCommunity)
       .subscribe((communities: Community[]) => {
         this.communities = communities;
-        console.warn(communities);
-
         this.isSearching = false;
         if (communities.length != 0) {
           this.isMatched = true;

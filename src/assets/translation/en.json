@@ -121,7 +121,8 @@
     "privacy": "Privacy Policy for Enhance",
     "confirmation": "Confirmation",
     "sureDeleteCommunity": "Are you sure you want to delete this community?",
-    "sureLeaveCommunity": "Are you sure you want to leave this community?"
+    "sureLeaveCommunity": "Are you sure you want to leave this community?",
+    "sureDeleteMember": "Are you sure you want to remove membership from "
   },
   "footer": {
     "designed-by": "Designed By Enhance",
