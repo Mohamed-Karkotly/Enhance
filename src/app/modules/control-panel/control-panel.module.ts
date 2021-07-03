@@ -20,6 +20,7 @@ import { NgxMaskModule } from 'ngx-mask';
 import { PendingRequestsComponent } from './views/pending-requests/pending-requests.component';
 import { UserSettingsComponent } from './views/user-settings/user-settings.component';
 import { AddPostComponent } from './views/add-post/add-post.component';
+import { DateAgoPipe } from 'src/app/pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { AddPostComponent } from './views/add-post/add-post.component';
     PendingRequestsComponent,
     UserSettingsComponent,
     AddPostComponent,
+    DateAgoPipe
   ],
   imports: [
     CommonModule,

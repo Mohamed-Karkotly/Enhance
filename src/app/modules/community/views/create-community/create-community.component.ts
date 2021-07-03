@@ -184,6 +184,8 @@ export class CreateCommunityComponent implements OnInit {
           'toastr.communityCreated'
         );
         this.communityForm.reset();
+        this.imageSrc = null;
+        this.image = null;
       },
       (err) => {
         console.error(err);

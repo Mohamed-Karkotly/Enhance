@@ -21,6 +21,7 @@ import { ControlPanelModule } from './modules/control-panel/control-panel.module
 import { SidenavService } from './services/sidenav.service';
 import { ErrorPagesModule } from './modules/error-pages/error-pages.module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { DateAgoPipe } from './pipes/date-ago.pipe';
 
 @NgModule({
   declarations: [AppComponent],

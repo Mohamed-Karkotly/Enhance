@@ -16,7 +16,7 @@
                       <img class="post-image" *ngIf="post.attachments[0]" src="{{post.attachments[0].url}}" alt="">
                       <div class="px-3 pt-3 pb-0">
                         <div class="row">
-                          <div class="col-8">
+                          <div class="col-10">
                             <h6 *ngIf="post.type == 1" class="category text-success">
                               <i class="fas fa-lightbulb"></i>
                               Suggestion
@@ -27,7 +27,7 @@
                             </h6>
                             <h5 class="card-title">{{post.title}}</h5>
                           </div>
-                          <div class="col-4 text-end mt-n2">
+                          <div class="col-2 text-end mt-n2">
                             <div class="row">
                               <div class="col">
                                 <mat-icon class="cursor-pointer x2"
@@ -70,7 +70,7 @@
                               </div>
                             </div>
                             <div class="row px-3 pt-2">
-                              <p class="text-muted">Published at: {{post.createdAt | date: 'fullDate'}}</p>
+                              <p class="text-muted">Published: {{post.createdAt | dateAgo}}</p>
                             </div>
                             <div class="row">
                               <div class="col-12 text-center">
@@ -94,7 +94,7 @@
                       <img class="post-image" *ngIf="post.attachments[0]" src="{{post.attachments[0].url}}" alt="">
                       <div class="px-3 pt-3 pb-0">
                         <div class="row">
-                          <div class="col-8">
+                          <div class="col-10">
                             <h6 *ngIf="post.type == 1" class="category text-success">
                               <i class="fas fa-lightbulb"></i>
                               Suggestion
@@ -105,15 +105,19 @@
                             </h6>
                             <h5 class="card-title">{{post.title}}</h5>
                           </div>
-                          <div class="col-4 text-end mt-n2">
+                          <div class="col-2 text-end mt-n2">
                             <div class="row">
                               <div class="col">
-                                <mat-icon class="cursor-pointer">expand_less</mat-icon>
+                                <mat-icon class="cursor-pointer x2"
+                                  [ngClass]="post.userVoteValue == 1?'text-success':''" (click)="upVote(post)">
+                                  expand_less</mat-icon>
                               </div>
                             </div>
                             <div class="row">
                               <div class="col">
-                                <mat-icon class="cursor-pointer">expand_more</mat-icon>
+                                <mat-icon class="cursor-pointer x2"
+                                  [ngClass]="post.userVoteValue == -1?'text-danger':''" (click)="downVote(post)">
+                                  expand_more</mat-icon>
                               </div>
                             </div>
                           </div>
@@ -144,7 +148,7 @@
                               </div>
                             </div>
                             <div class="row px-3 pt-2">
-                              <p class="text-muted">Published at: {{post.createdAt | date: 'fullDate'}}</p>
+                              <p class="text-muted">Published: {{post.createdAt | dateAgo}}</p>
                             </div>
                             <div class="row">
                               <div class="col-12 text-center">

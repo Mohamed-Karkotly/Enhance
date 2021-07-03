@@ -184,7 +184,9 @@ export class CommunityProfileComponent implements OnInit {
     this._sharedService.getCategories().subscribe(
       (categories: Category[]) => {
         this.categories = categories;
-        this._spinner.hide();
+        setTimeout(() => {
+          this._spinner.hide();
+        }, 1000);
       },
       (err) => {
         if (this._errorService.checkConnectionError(err)) {

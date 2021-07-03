@@ -48,6 +48,9 @@ export class PostsComponent implements OnInit {
     this._spinner.show();
     this._cpService.getAllPosts(this.postParams).subscribe((posts) => {
       this.posts = posts;
+      this.posts.forEach((post) => {
+        post.createdAt = new Date(post.createdAt);
+      });
       this.loaded = true;
       console.warn(posts);
       this._spinner.hide();

@@ -7,7 +7,7 @@ export interface Post {
   description: string;
   isAnonymous: boolean;
   deletedAt?: any;
-  createdAt: string;
+  createdAt: any;
   votes: number;
   attachments: any[];
   userVoteValue: number;
