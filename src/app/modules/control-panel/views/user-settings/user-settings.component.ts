@@ -1,11 +1,9 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { CountryAPI } from 'src/app/models/API/country-api.interface';
 import { Category } from 'src/app/models/entities/category.interface';
-import { City } from 'src/app/models/entities/city.interface';
 import { User } from 'src/app/models/entities/user.interface';
 import { SharedService } from 'src/app/modules/shared/shared.service';
 import { StorageService } from 'src/app/services/storage.service';
@@ -35,7 +33,8 @@ export class UserSettingsComponent implements OnInit {
     private _spinner: NgxSpinnerService,
     private _cpService: ControlPanelService,
     private _storageService: StorageService,
-    private _toast: ToastService
+    private _toast: ToastService,
+    private _location: Location
   ) {
     this.getIdParam();
     this.communityId = this._storageService.getLocalObject('community').id;
@@ -106,5 +105,8 @@ export class UserSettingsComponent implements OnInit {
         this._toast.showSuccess('toastr.done', 'toastr.priorityUpdated');
         this._spinner.hide();
       });
+  }
+  goBack() {
+    this._location.back();
   }
 }

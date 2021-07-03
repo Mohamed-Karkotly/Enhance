@@ -50,7 +50,7 @@
                             <div class="row px-3">
                               <div class="col-8 p-0 align-self-center">
                                 <div class="author">
-                                  <img *ngIf="!post.isAnonymous" class="avatar img-raised post-user-image"
+                                  <img *ngIf="!post.isAnonymous" class="avatar post-user-image"
                                     src="{{post.user.profileImage}}">
                                   <i *ngIf="post.isAnonymous" class="fas fa-question-circle"></i>
                                   <span *ngIf="!post.isAnonymous" class="px-2">{{post.user.firstName}}
@@ -124,7 +124,7 @@
                             <div class="row px-3">
                               <div class="col-8 p-0 align-self-center">
                                 <div class="author">
-                                  <img *ngIf="!post.isAnonymous" class="avatar img-raised post-user-image"
+                                  <img *ngIf="!post.isAnonymous" class="avatar post-user-image"
                                     src="{{post.user.profileImage}}">
                                   <i *ngIf="post.isAnonymous" class="fas fa-question-circle"></i>
                                   <span *ngIf="!post.isAnonymous" class="px-2">{{post.user.firstName}}

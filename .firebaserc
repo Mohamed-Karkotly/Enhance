@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "enhance-platform"
+  },
+  "targets": {
+    "enhance-platform": {
+      "hosting": {
+        "enhance": [
+          "enhance-platform"
+        ]
+      }
+    }
+  }
+}
