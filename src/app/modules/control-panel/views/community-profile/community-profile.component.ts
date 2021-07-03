@@ -103,6 +103,7 @@ export class CommunityProfileComponent implements OnInit {
   deletedSubcategories: any[] = [];
   addedSubcategories: any[] = [];
   updatedSubcategories: any;
+  verificationCommunity: any;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
   constructor(
     private _activatedRoute: ActivatedRoute,
@@ -137,6 +138,8 @@ export class CommunityProfileComponent implements OnInit {
     this._cpService
       .getCommunityById(this.communityId)
       .subscribe((community: Community) => {
+        this.verificationCommunity = community;
+        console.warn(this.verificationCommunity);
         this.imageSrc = community.coverImage;
         this.currentCommunity = community;
         this.subcategories = community.subcategories;

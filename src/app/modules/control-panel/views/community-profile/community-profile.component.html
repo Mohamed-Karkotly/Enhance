@@ -32,7 +32,7 @@
           <!-- !Important -->
           <div class="row p-3">
             <!-- *Label* -->
-            <div class="col-12">
+            <div [ngClass]="verificationCommunity.verified?'col-8':'col-12'">
               <div class="form-group">
                 <label class="px-2">{{'form.displayName' | translate}}</label>
                 <input type="text" class="form-control" placeholder="{{'form.displayName-mask' | translate}}"
@@ -56,6 +56,10 @@
               </div>
             </div>
             <!-- *//Label* -->
+            <div class="col-4 text-center align-self-center mt-3" *ngIf="verificationCommunity.verified">
+              <label *ngIf="verificationCommunity.verified" class="px-2">Verified</label>
+              <img *ngIf="verificationCommunity.verified" src="../../../../../assets/img/correct.png" class="verified">
+            </div>
           </div>
           <!-- *Description* -->
           <div class="row">
