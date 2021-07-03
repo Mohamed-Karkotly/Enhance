@@ -6,6 +6,7 @@ import { CommunityActions } from './actions/community';
 import { CommunitySearchActions } from './actions/community-search';
 import { JoinCommunityActions } from './actions/join-community';
 import { JoinedCommunityActions } from './actions/joined-communities';
+import { LeaveCommunityActions } from './actions/leave-community';
 import { OwnedCommunityActions } from './actions/owned-communities';
 
 @Injectable({
@@ -17,12 +18,14 @@ export class CommunityService {
   joinedCommunityActions: JoinedCommunityActions;
   searchCommunityActions: CommunitySearchActions;
   joinCommunityActions: JoinCommunityActions;
+  leaveCommunityActions: LeaveCommunityActions;
   constructor(http: HttpClient) {
     this.communityActions = new CommunityActions(http);
     this.ownedCommunitiesActions = new OwnedCommunityActions(http);
     this.joinedCommunityActions = new JoinedCommunityActions(http);
     this.searchCommunityActions = new CommunitySearchActions(http);
     this.joinCommunityActions = new JoinCommunityActions(http);
+    this.leaveCommunityActions = new LeaveCommunityActions(http);
   }
 
   postCommunity(community: Community): Observable<any> {
@@ -57,5 +60,9 @@ export class CommunityService {
 
   postJoinCommunity(communityId: number): Observable<any> {
     return this.joinCommunityActions.createJoin(`${communityId}`);
+  }
+
+  deleteLeaveCommunity(communityId: number): Observable<any> {
+    return this.leaveCommunityActions.deleteCommunity(`${communityId}`);
   }
 }

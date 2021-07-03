@@ -49,7 +49,7 @@ export class ParticipatedCommunitiesComponent implements OnInit {
     let index = this.communities.findIndex(
       (community) => community.id == communityId
     );
-    this._communityService.deleteCommunity(communityId).subscribe(
+    this._communityService.deleteLeaveCommunity(communityId).subscribe(
       (res) => {
         this._spinner.hide();
         this.communities.splice(index, 1);
