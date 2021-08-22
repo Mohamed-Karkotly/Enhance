@@ -24,7 +24,7 @@
 2) **English**
 
 ## Usage
-• In terminal run ```ng serve --open```.
+• In terminal run ```npm i``` to install ```node_modules``` then after installing, run ```ng serve --open```.
 
 
 ## License
